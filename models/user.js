@@ -10,9 +10,9 @@ const userSchema = new Schema({
 	phoneNumber: { type: String, required: true }
 });
 
-const User = (module.exports = mongoose.model("User", userSchema));
+const User = mongoose.model("User", userSchema);
 
-module.exports.createUser = function(newUser, callback) {
+User.createUser = function(newUser, callback) {
 	bcrypt.genSalt(10, function(err, salt) {
 		bcrypt.hash(newUser.password, salt, function(err, hash) {
 			newUser.password = hash;
@@ -21,18 +21,20 @@ module.exports.createUser = function(newUser, callback) {
 	});
 };
 
-module.exports.getUserByEmail = function(email, callback) {
+User.getUserByEmail = function(email, callback) {
 	const query = { email: email };
 	User.findOne(query, callback);
 };
 
-module.exports.getUserById = function(id, callback) {
+User.getUserById = function(id, callback) {
 	User.findById(id, callback);
 };
 
-module.exports.comparePassword = function(candidatePassword, hash, callback) {
+User.comparePassword = function(candidatePassword, hash, callback) {
 	bcrypt.compare(candidatePassword, hash, function(err, isMatch) {
 		if (err) throw err;
 		callback(null, isMatch);
 	});
 };
+
+module.exports = User;
