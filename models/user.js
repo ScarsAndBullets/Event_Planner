@@ -1,15 +1,16 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
 	email: { type: String, required: true },
 	password: { type: String, required: true },
-	firstName: String,
-	lastName: String,
-	phoneNumber: String
+	firstName: { type: String, required: true },
+	lastName: { type: String, required: true },
+	phoneNumber: { type: String, required: true }
 });
 
-const User = mongoose.model("User", userSchema);
+const User = (module.exports = mongoose.model("User", userSchema));
 
 module.exports.createUser = function(newUser, callback) {
 	bcrypt.genSalt(10, function(err, salt) {
@@ -19,8 +20,9 @@ module.exports.createUser = function(newUser, callback) {
 		});
 	});
 };
+
 module.exports.getUserByEmail = function(email, callback) {
-	const query = { email: username };
+	const query = { email: email };
 	User.findOne(query, callback);
 };
 
@@ -34,4 +36,3 @@ module.exports.comparePassword = function(candidatePassword, hash, callback) {
 		callback(null, isMatch);
 	});
 };
-module.exports = User;
