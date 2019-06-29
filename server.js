@@ -14,8 +14,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // BodyParser Middleware
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
@@ -42,6 +42,8 @@ require("./routes/apiRoutes")(app);
 app.get("*", (req, res) => {
 	res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
+
+mongoose.set("useCreateIndex", true);
 mongoose.connect(
 	process.env.MONGODB_URI || "mongodb://localhost/eventPlannerDb",
 	{ useNewUrlParser: true }
