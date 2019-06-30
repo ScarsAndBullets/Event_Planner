@@ -12,13 +12,16 @@ module.exports = {
 
 			User.createUser(newUser, function(err, user) {
 				if (err) {
-					console.log(err);
-					if (err.code === 11000) res.send("Email already in use");
-					else if (
-						err.errors.email.name.ValidatorError ===
-						"Please provide a valid email address"
-					)
-						res.send(err.errors.email.message);
+					if (err.code === 11000)
+						return res
+							.status(500)
+							.json("Email already in use")
+							.end();
+					else if (err.errors.email.message)
+						return res
+							.status(500)
+							.json(err.errors.email.message)
+							.end();
 				}
 				return res.send(user).end();
 			});
