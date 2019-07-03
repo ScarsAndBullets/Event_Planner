@@ -2,6 +2,6 @@ module.exports = {
   User: require("./user"),
   Event: require("./event"),
   Participant: require("./participant"),
-  Location: require("./location"),
-  Task: require("./task")
+  // Location: require("./location"),
+  Task: require("./")
 };
