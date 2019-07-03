@@ -3,5 +3,5 @@ module.exports = {
   Event: require("./event"),
   Participant: require("./participant"),
   Location: require("./location"),
-  Task:
+  Task: require("./task")
 };
