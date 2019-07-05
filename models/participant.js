@@ -7,7 +7,7 @@ const participantSchema = new Schema({
 	eventId: { type: Schema.Types.ObjectId, required: true },
 	tasks: [
 		{
-			type: Schema.Types.userId,
+			type: Schema.Types.ObjectId,
 			ref: "User"
 		}
 	]
