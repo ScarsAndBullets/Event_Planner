@@ -2,7 +2,6 @@ const db = require("../models");
 
 module.exports = {
 	createEvent: function(req, res) {
-		const event = req.body;
 		db.Event.create({
 			title: req.body.title,
 			date: req.body.date,
@@ -23,7 +22,7 @@ module.exports = {
 						{ $push: { participants: participant._id } },
 						{ new: true }
 					).then(eventCreated => {
-						res.send("Event Created");
+						res.json(eventCreated);
 					});
 				});
 			})
@@ -32,9 +31,3 @@ module.exports = {
 			});
 	}
 };
-// {
-//     "title": "New Event",
-//         "date": "07/10/2019",
-//             "location": "Salt Lake City",
-//                 "requirements": ["Knives", "Forks", "WHatever", "propane", "cocaine"]
-// }

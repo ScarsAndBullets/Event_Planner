@@ -8,7 +8,7 @@ const participantSchema = new Schema({
 	tasks: [
 		{
 			type: Schema.Types.ObjectId,
-			ref: "User"
+			ref: "Task"
 		}
 	]
 });
