@@ -1,4 +1,5 @@
 const userController = require("../controllers/userController");
+const eventController = require("../controllers/eventController");
 const passport = require("../config/passport");
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 
@@ -17,4 +18,7 @@ module.exports = function(app) {
 	app.get("/api/user/current", userController.currentUser);
 	//Logout current user
 	app.get("/api/user/logout", userController.logout);
+
+	////// EVENT ROUTES //////
+	app.post("/api/events/create", eventController.createEvent);
 };
