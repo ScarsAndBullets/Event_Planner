@@ -11,21 +11,31 @@ module.exports = {
 			const newUser = new User(req.body);
 
 			User.createUser(newUser, function(err, user) {
-				if (err) throw err;
-				console.log(user);
-				res.send(user).end();
+				if (err) {
+					if (err.code === 11000)
+						return res
+							.status(500)
+							.json("Email already in use")
+							.end();
+					else if (err.errors.email.message)
+						return res
+							.status(500)
+							.json(err.errors.email.message)
+							.end();
+				}
+				return res.send(user).end();
 			});
 		} else {
 			res
 				.status(500)
-				.json('{errors: "Passwords don\'t match"}')
+				.json("Passwords don't match")
 				.end();
 		}
 	},
 	//Login user and send back user data
 	login: function(req, res) {
-		res.json(req.user);
-		// res.send(req.session);
+		// res.json(req.user);
+		res.send(req.user);
 		// res.json("/");
 		//Replace / with event dashboard route eventually
 	},
