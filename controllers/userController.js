@@ -1,4 +1,4 @@
-const User = require("../models/user");
+const User = require("../models");
 
 // Defining methods for the userController
 module.exports = {
@@ -45,8 +45,8 @@ module.exports = {
 			res.json({});
 		} else {
 			res.json({
-				email: req.user.email,
-				id: req.user.id
+				id: req.user.id,
+				email: req.user.email
 			});
 		}
 	},
