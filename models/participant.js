@@ -7,8 +7,8 @@ const participantSchema = new Schema({
 	eventId: { type: Schema.Types.ObjectId, required: true },
 	tasks: [
 		{
-			type: Schema.Types.userId,
-			ref: "User"
+			type: Schema.Types.ObjectId,
+			ref: "Task"
 		}
 	]
 });

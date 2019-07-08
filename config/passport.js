@@ -17,7 +17,7 @@ passport.use(
 				if (err) throw err;
 				if (isMatch) {
 					user = {
-						id: user.id,
+						_id: user.id,
 						email: user.email,
 						firstName: user.firstName,
 						lastName: user.lastName,
