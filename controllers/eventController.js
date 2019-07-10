@@ -31,10 +31,33 @@ module.exports = {
 			});
 	},
 
-	getUserEvents: function(req, res) {
-		db.Participant.find({ userId: req.user._id })
-			.then(events => {
-				res.json(events);
+	eventDashboard: function(req, res) {
+		db.Participant.find({ userId: req.user.id })
+			.then(participantEvents => {
+				let eventsIds = [];
+				participantEvents.map(participant => {
+					eventsIds.push(participant.eventId);
+				});
+				db.Event.find({ _id: { $in: eventsIds } })
+					.populate("participants")
+					.populate("tasks")
+					.then(events => {
+						let eventsAttending = [];
+						let eventsOwned = [];
+						results = {};
+						events.map(event => {
+							if (event.eventOwnerId === req.user.id) {
+								eventsOwned.push(event);
+							} else {
+								eventsAttending.push(event);
+							}
+						});
+
+						results.eventsAttending = eventsAttending;
+						results.eventsOwned = eventsOwned;
+
+						res.json(results);
+					});
 			})
 			.catch(err => {
 				res.json(err);
