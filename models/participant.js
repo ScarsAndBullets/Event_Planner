@@ -5,6 +5,7 @@ const participantSchema = new Schema({
 	email: { type: String, required: true },
 	userId: { type: String, required: false },
 	eventId: { type: Schema.Types.ObjectId, required: true },
+	attending: { type: Boolean, default: false },
 	tasks: [
 		{
 			type: Schema.Types.ObjectId,

@@ -29,5 +29,15 @@ module.exports = {
 			.catch(err => {
 				res.json(err);
 			});
+	},
+
+	getUserEvents: function(req, res) {
+		db.Participant.find({ userId: req.user._id })
+			.then(events => {
+				res.json(events);
+			})
+			.catch(err => {
+				res.json(err);
+			});
 	}
 };
