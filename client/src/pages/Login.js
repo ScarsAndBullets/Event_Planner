@@ -9,8 +9,7 @@ class Login extends Component {
 	state = {
 		email: "",
 		password: "",
-		loggedIn: false,
-		events: {}
+		loggedIn: false
 	};
 
 	handleInputChange = event => {
@@ -27,12 +26,10 @@ class Login extends Component {
 				email: this.state.email,
 				password: this.state.password
 			})
-				.then(res => {
+				.then(() => {
 					this.setState({
-						events: res.data,
 						loggedIn: true
 					});
-					console.log(this.state.events);
 				})
 				.catch(err => {
 					if (err) {

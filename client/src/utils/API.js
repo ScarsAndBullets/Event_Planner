@@ -5,9 +5,9 @@ export default {
 	submitLogin: function(login) {
 		return axios.post("/api/user/login", login);
 	},
-	// Gets the book with the given id
-	getBook: function(id) {
-		return axios.get("/api/books/" + id);
+	//Get users events to populate event dashboard
+	getEvents: function() {
+		return axios.get("/api/events/event-dashboard");
 	},
 	// Deletes the book with the given id
 	deleteBook: function(id) {

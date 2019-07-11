@@ -6,8 +6,20 @@ import { Col, Row, Container } from "../components/Grid";
 import { Input, FormBtn } from "../components/Form";
 
 class EventDashboard extends Component {
-	state = {};
+	state = { events: [] };
 
+	componentDidMount() {
+		API.getEvents()
+			.then(res => {
+				this.setState({
+					events: res.data
+				});
+				console.log(this.state.events);
+			})
+			.catch(err => {
+				if (err) throw err;
+			});
+	}
 	render() {
 		return (
 			<Container fluid>
