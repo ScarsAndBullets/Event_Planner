@@ -11,7 +11,11 @@ class EventDashboard extends Component {
 	render() {
 		return (
 			<Container fluid>
-				<Row />
+				<Row>
+					<Col size="md-12">
+						<h1>Event Dashboard</h1>
+					</Col>
+				</Row>
 			</Container>
 		);
 	}

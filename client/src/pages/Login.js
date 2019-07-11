@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, FormBtn } from "../components/Form";
 
 class Login extends Component {
 	state = {
 		email: "",
-		password: ""
+		password: "",
+		loggedIn: false,
+		events: {}
 	};
 
 	handleInputChange = event => {
@@ -25,12 +27,27 @@ class Login extends Component {
 				email: this.state.email,
 				password: this.state.password
 			})
-				.then(res => console.log(res.data))
-				.catch(err => console.log(err));
+				.then(res => {
+					this.setState({
+						events: res.data,
+						loggedIn: true
+					});
+					console.log(this.state.events);
+				})
+				.catch(err => {
+					if (err) {
+						if (err.response.status === 401)
+							console.log("Incorrect username or password");
+					}
+				});
 		}
 	};
 
 	render() {
+		const { loggedIn } = this.state;
+
+		if (loggedIn) return <Redirect to="/event-dashboard" push={true} />;
+
 		return (
 			<Container fluid>
 				<Row>
@@ -52,6 +69,7 @@ class Login extends Component {
 								name="password"
 								placeholder="Password (required)"
 							/>
+
 							<FormBtn
 								disabled={!(this.state.email && this.state.password)}
 								onClick={this.handleFormSubmit}

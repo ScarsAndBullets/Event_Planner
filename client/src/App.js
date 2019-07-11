@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import logo from "./logo.svg";
+import EventDashboard from "./pages/EventDashboard";
 import NoMatch from "./pages/NoMatch";
 import Login from "./pages/Login";
 import Nav from "./components/Nav";
@@ -19,11 +20,7 @@ class App extends Component {
 					<Nav />
 					<Switch>
 						<Route exact path="/" component={Login} />
-						{/* <Route
-							exact
-							path="/api/events/event-dashboard"
-							component={EventDashboard}
-						/> */}
+						<Route exact path="/event-dashboard" component={EventDashboard} />
 						<Route component={NoMatch} />
 					</Switch>
 					{/* <div className="App">
