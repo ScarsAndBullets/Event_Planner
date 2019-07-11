@@ -31,6 +31,17 @@ module.exports = {
 			});
 	},
 
+	updateEvent: function(req, res) {
+		let eventId = req.params.eventId;
+		db.Event.updateOne({ _id: eventId }, req.body)
+			.then(eventUpdated => {
+				res.json(eventUpdated);
+			})
+			.catch(err => {
+				res.json(err);
+			});
+	},
+	//Get all users events
 	eventDashboard: function(req, res) {
 		db.Participant.find({ userId: req.user.id })
 			.then(participantEvents => {
