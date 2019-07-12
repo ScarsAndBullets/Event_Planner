@@ -26,7 +26,8 @@ class Login extends Component {
 				email: this.state.email,
 				password: this.state.password
 			})
-				.then(() => {
+				.then(res => {
+					console.log(res);
 					this.setState({
 						loggedIn: true
 					});

@@ -7,7 +7,6 @@ import Login from "./pages/Login";
 import Nav from "./components/Nav";
 import "./App.css";
 
-// import dashboard from "./dashboard"
 //import Tasks from "./components/Tasks/Tasks";
 //import NewTaskForm from "./components/TasksForm/NewTasksForm";
 import TasksList from "./components/TasksList/TasksList";
