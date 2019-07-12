@@ -1,17 +1,9 @@
 import React, { Component } from "react";
-<<<<<<< HEAD:client/src/pages/Login.js
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Link, Redirect } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, FormBtn } from "../components/Form";
-=======
-import Jumbotron from "../../components/Jumbotron";
-import API from "../../utils/API";
-import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../../components/Grid";
-import { Input, FormBtn } from "../../components/Form";
->>>>>>> 7b068973590524424a2cc7829ec4e8e2638fd470:client/src/pages/Login/index.js
 
 class Login extends Component {
 	state = {
