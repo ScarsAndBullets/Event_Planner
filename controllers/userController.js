@@ -34,10 +34,7 @@ module.exports = {
 	},
 	//Login user and send back user data
 	login: function(req, res) {
-		// res.json(req.user);
-		res.send(req.user);
-		// res.json("/");
-		//Replace / with event dashboard route eventually
+		res.redirect("/api/events/event-dashboard");
 	},
 	//Get current user data
 	currentUser: function(req, res) {
