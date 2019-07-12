@@ -6,6 +6,7 @@ module.exports = {
 			title: req.body.title,
 			date: req.body.date,
 			location: req.body.location,
+			details: req.body.details,
 			requirements: req.body.requirements,
 			eventOwnerId: req.user.id
 		})
@@ -52,20 +53,16 @@ module.exports = {
 				db.Event.find({ _id: { $in: eventsIds } })
 					.populate("participants")
 					.populate("tasks")
-					.then(events => {
-						let eventsAttending = [];
-						let eventsOwned = [];
-						results = {};
-						events.map(event => {
+					.then(eventData => {
+						let results = [];
+						eventData.map(event => {
 							if (event.eventOwnerId === req.user.id) {
-								eventsOwned.push(event);
+								event.owner = true;
+								results.push(event);
 							} else {
-								eventsAttending.push(event);
+								results.push(event);
 							}
 						});
-
-						results.eventsAttending = eventsAttending;
-						results.eventsOwned = eventsOwned;
 
 						res.json(results);
 					});
