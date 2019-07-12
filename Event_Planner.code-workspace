@@ -2,6 +2,12 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "/Users/scarsbullets/Developer/uubc/sandbox/UTAHSAN201901FSF5/19-react"
+		},
+		{
+			"path": "/Users/scarsbullets/Developer/uubc/sandbox/UTAHSAN201901FSF5/20-react"
 		}
 	],
 	"settings": {}

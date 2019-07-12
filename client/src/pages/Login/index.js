@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Jumbotron from "../components/Jumbotron";
-import API from "../utils/API";
+import Jumbotron from "../../components/Jumbotron";
+import API from "../../utils/API";
 import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../components/Grid";
-import { Input, FormBtn } from "../components/Form";
+import { Col, Row, Container } from "../../components/Grid";
+import { Input, FormBtn } from "../../components/Form";
 
 class Login extends Component {
   state = {
@@ -32,12 +32,12 @@ class Login extends Component {
 
   render() {
     return (
-      <Container fluid>
+      <>
         <Row>
-          <Col size="md 3" />
-          <Col size="md-6">
+          <Col size="md 4" />
+          <Col size="md-4">
             <Jumbotron>
-              <h1>What Books Should I Read?</h1>
+              <h2>Plan your next event!</h2>
             </Jumbotron>
             <form>
               <Input
@@ -49,31 +49,31 @@ class Login extends Component {
               <Input
                 value={this.state.password}
                 onChange={this.handleInputChange}
-                name="author"
-                placeholder="Author (required)"
+                name="Password"
+                placeholder="Password (required)"
               />
               <FormBtn
                 disabled={!(this.state.email && this.state.password)}
                 onClick={this.handleFormSubmit}
               >
-                Submit Book
+                Sign In
               </FormBtn>
             </form>
           </Col>
-          <Col size="md-3" />
+          <Col size="md-4" />
         </Row>
         <Row>
-          <Col size="md-3"></Col>
-          <Col size="md-6">
+          <Col size="md-4"></Col>
+          <Col size="md-4">
             <Link to={"/api/user/signup"}>
               <strong>
                 Signup for an account!
               </strong>
             </Link>
           </Col>
-          <Col size="md-3"></Col>
+          <Col size="md-4"></Col>
         </Row>
-      </Container>
+      </>
     );
   }
 }
