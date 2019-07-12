@@ -10,16 +10,16 @@ function Nav() {
 					Event Planner
 				</a>
 				<ul>
-					<Link to="/login">
-						<span Link>Sign In </span>
+					<Link to={"/login"}>
+						<span>Sign In </span>
 					</Link>
-					<span li> | </span>
-					<Link to="/login">
-						<span Link>Sign Out</span>
+					<span> | </span>
+					<Link to={"/signout"}>
+						<span>Sign Out</span>
 					</Link>
-					<span li> | </span>
-					<Link to="/about">
-						<span Link>About</span>
+					<span> | </span>
+					<Link to={"/about"}>
+						<span>About</span>
 					</Link>
 				</ul>
 			</nav>

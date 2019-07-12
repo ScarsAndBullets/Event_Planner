@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import CreateEvent from "./pages/CreateEvent";
 import About from "./pages/About";
+import NoMatch from "./pages/NoMatch";
 
 class App extends Component {
 	render() {
@@ -24,6 +25,7 @@ class App extends Component {
 							<Route path="/create-event" component={CreateEvent} />
 							<Route path="/about" component={About} />
 							<Route path="/" component={About} />
+							<Route component={NoMatch} />
 						</Switch>
 					</Container>
 				</div>
