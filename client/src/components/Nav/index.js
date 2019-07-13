@@ -1,27 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Layout, Header, Navigation, Drawer, Content } from 'react-mdl';
+import { Header, Navigation, Drawer } from 'react-mdl';
 require('./style.css');
 
 function Nav() {
-  return (
-    <div>
-      <Header className="header-color" title={<Link style={{ textDecoration: 'none', color: 'white' }} to="/">MyPortfolio</Link>} scroll>
-        <Navigation>
-          <Link to="/aboutme">About Me</Link>
-          <Link to="/dashboard">Dashboard</Link>
-          <Link to="/logout">logout</Link>
-        </Navigation>
-      </Header>
-      <Drawer title={<Link style={{ textDecoration: 'none', color: 'black' }} to="/">MyPortfolio</Link>}>
-        <Navigation>
-          <Link to="/aboutme">About Me</Link>
-          <Link to="/dashboard">Dashboard</Link>d
-          <Link to="/logout">logout</Link>
-        </Navigation>
-      </Drawer>
-    </div>
-  );
+  return [
+    <Header key="header" className="header-color" title={<Link style={{ textDecoration: 'none', color: 'white' }} to="/">𝔭𝔩𝔞𝔫𝔡</Link>} scroll>
+      <Navigation>
+        <Link to="/about">About</Link>
+        <Link to="/dashboard">Dashboard</Link>
+        <Link to="/logout">logout</Link>
+      </Navigation>
+    </Header>,
+    <Drawer key="drawer" title={<Link style={{ textDecoration: 'none', color: 'black' }} to="/">𝔭𝔩𝔞𝔫𝔡</Link>}>
+      <Navigation>
+        <Link to="/about">About</Link>
+        <Link to="/dashboard">Dashboard</Link>
+        <Link to="/logout">logout</Link>
+      </Navigation>
+    </Drawer>
+  ];
 }
 
 export default Nav;

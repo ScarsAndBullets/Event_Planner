@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import API from "../utils/API";
+import { Link, Redirect } from "react-router-dom";
 
 class SignInForm extends Component {
     constructor() {
@@ -29,9 +30,29 @@ class SignInForm extends Component {
 
         console.log('The form was submitted with the following data:');
         console.log(this.state);
+        if (this.state.email && this.state.password) {
+          API.submitLogin({
+            email: this.state.email,
+            password: this.state.password
+          })
+            .then(res => {
+              console.log(res);
+              this.setState({
+                loggedIn: true
+              });
+            })
+            .catch(err => {
+              if (err) {
+                if (err.response.status === 401)
+                  console.log("Incorrect username or password");
+              }
+            });
+        }
     }
 
     render() {
+        const { loggedIn } = this.state;
+        if (loggedIn) return <Redirect to="/dashboard" push={true} />;
         return (
         <div className="FormCenter">
             <form onSubmit={this.handleSubmit} className="FormFields">

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { HashRouter as Route, NavLink } from 'react-router-dom';
-import SignUpForm from '../SignUpForm';
+import SignUpForm from '../../components/SignUpForm';
 
 class SignUp extends Component {
   render() {
