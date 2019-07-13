@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const db = require("../models/");
 
 module.exports = {
@@ -28,3 +29,8 @@ module.exports = {
 
 	updateUserIdForParticipant: function(req, res) {}
 };
+=======
+const db = require("../models");
+
+module.exports = {};
+>>>>>>> dcb37b61bc1ee4da3eadbb26b825e0f19965747b

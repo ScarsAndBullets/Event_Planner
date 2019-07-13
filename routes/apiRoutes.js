@@ -24,7 +24,11 @@ module.exports = function(app) {
 	////// EVENT ROUTES //////
 	app.post("/api/events/create", eventController.createEvent);
 	app.post("/api/events/:eventId/update", eventController.updateEvent);
-	app.get("/api/events/event-dashboard", eventController.eventDashboard);
+	app.get(
+		"/api/events/event-dashboard",
+		isAuthenticated,
+		eventController.eventDashboard
+	);
 
 	//////TASKS ROUTES //////////////
 	app.post("/api/task/create", taskController.createTask);

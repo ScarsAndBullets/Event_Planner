@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 const eventSchema = new Schema({
 	title: { type: String, required: true, trim: true },
 	date: { type: Date, required: true },
-	details: { type: String, trim: true },
 	location: { type: String, required: true },
+	details: { type: String, trim: true },
 	requirements: [{ type: String, trim: true }],
 	tasks: [
 		{
@@ -23,7 +23,8 @@ const eventSchema = new Schema({
 	eventOwnerId: {
 		type: String,
 		required: true
-	}
+	},
+	owner: { type: Boolean, default: false }
 });
 
 const Event = mongoose.model("Event", eventSchema);
