@@ -1,41 +1,37 @@
-import React, { Component } from "react";
-import "./App.css"
-
-import { Col, Row, Container } from "./components/Grid";
-import Nav from "./components/Nav";
-
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
-import CreateEvent from "./pages/CreateEvent";
-import About from "./pages/About";
+import React, { Component } from 'react';
+import './App.css';
+import { Layout, Header, Navigation, Drawer, Content } from 'react-mdl';
+import Main from './components/main';
+import { Link } from 'react-router-dom';
 
 class App extends Component {
   render() {
     return (
-      <Router>
-        <div className="App">
-          <Container fluid>
-            <Nav />
-            <Switch>
-              <Route path="/" exact component={Home} />
-              <Route path="/login" component={Login} />
-              <Route path="/dashboard" component={Dashboard} />
-              <Route path="/create-event" component={CreateEvent} />
-              <Route path="/about" component={About} />
-              <Route path="/" component={About} />
-            </Switch>
-          </Container>
-        </div>
-      </Router>
+      <div className="demo-big-content App">
+    <Layout>
+        <Header className="header-color" title={<Link style={{textDecoration: 'none', color: 'white'}} to="/">𝔭𝔩𝔞𝔫𝔡</Link>} scroll>
+            <Navigation>
+            <Link to="/aboutme">About Me</Link>
+            <Link to="/dashboard">Dashboard</Link>
+            <Link to="/logout">logout</Link>
+            </Navigation>
+        </Header>
+        <Drawer title={<Link style={{textDecoration: 'none', color: 'black'}} to="/">𝔭𝔩𝔞𝔫𝔡</Link>}>
+            <Navigation>
+              <Link to="/aboutme">About Me</Link>
+              <Link to="/dashboard">Dashboard</Link>
+              <Link to="/logout">logout</Link>  
+            </Navigation>
+        </Drawer>
+        <Content>
+            <div className="page-content" />
+            <Main/>
+        </Content>
+    </Layout>
+</div>
+
     );
   }
 }
-
-const Home = () => (
-  <div>
-    <h1>Home Page</h1>
-  </div>
-);
 
 export default App;

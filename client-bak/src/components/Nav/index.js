@@ -9,14 +9,12 @@ function Nav() {
       <Header className="header-color" title={<Link style={{ textDecoration: 'none', color: 'white' }} to="/">MyPortfolio</Link>} scroll>
         <Navigation>
           <Link to="/aboutme">About Me</Link>
-          <Link to="/dashboard">Dashboard</Link>
           <Link to="/logout">logout</Link>
         </Navigation>
       </Header>
       <Drawer title={<Link style={{ textDecoration: 'none', color: 'black' }} to="/">MyPortfolio</Link>}>
         <Navigation>
           <Link to="/aboutme">About Me</Link>
-          <Link to="/dashboard">Dashboard</Link>d
           <Link to="/logout">logout</Link>
         </Navigation>
       </Drawer>

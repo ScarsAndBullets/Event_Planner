@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { HashRouter as Route, NavLink } from 'react-router-dom';
 import SignUpForm from '../SignUpForm';
-import SignInForm from '../SignInForm';
 
-class Login extends Component {
+class SignUp extends Component {
   render() {
     return (
       <div className="App">
@@ -18,7 +17,7 @@ class Login extends Component {
               <NavLink to="/log-in" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign In</NavLink> or <NavLink exact to="/" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign Up</NavLink>
           </div>
 
-          <SignInForm />
+          <SignUpForm />
       </div>
 
     </div>
@@ -26,4 +25,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default SignUp;
