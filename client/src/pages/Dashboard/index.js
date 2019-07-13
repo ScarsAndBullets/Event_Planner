@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import API from "../../utils/API";
-import { Link } from "react-router-dom";
+import withAuth from '../../components/withAuth';
+import API from '../../utils/API';
 import { Col, Row, Container } from "../../components/Grid";
-import { Input, FormBtn } from "../../components/Form";
 
 class Dashboard extends Component {
 	state = { events: [] };
@@ -32,4 +31,4 @@ class Dashboard extends Component {
 	}
 }
 
-export default Dashboard;
+export default withAuth(Dashboard);
