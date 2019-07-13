@@ -1,4 +1,5 @@
-const User = require("../models");
+const db = require("../models/");
+const User = require("../models/user");
 
 // Defining methods for the userController
 module.exports = {
@@ -10,7 +11,7 @@ module.exports = {
 		if (password === password2) {
 			const newUser = new User(req.body);
 
-			User.createUser(newUser, function(err, user) {
+			db.User.createUser(newUser, function(err, user) {
 				if (err) {
 					if (err.code === 11000)
 						return res
@@ -34,9 +35,28 @@ module.exports = {
 	},
 	//Login user and send back user data
 	login: function(req, res) {
-		console.log(req.user.email);
-		res.send("Logged In");
+		db.Participant.find({ email: req.user.email })
+			.then(results => {
+				results.map(participant => {
+					if (participant.userId === null || participant.userId === "") {
+						db.Participant.updateOne(
+							{ _id: participant._id },
+							{ userId: req.user.id },
+							{ new: true }
+						).then(idUpdated => {
+							console.log(idUpdated);
+						});
+					}
+				});
+				res.send("logged in");
+			})
+			.catch(err => {
+				res.json(err);
+			});
+
+		res.send("logged in");
 	},
+
 	//Get current user data
 	currentUser: function(req, res) {
 		if (!req.user) {

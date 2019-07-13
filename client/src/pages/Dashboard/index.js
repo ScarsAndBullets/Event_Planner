@@ -13,7 +13,7 @@ class Dashboard extends Component {
 				this.setState({
 					events: res.data
 				});
-				console.log(this.state.events);
+				// console.log(this.state.events);
 			})
 			.catch(err => {
 				if (err) throw err;

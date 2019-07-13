@@ -24,9 +24,5 @@ module.exports = {
 			.catch(err => {
 				res.json(err);
 			});
-	},
-
-	updateUserIdForParticipant: function(req, res) {
-		// db.Participant;
 	}
 };
