@@ -6,6 +6,7 @@ module.exports = {
 			title: req.body.title,
 			date: req.body.date,
 			location: req.body.location,
+			details: req.body.details,
 			requirements: req.body.requirements,
 			eventOwnerId: req.user.id
 		})

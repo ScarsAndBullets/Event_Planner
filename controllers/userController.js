@@ -34,6 +34,7 @@ module.exports = {
 	},
 	//Login user and send back user data
 	login: function(req, res) {
+		console.log(req.user.email);
 		res.redirect("/api/events/event-dashboard");
 	},
 	//Get current user data
