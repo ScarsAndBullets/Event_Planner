@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import withAuth from '../../components/withAuth';
 
 class Dashboard extends Component {
   render() {
@@ -10,4 +11,4 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+export default withAuth(Dashboard);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import API from "../utils/API";
+import API, { AuthService } from "../utils/API";
 import { Link, Redirect } from "react-router-dom";
 
 class SignInForm extends Component {
@@ -13,6 +13,13 @@ class SignInForm extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.Auth = new AuthService();
+    }
+
+    componentDidMount() {
+      if (this.Auth.loggedIn()) {
+        this.props.history.replace('/');
+      }
     }
 
     handleChange(e) {
@@ -31,7 +38,7 @@ class SignInForm extends Component {
         console.log('The form was submitted with the following data:');
         console.log(this.state);
         if (this.state.email && this.state.password) {
-          API.submitLogin({
+          this.Auth.login({
             email: this.state.email,
             password: this.state.password
           })
