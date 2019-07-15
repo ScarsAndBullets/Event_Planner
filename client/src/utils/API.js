@@ -2,10 +2,6 @@ import decode from "jwt-decode";
 import axios from "axios";
 
 export default {
-	// logs in user
-	submitLogin: function(login) {
-		return axios.post("/api/user/login", login);
-	},
 	submitSignup: function(signup) {
 		return axios.post("/api/user/signup", signup);
 	},
@@ -24,10 +20,10 @@ export default {
 };
 
 export class AuthService {
-	login = (email, password) => {
+	login = login => {
 		// Get a token
 		return axios
-			.post("/api/user/login", { email: email, password: password })
+			.post("/api/user/login", { email: login.email, password: login.password })
 			.then(res => {
 				// set the token once the user logs in
 				// once the  backend is setup we can use this.

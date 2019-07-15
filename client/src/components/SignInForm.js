@@ -43,10 +43,7 @@ class SignInForm extends Component {
 				password: this.state.password
 			})
 				.then(res => {
-					console.log(res);
-					this.setState({
-						loggedIn: true
-					});
+					console.log(res.data);
 				})
 				.catch(err => {
 					if (err) {
@@ -58,8 +55,6 @@ class SignInForm extends Component {
 	}
 
 	render() {
-		const { loggedIn } = this.state;
-		if (loggedIn) return <Redirect to="/dashboard" push={true} />;
 		return (
 			<div className="FormCenter">
 				<form onSubmit={this.handleSubmit} className="FormFields">

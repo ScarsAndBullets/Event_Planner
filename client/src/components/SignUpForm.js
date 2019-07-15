@@ -41,6 +41,7 @@ class SignUpForm extends Component {
 			password2: this.state.password2
 		})
 			.then(res => {
+				console.log("Got this data back from database:");
 				console.log(res.data);
 				//redirect to log in form
 			})

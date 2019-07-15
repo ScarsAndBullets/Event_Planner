@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import withAuth from '../../components/withAuth';
-import API from '../../utils/API';
+import withAuth from "../../components/withAuth";
+import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 
 class Dashboard extends Component {
@@ -12,7 +12,7 @@ class Dashboard extends Component {
 				this.setState({
 					events: res.data
 				});
-				// console.log(this.state.events);
+				console.log(this.state.events);
 			})
 			.catch(err => {
 				if (err) throw err;

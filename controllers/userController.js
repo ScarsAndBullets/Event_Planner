@@ -48,13 +48,12 @@ module.exports = {
 						});
 					}
 				});
-				res.send("logged in");
+				// res.json(req.user);
+				res.send(req.user);
 			})
 			.catch(err => {
 				res.json(err);
 			});
-
-		res.send("logged in");
 	},
 
 	//Get current user data
