@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { Col, Row, Container } from "../../components/Grid";
+import { Container } from "../../components/Grid";
+import "./style.css"
 
 class About extends Component {
   render() {
     return (
-      <Container>
+      <Container className="about-container">
         <div>
           <h2>About Event Planner</h2>
           <div className="text-left">
