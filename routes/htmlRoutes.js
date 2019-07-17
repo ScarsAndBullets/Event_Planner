@@ -3,11 +3,13 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.Task.findAll({}).then(function(dbTask) {
-      res.render("index", {
+    console.log("Getting all the way to html Routes");
+    db.Task.find({}).then(function(err, dbTask) {
+      res.render("Signup", {
         msg: "Welcome!",
-        examples: dbTasks
+        examples: dbTask
       });
+      console.log(dbTask);
     });
   });
 
@@ -16,12 +18,11 @@ module.exports = function(app) {
     db.Task.findOne({ where: { id: req.params.id } }).then(function(dbTask) {
       res.render("task", {
         task: dbTask
-          // Render 404 page for any unmatched routes
-          app.get("*", function(req, res) {
-            res.render("404");
-          })
-        });
-
+        // Render 404 page for any unmatched routes
+        // app.get("*", function(req, res) {
+        //   res.render("404");
+        // })
+      });
     });
   });
-}
+};

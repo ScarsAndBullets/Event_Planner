@@ -19,8 +19,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+  app.use(express.static("client/public"));
 }
+
+//Default Engine
 
 // Express Session
 app.use(
@@ -37,10 +39,11 @@ app.use(passport.session());
 
 // Api routes
 require("./routes/apiRoutes")(app);
+require("./routes/htmlRoutes")(app);
 
 // Send every other request to the React app
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  res.sendFile(path.join(__dirname, "./client/public/index.html"));
 });
 
 mongoose.set("useCreateIndex", true);
