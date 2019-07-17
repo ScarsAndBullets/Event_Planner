@@ -5,7 +5,7 @@ const isAuthenticated = require("../config/middleware/isAuthenticated");
 
 const taskController = require("../controllers/taskController");
 
-module.exports = function(app) {
+module.exports = function (app) {
 	////// USER ROUTES //////
 
 	// Endpoint to login user

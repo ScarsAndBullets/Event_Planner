@@ -1,10 +1,19 @@
-import React, { Component } from "react";
+import React, {
+	Component
+} from "react";
 import withAuth from '../../components/withAuth';
 import API from '../../utils/API';
-import { Col, Row, Container } from "../../components/Grid";
+import {
+	Col,
+	Row,
+	Container
+} from "../../components/Grid";
+import Form from "../../components/Form/Form";
 
 class Dashboard extends Component {
-	state = { events: [] };
+	state = {
+		events: []
+	};
 
 	componentDidMount() {
 		API.getEvents()
@@ -19,14 +28,19 @@ class Dashboard extends Component {
 			});
 	}
 	render() {
-		return (
-			<Container fluid>
-				<Row>
-					<Col size="md-12">
-						<h1>Dashboard</h1>
-					</Col>
-				</Row>
-			</Container>
+		return ( <
+			Container fluid >
+			<
+			Row >
+			<
+			Col size = "md-12" >
+			<
+			h1 > Dashboard < /h1> < /
+			Col > <
+			/Row> <
+			Form / >
+			<
+			/Container>
 		);
 	}
 }

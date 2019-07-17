@@ -1,8 +1,5 @@
 import "./Form.css";
 import React, { useState } from 'react';
-// ABOVE: (add Fragment if necessary)
-import logo from './logo.svg';
-import './App.css';
 // Material UI
 import { Grid, makeStyles, Button, TextField, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@material-ui/core";
 import 'date-fns';
@@ -12,9 +9,14 @@ import {
     KeyboardTimePicker,
     KeyboardDatePicker,
 } from '@material-ui/pickers';
+import IconButton from '@material-ui/core/IconButton';
+import clsx from 'clsx';
+import Icon from '@material-ui/core/Icon';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
-
-function App() {
+// ---------------------------------------------------------------------
+function Form() {
     // MODAL variables and funcs BELOW
     const [open, setOpen] = React.useState(false);
 
@@ -61,112 +63,144 @@ function App() {
     function handleDateChange(date) {
         setSelectedDate(date);
     }
-
-
     // END DATE/TIME vars/funcs
+    // ICON BTTN 
+    const iconButton = makeStyles(theme => ({
+        button: {
+            margin: theme.spacing(1),
+        },
+        input: {
+            display: 'none',
+        },
+    }));
+
+    const iconBttnClass = iconButton();
+
+    // END ICON BTTN
+    // FLOATING ACTION BTTN (FAB)
+    const txtIconComboStyle = makeStyles(theme => ({
+        fab: {
+            margin: theme.spacing(1),
+        },
+        extendedIcon: {
+            marginRight: theme.spacing(1),
+        },
+    }));
+
+    const textIconCombo = txtIconComboStyle();
+
+    // END FLOATING ACTION BTTN (FAB)
 
     return (
-        <div className="App" >
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
+        <div className="Form-modal-button">
+            {/* BELOW: MODAL */}
+            {/* <Button variant="outlined" color="primary" >
+                Create Event
+      </Button> */}
+            <Fab variant="extended" aria-label="Create Form Button" className={textIconCombo.fab} onClick={handleClickOpen}>
+                <AddIcon className={textIconCombo.extendedIcon} />
+                New Event!
+      </Fab>
+            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+                <DialogTitle id="form-dialog-title">Create A New Event</DialogTitle>
+                <DialogContent>
+                    {/* <DialogContentText>
+                        If admitting you have a problem is the first step to recovery, filling out this form is the first step to having your event pland!!
+          </DialogContentText> */}
+                    <TextField
+                        autoFocus
+                        id="outlined-name"
+                        label="Event Name"
+                        className={classes.textField}
+                        value={values.name}
+                        fullWidth
+                        onChange={handleChange('name')}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                    <TextField
+                        autoFocus
+                        id="outlined-description"
+                        label="Event Description"
+                        className={classes.textField}
+                        value={values.name}
+                        helperText="Might we suggest a BRIEF summary--no one has time for a novel."
+                        fullWidth
+                        onChange={handleChange('name')}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                    {/* BELOW: date/time */}
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <Grid container className={classes.grid} justify="space-around">
+                            <KeyboardDatePicker
+                                margin="normal"
+                                id="mui-pickers-date"
+                                label="What day is it going down?"
+                                value={selectedDate}
+                                onChange={handleDateChange}
+                                KeyboardButtonProps={{
+                                    'aria-label': 'change date',
+                                }}
+                            />
+                            <KeyboardTimePicker
+                                margin="normal"
+                                id="mui-pickers-time"
+                                label="What time does it start?"
+                                value={selectedDate}
+                                onChange={handleDateChange}
+                                KeyboardButtonProps={{
+                                    'aria-label': 'change time',
+                                }}
+                            />
+                        </Grid>
+                    </MuiPickersUtilsProvider>
+                    {/* END: date/time */}
+                    <TextField
+                        autoFocus
+                        id="outlined-location"
+                        label="Location"
+                        className={classes.textField}
+                        value={values.name}
+                        fullWidth
+                        onChange={handleChange('name')}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                    <TextField
+                        autoFocus
+                        id="outlined-requirements"
+                        label="Guest Requirements"
+                        className={classes.textField}
+                        value={values.name}
+                        helperText="Do participants need to sign waivers? Are shoes and shirts a problem? Include anything that participants need to know/bring/do/prepare/etc."
+                        fullWidth
+                        onChange={handleChange('name')}
+                        margin="normal"
+                        variant="outlined"
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <IconButton
+                        className={iconBttnClass.button}
+                        aria-label="Create"
+                        onClick={handleClose} color="secondary"
+                    >
+                        <Icon className={clsx(iconBttnClass.icon, 'fas fa-ban')} />
+                    </IconButton>
 
-                {/* BELOW: MODAL */}
-                <div>
-                    <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-                        Create Event
-      </Button>
-                    <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                        <DialogTitle id="form-dialog-title">Create A New Event</DialogTitle>
-                        <DialogContent>
-                            <DialogContentText>
-                                If admitting you have a problem is the first step to recovery, filling out this form is the first step to having your event pland!!
-          </DialogContentText>
-                            <TextField
-                                autoFocus
-                                id="outlined-name"
-                                label="Event Name"
-                                className={classes.textField}
-                                value={values.name}
-                                fullWidth
-                                onChange={handleChange('name')}
-                                margin="normal"
-                                variant="outlined"
-                            />
-                            <TextField
-                                autoFocus
-                                id="outlined-description"
-                                label="Event Description"
-                                className={classes.textField}
-                                value={values.name}
-                                helperText="Might we suggest a BRIEF summary--no one has time for a novel (and if they do it's an audiobook)."
-                                fullWidth
-                                onChange={handleChange('name')}
-                                margin="normal"
-                                variant="outlined"
-                            />
-                            {/* BELOW: date/time */}
-                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                <Grid container className={classes.grid} justify="space-around">
-                                    <KeyboardDatePicker
-                                        margin="normal"
-                                        id="mui-pickers-date"
-                                        label="What day is it going down?"
-                                        value={selectedDate}
-                                        onChange={handleDateChange}
-                                        KeyboardButtonProps={{
-                                            'aria-label': 'change date',
-                                        }}
-                                    />
-                                    <KeyboardTimePicker
-                                        margin="normal"
-                                        id="mui-pickers-time"
-                                        label="What time does it start?"
-                                        value={selectedDate}
-                                        onChange={handleDateChange}
-                                        KeyboardButtonProps={{
-                                            'aria-label': 'change time',
-                                        }}
-                                    />
-                                </Grid>
-                            </MuiPickersUtilsProvider>
-                            {/* END: date/time */}
-                            <TextField
-                                autoFocus
-                                id="outlined-location"
-                                label="Location"
-                                className={classes.textField}
-                                value={values.name}
-                                fullWidth
-                                onChange={handleChange('name')}
-                                margin="normal"
-                                variant="outlined"
-                            />
-                            <TextField
-                                autoFocus
-                                id="outlined-requirements"
-                                label="Guest Requirements"
-                                className={classes.textField}
-                                value={values.name}
-                                helperText="Do participants need to sign waivers? Are shoes and shirts a problem? Include anything that participants need to know/bring/do/prepare/etc."
-                                fullWidth
-                                onChange={handleChange('name')}
-                                margin="normal"
-                                variant="outlined"
-                            />
-                        </DialogContent>
-                        <DialogActions>
-                            <Button onClick={handleClose} color="secondary">
-                                Cancel
-          </Button>
-                            <Button onClick={handleClose} color="primary">
-                                Create
-          </Button>
-                        </DialogActions>
-                    </Dialog>
-                </div>
-            </header>
-        </div >
+                    <IconButton
+                        className={iconBttnClass.button}
+                        aria-label="Create"
+                        onClick={handleClose} color="primary"
+                    >
+                        <Icon className={clsx(iconBttnClass.icon, 'fas fa-check')} />
+                    </IconButton>
+                </DialogActions>
+            </Dialog>
+        </div>
     );
 }
 
+// --------------------------------------------------------------------------
 export default Form;

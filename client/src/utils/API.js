@@ -2,38 +2,37 @@ import decode from 'jwt-decode';
 import axios from 'axios';
 
 export default {
-	// logs in user
-	submitLogin: function(login) {
-		return axios.post("/api/user/login", login);
-	},
-	//Get users events to populate event dashboard
-	getEvents: function() {
-		return axios.get("/api/events/event-dashboard");
-	},
-	// Deletes the book with the given id
-	deleteBook: function(id) {
-		return axios.delete("/api/books/" + id);
-	},
-	// Saves a book to the database
-	saveBook: function(bookData) {
-		return axios.post("/api/books", bookData);
-	}
+  // logs in user
+  submitLogin: function (login) {
+    return axios.post("/api/user/login", login);
+  },
+  //Get users events to populate event dashboard
+  getEvents: function () {
+    return axios.get("/api/events/event-dashboard");
+  },
+  // Deletes the book with the given id
+  deleteBook: function (id) {
+    return axios.delete("/api/books/" + id);
+  },
+  // Saves a book to the database
+  saveBook: function (bookData) {
+    return axios.post("/api/books", bookData);
+  }
 };
 
 export class AuthService {
 
-  login = (email, password) => {
+  login = login => {
     // Get a token
-    return axios.post('/api/user/login', { email: email, password: password })
+    return axios
+      .post("/api/user/login", { email: login.email, password: login.password })
       .then(res => {
         // set the token once the user logs in
         // once the  backend is setup we can use this.
         // this.setToken(res.data.token);
 
         //hardcoding token for now
-        this.setToken('faketoken');
-
-
+        this.setToken("faketoken");
 
         // return the rest of the response
         return res;
