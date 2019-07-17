@@ -19,7 +19,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
+<<<<<<< HEAD
   app.use(express.static("client/public"));
+=======
+  app.use(express.static("./client/public"));
+>>>>>>> b76148b240af84752afaa862d3c43393f5a2a9c2
 }
 
 //Default Engine
