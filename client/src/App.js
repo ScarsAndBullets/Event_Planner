@@ -1,22 +1,33 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import './App.css';
 import { Layout, Content } from 'react-mdl';
 import Nav from './components/Nav';
-import Main from './components/main';
 
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import CreateEvent from "./pages/CreateEvent";
+import About from "./pages/About";
+import Home from "./pages/Home"
+import { AuthState } from './AuthState';
 
 class App extends Component {
   render() {
     return (
-      <div className="demo-big-content App">
-      <Layout>
-          <Nav/>
-          <Content>
-            <Main />
-          </Content>
-        </Layout>
-      </div>
-
+      <AuthState>
+        <React.Fragment>
+          <Nav />
+          <Router>
+            <Switch>
+              <Route path="/" exact component={Login} />
+              <Route path="/login" component={Login} />
+              <Route path="/dashboard" component={Dashboard} />
+              <Route path="/create-event" component={CreateEvent} />
+              <Route path="/about" component={About} />
+            </Switch>
+          </Router>
+        </React.Fragment>
+      </AuthState>
     );
   }
 }

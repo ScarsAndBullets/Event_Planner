@@ -1,12 +1,19 @@
 {
 	"folders": [
 		{
+			"name": "Event_Planner",
 			"path": "."
 		},
 		{
+			"name": "18-mongo-mongoose",
+			"path": "/Users/scarsbullets/Developer/uubc/sandbox/UTAHSAN201901FSF5/18-mongo-mongoose"
+		},
+		{
+			"name": "19-react",
 			"path": "/Users/scarsbullets/Developer/uubc/sandbox/UTAHSAN201901FSF5/19-react"
 		},
 		{
+			"name": "20-react",
 			"path": "/Users/scarsbullets/Developer/uubc/sandbox/UTAHSAN201901FSF5/20-react"
 		}
 	],
