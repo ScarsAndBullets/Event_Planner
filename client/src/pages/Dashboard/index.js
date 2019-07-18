@@ -26,6 +26,7 @@ class Dashboard extends Component {
 						<h1>Dashboard</h1>
 					</Col>
 				</Row>
+				<Form></Form>
 			</Container>
 		);
 	}
