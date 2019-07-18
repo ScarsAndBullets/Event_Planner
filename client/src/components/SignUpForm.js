@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import API from "../utils/API";
 
 class SignUpForm extends Component {
@@ -41,15 +41,12 @@ class SignUpForm extends Component {
 			password2: this.state.password2
 		})
 			.then(res => {
-				console.log("Got this data back from database:");
 				console.log(res.data);
-				//redirect to log in form
+				this.props.history.push("/log-in");
 			})
 			.catch(err => {
 				console.log(err);
 			});
-		console.log("The form was submitted with the following data:");
-		console.log(this.state);
 	}
 
 	render() {
@@ -158,12 +155,10 @@ class SignUpForm extends Component {
 					</div>
 
 					<div className="FormField">
-						<input
-							className="FormField__Button mr-20"
-							type="submit"
-							value="Sign Up"
-						/>{" "}
-						<Link to="/sign-in" className="FormField__Link">
+						<button className="FormField__Button mr-20" type="submit">
+							Sign Up
+						</button>{" "}
+						<Link to="/log-in" className="FormField__Link">
 							I'm already member
 						</Link>
 					</div>
@@ -172,4 +167,4 @@ class SignUpForm extends Component {
 		);
 	}
 }
-export default SignUpForm;
+export default withRouter(SignUpForm);

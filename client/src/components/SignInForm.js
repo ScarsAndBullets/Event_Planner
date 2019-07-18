@@ -1,26 +1,25 @@
 import React, { Component } from "react";
 import API, { AuthService } from "../utils/API";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, withRouter } from "react-router-dom";
 
 class SignInForm extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 
 		this.state = {
 			email: "",
 			password: ""
 		};
-
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.Auth = new AuthService();
 	}
 
-	componentDidMount() {
-		if (this.Auth.loggedIn()) {
-			this.props.history.replace("/");
-		}
-	}
+	// componentDidMount() {
+	// 	if (this.Auth.loggedIn()) {
+	// 		this.props.history.push("/dashboard");
+	// 	}
+	// }
 
 	handleChange(e) {
 		let target = e.target;
@@ -35,21 +34,16 @@ class SignInForm extends Component {
 	handleSubmit(e) {
 		e.preventDefault();
 
-		console.log("The form was submitted with the following data:");
-		console.log(this.state);
 		if (this.state.email && this.state.password) {
 			this.Auth.login({
 				email: this.state.email,
 				password: this.state.password
 			})
 				.then(res => {
-					console.log(res.data);
+					this.props.history.push("/dashboard");
 				})
 				.catch(err => {
-					if (err) {
-						if (err.response.status === 401)
-							console.log("Incorrect username or password");
-					}
+					console.log(err);
 				});
 		}
 	}
@@ -89,7 +83,9 @@ class SignInForm extends Component {
 					</div>
 
 					<div className="FormField">
-						<button className="FormField__Button mr-20">Sign In</button>{" "}
+						<button className="FormField__Button mr-20" type="submit">
+							Sign In
+						</button>{" "}
 						<Link to="/sign-up" className="FormField__Link">
 							Create an account
 						</Link>
@@ -100,4 +96,4 @@ class SignInForm extends Component {
 	}
 }
 
-export default SignInForm;
+export default withRouter(SignInForm);

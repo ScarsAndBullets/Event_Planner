@@ -17,8 +17,8 @@ function Nav() {
 		>
 			<Navigation>
 				<Link to="/about">About</Link>
-				<Link to="/dashboard">Dashboard</Link>
-				<Link to="/logout">logout</Link>
+				<Link to="/log-in">Log In</Link>
+				<Link to="/logout">Logout</Link>
 			</Navigation>
 		</Header>,
 		<Drawer
@@ -31,8 +31,8 @@ function Nav() {
 		>
 			<Navigation>
 				<Link to="/about">About</Link>
-				<Link to="/dashboard">Dashboard</Link>
-				<Link to="/logout">logout</Link>
+				<Link to="/log-in">Log In</Link>
+				<Link to="/logout">Logout</Link>
 			</Navigation>
 		</Drawer>
 	];
