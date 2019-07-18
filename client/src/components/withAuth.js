@@ -12,7 +12,7 @@ export default function withAuth(AuthComponent) {
 		}
 		componentWillMount() {
 			if (!Auth.loggedIn()) {
-				this.props.history.replace("/log-in");
+				this.props.history.replace("/login");
 			} else {
 				try {
 					const profile = Auth.getProfile();

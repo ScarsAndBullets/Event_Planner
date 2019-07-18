@@ -10,7 +10,7 @@ class Login extends Component {
 				<div className="App__Form">
 					<div className="PageSwitcher">
 						<NavLink
-							to="/log-in"
+							to="/login"
 							activeClassName="PageSwitcher__Item--Active"
 							className="PageSwitcher__Item"
 						>
@@ -18,7 +18,7 @@ class Login extends Component {
 						</NavLink>
 						<NavLink
 							exact
-							to="/sign-up"
+							to="/signup"
 							activeClassName="PageSwitcher__Item--Active"
 							className="PageSwitcher__Item"
 						>
@@ -28,7 +28,7 @@ class Login extends Component {
 
 					<div className="FormTitle">
 						<NavLink
-							to="/log-in"
+							to="/login"
 							activeClassName="FormTitle__Link--Active"
 							className="FormTitle__Link"
 						>
@@ -37,7 +37,7 @@ class Login extends Component {
 						or{" "}
 						<NavLink
 							exact
-							to="/sign-up"
+							to="/signup"
 							activeClassName="FormTitle__Link--Active"
 							className="FormTitle__Link"
 						>

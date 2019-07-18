@@ -42,7 +42,7 @@ class SignUpForm extends Component {
 		})
 			.then(res => {
 				console.log(res.data);
-				this.props.history.push("/log-in");
+				this.props.history.push("/login");
 			})
 			.catch(err => {
 				console.log(err);
@@ -158,7 +158,7 @@ class SignUpForm extends Component {
 						<button className="FormField__Button mr-20" type="submit">
 							Sign Up
 						</button>{" "}
-						<Link to="/log-in" className="FormField__Link">
+						<Link to="/login" className="FormField__Link">
 							I'm already member
 						</Link>
 					</div>

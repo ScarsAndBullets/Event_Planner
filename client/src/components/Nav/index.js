@@ -19,10 +19,10 @@ function Nav(props) {
 				scroll
 			>
 				<Navigation>
-					<Link to="/Login">Login</Link>
-					<Link to="/Signup">Signup</Link>
-					<Link to="/About">About</Link>
-					<Link to="/Logout">Logout</Link>
+					<Link to="/login">Login</Link>
+					<Link to="/signup">Signup</Link>
+					<Link to="/about">About</Link>
+					<Link to="/logout">Logout</Link>
 				</Navigation>
 			</Header>
 		),
@@ -36,10 +36,10 @@ function Nav(props) {
 				}
 			>
 				<Navigation>
-					<Link to="/Login">Login</Link>
-					<Link to="/Signup">Signup</Link>
-					<Link to="/About">About</Link>
-					<Link to="/Logout">Logout</Link>
+					<Link to="/login">Login</Link>
+					<Link to="/signup">Signup</Link>
+					<Link to="/about">About</Link>
+					<Link to="/logout">Logout</Link>
 				</Navigation>
 			</Drawer>
 		)
