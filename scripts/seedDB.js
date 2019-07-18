@@ -7,7 +7,7 @@ mongoose.connect(
 	process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist"
 );
 
-const bookSeed = [
+const userSeed = [
 	{
 		title: "The Dead Zone",
 		author: "Stephen King",
