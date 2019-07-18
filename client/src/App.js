@@ -9,8 +9,8 @@ class App extends Component {
   render() {
     return (
       <div className="demo-big-content App">
-      <Layout>
-          <Nav/>
+        <Layout>
+          <Nav />
           <Content>
             <Main />
           </Content>
