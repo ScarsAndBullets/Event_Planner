@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import withAuth from "../../components/withAuth";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
+import Form from '../../components/Form/Form';
 
 class Dashboard extends Component {
 	state = { events: [] };
