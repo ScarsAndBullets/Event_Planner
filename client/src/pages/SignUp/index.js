@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { HashRouter as Route, NavLink } from "react-router-dom";
 import SignUpForm from "../../components/SignUpForm";
-import TaskList from "../../components/TasksList/TasksList";
 
 class SignUp extends Component {
   render() {
@@ -45,7 +44,6 @@ class SignUp extends Component {
               Sign Up
             </NavLink>
           </div>
-          <TaskList />
           <SignUpForm />
         </div>
       </div>

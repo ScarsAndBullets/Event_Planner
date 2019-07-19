@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const passport = require("passport");
 const mongoose = require("mongoose");
+let task = require("./controllers/taskController");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -19,11 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-<<<<<<< HEAD
   app.use(express.static("client/public"));
-=======
-  app.use(express.static("./client/public"));
->>>>>>> b76148b240af84752afaa862d3c43393f5a2a9c2
 }
 
 //Default Engine
@@ -43,7 +40,6 @@ app.use(passport.session());
 
 // Api routes
 require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
 
 // Send every other request to the React app
 app.get("*", (req, res) => {

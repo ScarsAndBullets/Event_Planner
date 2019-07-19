@@ -11,6 +11,10 @@ import About from "./pages/About";
 import Home from "./pages/Home";
 import { AuthState } from "./AuthState";
 
+// import { Task } from "./components/Tasks/task";
+// import { NewTaskForm } from "./components/TasksForm/NewTasksForm";
+// import { TaskList } from "./components/TasksList/TasksList";
+
 class App extends Component {
   render() {
     return (
@@ -24,6 +28,10 @@ class App extends Component {
               <Route path='/dashboard' component={Dashboard} />
               <Route path='/create-event' component={CreateEvent} />
               <Route path='/about' component={About} />
+
+              {/* <Route path='/tasks' component={Task} />
+              <Route path='/tasks' component={NewTaskForm} /> */}
+              {/* <Route path='/tasks' component={TaskList} /> */}
             </Switch>
           </Router>
         </React.Fragment>

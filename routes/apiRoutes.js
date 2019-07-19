@@ -2,7 +2,6 @@ const userController = require("../controllers/userController");
 const eventController = require("../controllers/eventController");
 const passport = require("../config/passport");
 const isAuthenticated = require("../config/middleware/isAuthenticated");
-
 const taskController = require("../controllers/taskController");
 
 module.exports = function(app) {
@@ -31,8 +30,10 @@ module.exports = function(app) {
   );
 
   //////TASKS ROUTES //////////////
-  app.post("/api/task/create", taskController.createTask);
-  app.post("/api/task/update", taskController.updateTask);
-  app.post("api/task/delete", taskController.deleteTask);
-  app.get("api/task/", taskController.getAllTasks);
+  app.get("/tasks", taskController.getTasks);
+  app.post("/tasks", taskController.createTask);
+
+  app.get("/tasks/:id", taskController.findById);
+  app.post("/tasks/update", taskController.updateTask);
+  app.delete("/tasks/delete", taskController.deleteTask);
 };

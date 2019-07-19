@@ -10,13 +10,21 @@ export default {
   getEvents: function() {
     return axios.get("/api/events/event-dashboard");
   },
-  // Deletes the book with the given id
-  deleteBook: function(id) {
-    return axios.delete("/api/books/" + id);
+
+  getTasks: function() {
+    return axios.get("/api/tasks");
   },
-  // Saves a book to the database
-  saveBook: function(bookData) {
-    return axios.post("/api/books", bookData);
+
+  getTask: function(id) {
+    return axios.get("/apit/tasks/" + id);
+  },
+
+  deleteTask: function(id) {
+    return axios.delete("/api/tasks" + id);
+  },
+
+  saveTask: function(taskData) {
+    return axios.post("api/tasks", taskData);
   }
 };
 
