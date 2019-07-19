@@ -1,12 +1,13 @@
 const userController = require("../controllers/userController");
 const eventController = require("../controllers/eventController");
+const participantController = require("../controllers/participantController");
+const taskController = require("../controllers/taskController");
 const passport = require("../config/passport");
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 
-const taskController = require("../controllers/taskController");
+module.exports = function(app) {
 
-module.exports = function (app) {
-	////// USER ROUTES //////
+  ////// USER ROUTES //////
 
 	// Endpoint to login user
 	app.post(
@@ -34,4 +35,11 @@ module.exports = function (app) {
 	app.post("/api/task/create", taskController.createTask);
 
 	app.post("/api/task/update", taskController.updateTask);
+
+
+	/////// PARTICPANT ROUTES //////
+	app.post(
+		"/api/events/:eventId/add-participant",
+		participantController.addParticipant
+	);
 };

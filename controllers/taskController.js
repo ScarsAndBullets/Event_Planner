@@ -15,7 +15,7 @@ module.exports = {
 
 			{ new: true },
 			(err, taskId) => {
-				if (err) return res.statu(500).send(err);
+				if (err) return res.status(500).send(err);
 				return res.send(todo);
 			}
 		);

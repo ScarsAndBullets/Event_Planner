@@ -1,5 +1,7 @@
-const User = require("../models");
-
+const db = require("../models/");
+const User = require("../models/user");
+const jwt = require("jsonwebtoken");
+const secret = "mysecretsshhh";
 // Defining methods for the userController
 module.exports = {
 	//Sign up user
@@ -10,7 +12,7 @@ module.exports = {
 		if (password === password2) {
 			const newUser = new User(req.body);
 
-			User.createUser(newUser, function(err, user) {
+			db.User.createUser(newUser, function(err, user) {
 				if (err) {
 					if (err.code === 11000)
 						return res
@@ -34,12 +36,41 @@ module.exports = {
 	},
 	//Login user and send back user data
 	login: function(req, res) {
-		res.send("Logged In");
+		// db.Participant.find({ email: req.user.email })
+		// 	.then(results => {
+		// 		results.map(participant => {
+		// 			if (participant.userId === null || participant.userId === "") {
+		// 				db.Participant.updateOne(
+		// 					{ _id: participant._id },
+		// 					{ userId: req.user.id },
+		// 					{ new: true }
+		// 				).then(idUpdated => {
+		// 					console.log(idUpdated);
+		// 				});
+		// 			}
+		// 		});
+		// 		// res.json(req.user);
+		// 		res.send(req.user);
+		// 	})
+		// 	.catch(err => {
+		// 		res.json(err);
+		// 	});
+		// Issue token
+		const payload = req.user;
+		console.log(req.user);
+		const token = jwt.sign(payload, secret, {
+			expiresIn: "1h"
+		});
+		res
+			.cookie("token", token, { httpOnly: true })
+			.status(200)
+			.json(payload);
 	},
+
 	//Get current user data
 	currentUser: function(req, res) {
 		if (!req.user) {
-			res.json({});
+			res.send(null);
 		} else {
 			res.json({
 				id: req.user.id,
