@@ -8,12 +8,9 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import CreateEvent from "./pages/CreateEvent";
 import About from "./pages/About";
+import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
 import { AuthState } from "./AuthState";
-
-// import { Task } from "./components/Tasks/task";
-// import { NewTaskForm } from "./components/TasksForm/NewTasksForm";
-// import { TaskList } from "./components/TasksList/TasksList";
 
 class App extends Component {
   render() {
@@ -25,13 +22,10 @@ class App extends Component {
             <Switch>
               <Route path='/' exact component={Login} />
               <Route path='/login' component={Login} />
+              <Route path='/signup' component={SignUp} />
               <Route path='/dashboard' component={Dashboard} />
               <Route path='/create-event' component={CreateEvent} />
               <Route path='/about' component={About} />
-
-              {/* <Route path='/tasks' component={Task} />
-              <Route path='/tasks' component={NewTaskForm} /> */}
-              {/* <Route path='/tasks' component={TaskList} /> */}
             </Switch>
           </Router>
         </React.Fragment>

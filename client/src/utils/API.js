@@ -34,27 +34,20 @@ export class AuthService {
     return axios
       .post("/api/user/login", { email: login.email, password: login.password })
       .then(res => {
-        // set the token once the user logs in
-        // once the  backend is setup we can use this.
-        // this.setToken(res.data.token);
-
-        //hardcoding token for now
-        this.setToken("faketoken");
-
-        // return the rest of the response
+        console.log(res);
         return res;
       });
   };
 
   getProfile = () => {
     // return decode(this.getToken());
-    return decode(this.getToken());
+    return axios.get("/api/user/current").then(res => {
+      return res;
+    });
   };
 
   loggedIn() {
-    // Checks if there is a saved token and it's still valid
-    const token = this.getToken();
-    return !!token && !this.isTokenExpired(token); // handwaiving here
+    return this.getProfile();
   }
 
   isTokenExpired(token) {

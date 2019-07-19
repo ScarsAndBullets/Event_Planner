@@ -10,15 +10,15 @@ class SignUp extends Component {
         <div className='App__Form'>
           <div className='PageSwitcher'>
             <NavLink
-              to='/log-in'
+              to='/login'
               activeClassName='PageSwitcher__Item--Active'
               className='PageSwitcher__Item'
             >
-              Sign In
+              Log In
             </NavLink>
             <NavLink
               exact
-              to='/sign-up'
+              to='/signup'
               activeClassName='PageSwitcher__Item--Active'
               className='PageSwitcher__Item'
             >
@@ -28,22 +28,23 @@ class SignUp extends Component {
 
           <div className='FormTitle'>
             <NavLink
-              to='/log-in'
+              to='/login'
               activeClassName='FormTitle__Link--Active'
               className='FormTitle__Link'
             >
-              Sign In
+              Log In
             </NavLink>{" "}
             or{" "}
             <NavLink
               exact
-              to='/'
+              to='/signup'
               activeClassName='FormTitle__Link--Active'
               className='FormTitle__Link'
             >
               Sign Up
             </NavLink>
           </div>
+
           <SignUpForm />
         </div>
       </div>

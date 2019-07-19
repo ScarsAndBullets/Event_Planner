@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { HashRouter as Route, NavLink } from "react-router-dom";
 import SignInForm from "../../components/SignInForm";
-import TaskList from "../../components/TasksList/TasksList";
+
 class Login extends Component {
   render() {
     return (
@@ -10,7 +10,7 @@ class Login extends Component {
         <div className='App__Form'>
           <div className='PageSwitcher'>
             <NavLink
-              to='/log-in'
+              to='/login'
               activeClassName='PageSwitcher__Item--Active'
               className='PageSwitcher__Item'
             >
@@ -18,7 +18,7 @@ class Login extends Component {
             </NavLink>
             <NavLink
               exact
-              to='/sign-up'
+              to='/signup'
               activeClassName='PageSwitcher__Item--Active'
               className='PageSwitcher__Item'
             >
@@ -28,7 +28,7 @@ class Login extends Component {
 
           <div className='FormTitle'>
             <NavLink
-              to='/log-in'
+              to='/login'
               activeClassName='FormTitle__Link--Active'
               className='FormTitle__Link'
             >
@@ -37,14 +37,14 @@ class Login extends Component {
             or{" "}
             <NavLink
               exact
-              to='/'
+              to='/signup'
               activeClassName='FormTitle__Link--Active'
               className='FormTitle__Link'
             >
               Sign Up
             </NavLink>
           </div>
-          <TaskList />
+
           <SignInForm />
         </div>
       </div>
