@@ -6,7 +6,8 @@ const passport = require("../config/passport");
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
-	////// USER ROUTES //////
+
+  ////// USER ROUTES //////
 
 	// Endpoint to login user
 	app.post(
@@ -34,6 +35,7 @@ module.exports = function(app) {
 	app.post("/api/task/create", taskController.createTask);
 
 	app.post("/api/task/update", taskController.updateTask);
+
 
 	/////// PARTICPANT ROUTES //////
 	app.post(
