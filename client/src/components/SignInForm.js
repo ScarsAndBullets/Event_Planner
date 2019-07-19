@@ -38,16 +38,16 @@ class SignInForm extends Component {
     console.log('The form was submitted with the following data:');
     console.log(this.state);
     if (this.state.email && this.state.password) {
+      console.log(this.state.email);
       this.Auth.login({
         email: this.state.email,
         password: this.state.password
       })
         .then(res => {
           console.log(res);
-          this.props.authState.handleLoginResponse(true)
-          // this.setState({
-          //   loggedIn: true
-          // });
+          this.setState({
+            loggedIn: true
+          });
         })
         .catch(err => {
           if (err) {
