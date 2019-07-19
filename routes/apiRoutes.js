@@ -37,6 +37,7 @@ module.exports = function(app) {
   app.get("/tasks/:id", taskController.findById);
   app.post("/tasks/update", taskController.updateTask);
   app.delete("/tasks/delete", taskController.deleteTask);
+
   /////// PARTICPANT ROUTES //////
   app.post(
     "/api/events/:eventId/add-participant",

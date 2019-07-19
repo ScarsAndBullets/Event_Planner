@@ -2,15 +2,14 @@ import decode from "jwt-decode";
 import axios from "axios";
 
 export default {
-  // logs in user
-  submitLogin: function(login) {
-    return axios.post("/api/user/login", login);
-  },
-  //Get users events to populate event dashboard
-  getEvents: function() {
-    return axios.get("/api/events/event-dashboard");
-  },
-
+  submitSignup: function(signup) {
+		return axios.post("/api/user/signup", signup);
+	},
+	//Get users events to populate event dashboard
+	getEvents: function() {
+		return axios.get("/api/events/event-dashboard");
+	}
+  
   getTasks: function() {
     return axios.get("/api/tasks");
   },
@@ -26,6 +25,7 @@ export default {
   saveTask: function(taskData) {
     return axios.post("api/tasks", taskData);
   }
+	
 };
 
 export class AuthService {
