@@ -3,6 +3,7 @@ import withAuth from "../../components/withAuth";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import Form from '../../components/Form/Form';
+import EventCard from '../../components/EventCard';
 
 class Dashboard extends Component {
 	state = { events: [] };
@@ -27,6 +28,7 @@ class Dashboard extends Component {
 						<h1>Dashboard</h1>
 					</Col>
 				</Row>
+				<EventCard></EventCard>
 				<Form></Form>
 			</Container>
 		);
