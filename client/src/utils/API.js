@@ -2,28 +2,32 @@ import decode from "jwt-decode";
 import axios from "axios";
 
 export default {
-  submitSignup: function(signup) {
+  submitSignup: function (signup) {
     return axios.post("/api/user/signup", signup);
   },
   //Get users events to populate event dashboard
-  getEvents: function() {
+  getEvents: function () {
     return axios.get("/api/events/event-dashboard");
   },
 
-  getTasks: function() {
+  getTasks: function () {
     return axios.get("/api/tasks");
   },
 
-  getTask: function(id) {
+  getTask: function (id) {
     return axios.get("/apit/tasks/" + id);
   },
 
-  deleteTask: function(id) {
+  deleteTask: function (id) {
     return axios.delete("/api/tasks" + id);
   },
 
-  saveTask: function(taskData) {
+  saveTask: function (taskData) {
     return axios.post("api/tasks", taskData);
+  },
+
+  sendEmail: function (email, eventId) {
+    return axios.post(`api/events/${eventId}/send-mail`, { email });
   }
 };
 
