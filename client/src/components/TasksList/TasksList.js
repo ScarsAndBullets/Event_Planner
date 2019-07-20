@@ -15,15 +15,15 @@ class TasksList extends Component {
   }
 
   render() {
-    return (
-      <Container fluid>
+    return {
+      /* <Container fluid>
         <Row>
           <Col size='md-2'>
             <Link to='/'>← Back to Tasks Page</Link>
           </Col>
         </Row>
-      </Container>
-    );
+      </Container> */
+    };
   }
 }
 
