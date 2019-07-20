@@ -5,7 +5,7 @@ import { Col, Row, Container } from "../../components/Grid";
 import Form from '../../components/Form/Form';
 import EventCard from '../../components/EventCard/EventCard';
 import Slider from '../../components/Slider/Slider'
-import  './Style.css'	
+import './Style.css'
 
 
 class Dashboard extends Component {
@@ -31,12 +31,9 @@ class Dashboard extends Component {
 						<h1>Dashboard</h1>
 					</Col>
 				</Row>
-<<<<<<< HEAD
-=======
 
-				 {/* <EventCard></EventCard> */}
+				{/* <EventCard></EventCard> */}
 				<Slider></Slider>
->>>>>>> 953e580904ba683f7362636638937606762cd5ca
 				<Form></Form>
 			</Container>
 		);
