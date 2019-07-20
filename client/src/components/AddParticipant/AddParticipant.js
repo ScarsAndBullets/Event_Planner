@@ -4,13 +4,14 @@ import {
     makeStyles,
     TextField,
     Dialog,
-    DialogActions, 
+    DialogActions,
     DialogContent,
     DialogContentText,
     DialogTitle,
     Icon
 } from '@material-ui/core';
 import clsx from 'clsx';
+import { PersonAddOutlined, GroupAddRounded } from '@material-ui/icons';
 
 import ShareIcon from '@material-ui/icons/Share';
 import IconButton from '@material-ui/core/IconButton';
@@ -43,7 +44,9 @@ export default function AddParticipant() {
     return (
         <div className="Form-modal-button">
             <IconButton aria-label="Share" onClick={handleClickOpen}>
-                <ShareIcon />
+                {/* <PersonAddOutlined fontSize="large" /> */}
+                <GroupAddRounded fontSize="large" />
+
             </IconButton>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Add New Participant!</DialogTitle>
