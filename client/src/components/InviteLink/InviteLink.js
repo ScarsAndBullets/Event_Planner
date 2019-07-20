@@ -8,8 +8,9 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
 import { CheckCircleRounded } from '@material-ui/icons';
-
 import Slide from '@material-ui/core/Slide';
+
+import api from "./../../utils/API";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -26,10 +27,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 // const iconBttnClass = iconButton();
 
-function InviteLink() {
+function InviteLink(props) {
     const [open, setOpen] = React.useState(false);
 
     function handleClickOpen() {
+        console.log(`handle open click ${props.emailValue}`)
+        api.sendEmail(props.emailValue, `albjdk`);
         setOpen(true);
     }
 
