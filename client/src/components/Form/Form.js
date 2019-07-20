@@ -144,17 +144,35 @@ function Form() {
 					{/* <DialogContentText>
                         If admitting you have a problem is the first step to recovery, filling out this form is the first step to having your event pland!!
           </DialogContentText> */}
-					<TextField
-						autoFocus
-						id="outlined-name"
-						label="Event Name"
-						className={classes.textField}
-						value={values.name}
-						fullWidth
-						onChange={handleChange("title")}
-						margin="normal"
-						variant="outlined"
-					/>
+					<Grid container spacing={2} className={classes.grid}>
+						<Grid item xs={6}>
+							<TextField
+								autoFocus
+								id="outlined-name"
+								label="Event Name"
+								className={classes.textField}
+								value={values.name}
+								fullWidth
+								onChange={handleChange("name")}
+								margin="normal"
+								variant="outlined"
+							/>
+						</Grid>
+						<Grid item xs={6}>
+							<TextField
+								autoFocus
+								id="outlined-location"
+								label="Location"
+								className={classes.textField}
+								value={values.name}
+								fullWidth
+								onChange={handleChange("name")}
+								margin="normal"
+								variant="outlined"
+							/>
+						</Grid>
+					</Grid>
+
 					<TextField
 						autoFocus
 						id="outlined-description"
@@ -163,7 +181,7 @@ function Form() {
 						value={values.name}
 						helperText="Might we suggest a BRIEF summary--no one has time for a novel."
 						fullWidth
-						onChange={handleChange("description")}
+						onChange={handleChange("name")}
 						margin="normal"
 						variant="outlined"
 					/>
@@ -194,26 +212,16 @@ function Form() {
 						</Grid>
 					</MuiPickersUtilsProvider>
 					{/* END: date/time */}
-					<TextField
-						autoFocus
-						id="outlined-location"
-						label="Location"
-						className={classes.textField}
-						value={values.name}
-						fullWidth
-						onChange={handleChange("location")}
-						margin="normal"
-						variant="outlined"
-					/>
+
 					<TextField
 						autoFocus
 						id="outlined-requirements"
 						label="Guest Requirements"
 						className={classes.textField}
 						value={values.name}
-						helperText="Do participants need to sign waivers? Are shoes and shirts a problem? Include anything that participants need to know/bring/do/prepare/etc."
+						helperText="Are shoes and shirts a problem? Include anything guests need to know/bring/do/prepare/etc."
 						fullWidth
-						onChange={handleChange("requirements")}
+						onChange={handleChange("name")}
 						margin="normal"
 						variant="outlined"
 					/>
@@ -224,18 +232,16 @@ function Form() {
 						aria-label="Create"
 						onClick={handleClose}
 						color="secondary"
-						type="submit"
 					>
-						<Icon className={clsx(iconBttnClass.icon, "fas fa-ban")} />
+						<NotInterestedRounded fontSize="large" />
 					</IconButton>
-
 					<IconButton
 						className={iconBttnClass.button}
 						aria-label="Create"
 						onClick={handleClose}
 						color="primary"
 					>
-						<Icon className={clsx(iconBttnClass.icon, "fas fa-check")} />
+						<CheckCircleRounded fontSize="large" />
 					</IconButton>
 				</DialogActions>
 			</Dialog>
