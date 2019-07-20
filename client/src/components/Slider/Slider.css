@@ -1,0 +1,9 @@
+.MuiCard-root {
+    width: unset;
+    cursor: pointer;
+    
+}
+.MuiCard-root:hover {
+    transform: scale(1.08);
+    transition: transform 0.2s;
+}

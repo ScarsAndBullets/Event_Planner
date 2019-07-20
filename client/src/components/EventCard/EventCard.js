@@ -51,7 +51,7 @@ function EventCard() {
     }
 
     // styled Icon
-    const fixedIcon = withStyles({
+    const FixedIcon = withStyles({
         root: {
             width: 0,
             height: 0,
@@ -65,7 +65,7 @@ function EventCard() {
                 avatar={
                     <Avatar aria-label="Owned" className={classes.avatar}>
                         {/* <Icon className={clsx('fas fa-crown')} fontSize="small" /> */}
-                        <fixedIcon className={clsx('fas fa-crown')} fontSize="small" />
+                        <FixedIcon className={clsx('fas fa-crown')} fontSize="small" />
 
                     </Avatar>
                 }
@@ -80,12 +80,7 @@ function EventCard() {
                 // DATE TIME
                 subheader="September 14, 2020 at 1:30pm"
             />
-            {/* CARD IMG */}
-            <CardMedia
-                className={classes.media}
-                image="/static/images/cards/paella.jpg"
-                title="Paella dish"
-            />
+
             <CardContent>
                 {/* SUMMARY */}
                 <Typography variant="body2" color="textSecondary" component="p">
