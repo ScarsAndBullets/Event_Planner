@@ -10,26 +10,25 @@ import CreateEvent from "./pages/CreateEvent";
 import About from "./pages/About";
 import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
-import { AuthState } from "./AuthState";
 
 class App extends Component {
   render() {
     return (
-      <AuthState>
-        <React.Fragment>
+      <React.Fragment>
+        <Layout>
           <Nav />
           <Router>
             <Switch>
-              <Route path='/' exact component={Login} />
-              <Route path='/login' component={Login} />
-              <Route path='/signup' component={SignUp} />
-              <Route path='/dashboard' component={Dashboard} />
-              <Route path='/create-event' component={CreateEvent} />
-              <Route path='/about' component={About} />
+              <Route path="/" exact component={Login} />
+              <Route path="/login" component={Login} />
+              <Route path="/signup" component={SignUp} />
+              <Route path="/dashboard" component={Dashboard} />
+              <Route path="/create-event" component={CreateEvent} />
+              <Route path="/about" component={About} />
             </Switch>
           </Router>
-        </React.Fragment>
-      </AuthState>
+        </Layout>
+      </React.Fragment>
     );
   }
 }
