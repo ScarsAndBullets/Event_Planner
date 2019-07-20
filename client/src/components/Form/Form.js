@@ -23,6 +23,8 @@ import clsx from 'clsx';
 import Icon from '@material-ui/core/Icon';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+import { CheckCircleRounded, NotInterestedRounded } from '@material-ui/icons';
+
 import "./Form.css";
 
 
@@ -200,16 +202,13 @@ function Form() {
                         className={iconBttnClass.button}
                         aria-label="Create"
                         onClick={handleClose} color="secondary"
-                    >
-                        <Icon className={clsx(iconBttnClass.icon, 'fas fa-ban')} />
+                    ><NotInterestedRounded fontSize="large" />
                     </IconButton>
-
                     <IconButton
                         className={iconBttnClass.button}
                         aria-label="Create"
                         onClick={handleClose} color="primary"
-                    >
-                        <Icon className={clsx(iconBttnClass.icon, 'fas fa-check')} />
+                    ><CheckCircleRounded fontSize="large" />
                     </IconButton>
                 </DialogActions>
             </Dialog>
