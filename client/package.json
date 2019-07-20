@@ -10,6 +10,7 @@
     "@material-ui/icons": "^4.2.1",
     "@material-ui/pickers": "^3.2.0",
     "date-fns": "^2.0.0-alpha.27",
+    "font-awesome": "^4.7.0",
     "jwt-decode": "^2.2.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
