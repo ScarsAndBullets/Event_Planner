@@ -5,7 +5,9 @@ import clsx from 'clsx';
 import { Icon, Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, Avatar, IconButton, Typography } from '@material-ui/core';
 import { red, purple, blue } from '@material-ui/core/colors';
 // import FavoriteIcon from '@material-ui/icons/Favorite';
-import { ExpandMoreIcon, MoreVertIcon } from '@material-ui/icons';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import AddParticipant from '../../components/AddParticipant/AddParticipant';
 import "./EventCard.css";
 
 // -----------------------------------------------------------------------------
@@ -87,10 +89,6 @@ function EventCard() {
             </CardContent>
             <CardActions disableSpacing>
                 <AddParticipant></AddParticipant>
-                {/* REPLACE w/ AddParticipants HERE!! */}
-                {/* <IconButton aria-label="Share">
-                    <ShareIcon />
-                </IconButton> */}
                 {/* END: AddParticipants */}
                 <IconButton
                     className={clsx(classes.expand, {

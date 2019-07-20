@@ -28,6 +28,7 @@ class Dashboard extends Component {
 						<h1>Dashboard</h1>
 					</Col>
 				</Row>
+
 				<EventCard></EventCard>
 				<Form></Form>
 			</Container>
