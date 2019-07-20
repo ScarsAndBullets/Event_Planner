@@ -91,7 +91,7 @@ function EventCard(props) {
             <CardContent>
                 {/* SUMMARY */}
                 <Typography variant="body2" color="textSecondary" component="p">
-                {props.details}
+                    {props.details}
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
