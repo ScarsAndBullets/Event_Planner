@@ -5,7 +5,7 @@ import { Col, Row, Container } from "../../components/Grid";
 import Form from '../../components/Form/Form';
 import EventCard from '../../components/EventCard/EventCard';
 import Slider from '../../components/Slider/Slider'
-import  './Style.css'	
+import './Style.css'
 
 
 class Dashboard extends Component {
