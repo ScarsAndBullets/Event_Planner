@@ -9,7 +9,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import AddParticipant from '../../components/AddParticipant/AddParticipant';
 
-import "./EventCard.css";
+// import "./EventCard.css";
 
 // -----------------------------------------------------------------------------
 function EventCard() {
