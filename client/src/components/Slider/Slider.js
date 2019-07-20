@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Tabs, Tab, Grid, Cell, Card, CardTitle, CardText, CardActions, Button, CardMenu, IconButton } from 'react-mdl';
 import EventCard from '../../components/EventCard/EventCard';
-// import './Slider.css';
+import './Slider.css';
 
 
 class Slider extends Component {
