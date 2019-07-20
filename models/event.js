@@ -6,7 +6,7 @@ const eventSchema = new Schema({
 	date: { type: Date, required: true },
 	location: { type: String, required: true },
 	details: { type: String, trim: true },
-	requirements: [{ type: String, trim: true }],
+	requirements: { type: String, trim: true },
 	tasks: [
 		{
 			type: Schema.Types.ObjectId,
