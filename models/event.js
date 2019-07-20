@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const eventSchema = new Schema({
 	title: { type: String, required: true, trim: true },
-	date: { type: Date, required: true },
+	date: { type: String, required: true },
+	time: { type: String, required: true },
 	location: { type: String, required: true },
 	details: { type: String, trim: true },
 	requirements: { type: String, trim: true },
@@ -29,5 +30,4 @@ const eventSchema = new Schema({
 
 const Event = mongoose.model("Event", eventSchema);
 
-// Event.createEvent = function(event) {};
 module.exports = Event;
