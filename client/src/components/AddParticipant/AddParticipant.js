@@ -10,8 +10,13 @@ import {
     DialogTitle,
     Icon
 } from '@material-ui/core';
-import clsx from 'clsx';
-import { PersonAddOutlined, GroupAddRounded } from '@material-ui/icons';
+// import clsx from 'clsx';
+import {
+    PersonAddOutlined,
+    GroupAddRounded,
+    CheckCircleRounded,
+    NotInterestedRounded
+} from '@material-ui/icons';
 
 import ShareIcon from '@material-ui/icons/Share';
 import IconButton from '@material-ui/core/IconButton';
@@ -30,9 +35,9 @@ export default function AddParticipant() {
     }
     // BELOW: Icon buttons
     const iconButton = makeStyles(theme => ({
-        button: {
-            margin: theme.spacing(1),
-        },
+        // button: {
+        //     margin: theme.spacing(1),
+        // },
         input: {
             display: 'none',
         },
@@ -52,7 +57,7 @@ export default function AddParticipant() {
                 <DialogTitle id="form-dialog-title">Add New Participant!</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Enter participants email below
+                        Enter participant's email below
           </DialogContentText>
                     <TextField
                         autoFocus
@@ -68,16 +73,13 @@ export default function AddParticipant() {
                         className={iconBttnClass.button}
                         aria-label="Create"
                         onClick={handleClose} color="secondary"
-                    >
-                        <Icon className={clsx(iconBttnClass.icon, 'fas fa-ban')} />
+                    ><NotInterestedRounded fontSize="large" />
                     </IconButton>
-
                     <IconButton
                         className={iconBttnClass.button}
                         aria-label="Create"
                         onClick={handleClose} color="primary"
-                    >
-                        <Icon className={clsx(iconBttnClass.icon, 'fas fa-check')} />
+                    ><CheckCircleRounded fontSize="large" />
                     </IconButton>
                 </DialogActions>
             </Dialog>
