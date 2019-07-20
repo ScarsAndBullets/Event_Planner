@@ -29,7 +29,7 @@ class Dashboard extends Component {
 					</Col>
 				</Row>
 
-				<EventCard></EventCard>
+				<EventCard events={this.state.events}/>
 				<Form></Form>
 			</Container>
 		);
