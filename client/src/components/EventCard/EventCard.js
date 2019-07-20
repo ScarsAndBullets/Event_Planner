@@ -2,12 +2,10 @@
 import React from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import { Icon, Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, Avatar, IconButton, Typography } from '@material-ui/core/Icon';
-
+import { Icon, Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, Avatar, IconButton, Typography } from '@material-ui/core';
 import { red, purple, blue } from '@material-ui/core/colors';
 // import FavoriteIcon from '@material-ui/icons/Favorite';
-import { ExpandMoreIcon, MoreVertIcon } from '@material-ui/icons/ExpandMore';
-
+import { ExpandMoreIcon, MoreVertIcon } from '@material-ui/icons';
 import "./EventCard.css";
 
 // -----------------------------------------------------------------------------
