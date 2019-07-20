@@ -65,6 +65,14 @@ function EventCard() {
     }
   })(Icon);
 
+  // styled Icon
+  const FixedIcon = withStyles({
+    root: {
+      width: 0,
+      height: 0
+    }
+  })(Icon);
+
   return (
     <Card className={classes.card}>
       <CardHeader
@@ -72,7 +80,7 @@ function EventCard() {
         avatar={
           <Avatar aria-label='Owned' className={classes.avatar}>
             {/* <Icon className={clsx('fas fa-crown')} fontSize="small" /> */}
-            <fixedIcon className={clsx("fas fa-crown")} fontSize='small' />
+            <FixedIcon className={clsx("fas fa-crown")} fontSize='small' />
           </Avatar>
         }
         // THREE DOT "SETTINGS" BUTTTON
@@ -86,12 +94,7 @@ function EventCard() {
         // DATE TIME
         subheader='September 14, 2020 at 1:30pm'
       />
-      {/* CARD IMG */}
-      <CardMedia
-        className={classes.media}
-        image='/static/images/cards/paella.jpg'
-        title='Paella dish'
-      />
+
       <CardContent>
         {/* SUMMARY */}
         <Typography variant='body2' color='textSecondary' component='p'>

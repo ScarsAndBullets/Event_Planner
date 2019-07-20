@@ -5,6 +5,7 @@ module.exports = {
 		db.Event.create({
 			title: req.body.title,
 			date: req.body.date,
+			time: req.body.time,
 			location: req.body.location,
 			details: req.body.details,
 			requirements: req.body.requirements,
