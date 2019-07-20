@@ -128,29 +128,29 @@ function Form() {
           </DialogContentText> */}
                     <Grid container spacing={2} className={classes.grid} >
                         <Grid item xs={6}>
-                        <TextField
-                            autoFocus
-                            id="outlined-name"
-                            label="Event Name"
-                            className={classes.textField}
-                            value={values.name}
-                            fullWidth
-                            onChange={handleChange('name')}
-                            margin="normal"
-                            variant="outlined"
-                        />
+                            <TextField
+                                autoFocus
+                                id="outlined-name"
+                                label="Event Name"
+                                className={classes.textField}
+                                value={values.name}
+                                fullWidth
+                                onChange={handleChange('name')}
+                                margin="normal"
+                                variant="outlined"
+                            />
                         </Grid>
                         <Grid item xs={6}>
-                        <TextField
-                            autoFocus
-                            id="outlined-location"
-                            label="Location"
-                            className={classes.textField}
-                            value={values.name}
-                            fullWidth
-                            onChange={handleChange('name')}
-                            margin="normal"
-                            variant="outlined"
+                            <TextField
+                                autoFocus
+                                id="outlined-location"
+                                label="Location"
+                                className={classes.textField}
+                                value={values.name}
+                                fullWidth
+                                onChange={handleChange('name')}
+                                margin="normal"
+                                variant="outlined"
                             />
                         </Grid>
 

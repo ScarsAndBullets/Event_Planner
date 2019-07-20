@@ -6,8 +6,8 @@ import { Icon, Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, 
 import { red, purple, blue } from '@material-ui/core/colors';
 // import FavoriteIcon from '@material-ui/icons/Favorite';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import AddParticipant from '../../components/AddParticipant/AddParticipant';
+import FullEventPage from '../../components/FullEventPage/FullEventPage';
 
 import "./EventCard.css";
 
@@ -71,9 +71,7 @@ function EventCard() {
                 }
                 // THREE DOT "SETTINGS" BUTTTON
                 action={
-                    <IconButton aria-label="Settings">
-                        <MoreVertIcon />
-                    </IconButton>
+                    <FullEventPage />
                 }
                 // EVENT NAME
                 title="Shrimp Cookoff"
