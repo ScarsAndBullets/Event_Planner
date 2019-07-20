@@ -37,6 +37,10 @@ function EventCard() {
             // backgroundColor: red[500],
 
         },
+        // title: {
+        //     fontSize: 100,
+        // },
+
     }));
 
     const classes = useStyles();
@@ -89,6 +93,7 @@ function EventCard() {
         </Typography>
             </CardContent>
             <CardActions disableSpacing>
+                {/* BELOW: AddParticipants */}
                 <AddParticipant></AddParticipant>
                 {/* END: AddParticipants */}
                 <IconButton

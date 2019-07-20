@@ -20,6 +20,7 @@ import {
 
 import ShareIcon from '@material-ui/icons/Share';
 import IconButton from '@material-ui/core/IconButton';
+import InviteLink from '../../components/InviteLink/InviteLink';
 
 
 // -----------------------------------------------------------------------------
@@ -71,16 +72,19 @@ export default function AddParticipant() {
                 <DialogActions>
                     <IconButton
                         className={iconBttnClass.button}
-                        aria-label="Create"
+                        aria-label="Cancel"
                         onClick={handleClose} color="secondary"
                     ><NotInterestedRounded fontSize="large" />
                     </IconButton>
-                    <IconButton
+                    {/* BELOW: InviteLink */}
+                    {/* <IconButton
                         className={iconBttnClass.button}
                         aria-label="Create"
                         onClick={handleClose} color="primary"
                     ><CheckCircleRounded fontSize="large" />
-                    </IconButton>
+                    </IconButton> */}
+                    <InviteLink />
+                    {/* END: InviteLink */}
                 </DialogActions>
             </Dialog>
         </div>
