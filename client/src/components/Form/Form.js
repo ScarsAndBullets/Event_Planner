@@ -1,4 +1,3 @@
-import "./Form.css";
 import React, { useState } from 'react';
 // Material UI
 import { Grid, makeStyles, Button, TextField, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@material-ui/core";
@@ -14,6 +13,8 @@ import clsx from 'clsx';
 import Icon from '@material-ui/core/Icon';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+import "./Form.css";
+
 
 // ---------------------------------------------------------------------
 function Form() {
@@ -80,7 +81,12 @@ function Form() {
     // FLOATING ACTION BTTN (FAB)
     const txtIconComboStyle = makeStyles(theme => ({
         fab: {
-            margin: theme.spacing(1),
+            margin: 0,
+            top: 'auto',
+            right: 20,
+            bottom: 20,
+            left: 'auto',
+            position: 'fixed',
         },
         extendedIcon: {
             marginRight: theme.spacing(1),
@@ -94,9 +100,7 @@ function Form() {
     return (
         <div className="Form-modal-button">
             {/* BELOW: MODAL */}
-            {/* <Button variant="outlined" color="primary" >
-                Create Event
-      </Button> */}
+
             <Fab variant="extended" aria-label="Create Form Button" className={textIconCombo.fab} onClick={handleClickOpen}>
                 <AddIcon className={textIconCombo.extendedIcon} />
                 New Event!
@@ -148,6 +152,7 @@ function Form() {
                                 id="mui-pickers-time"
                                 label="What time does it start?"
                                 value={selectedDate}
+                                // handleTIMEchange??
                                 onChange={handleDateChange}
                                 KeyboardButtonProps={{
                                     'aria-label': 'change time',
