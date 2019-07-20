@@ -4,6 +4,9 @@ import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import Form from '../../components/Form/Form';
 import EventCard from '../../components/EventCard/EventCard';
+import Slider from '../../components/Slider/Slider'
+import  './Style.css'	
+
 
 class Dashboard extends Component {
 	state = { events: [] };
@@ -29,7 +32,8 @@ class Dashboard extends Component {
 					</Col>
 				</Row>
 
-				<EventCard></EventCard>
+				 {/* <EventCard></EventCard> */}
+				<Slider></Slider>
 				<Form></Form>
 			</Container>
 		);
