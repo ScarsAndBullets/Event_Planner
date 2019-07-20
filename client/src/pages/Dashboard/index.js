@@ -1,7 +1,12 @@
 import React, { Component } from "react";
-import withAuth from '../../components/withAuth';
-import API from '../../utils/API';
+import withAuth from "../../components/withAuth";
+import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
+import Form from '../../components/Form/Form';
+import EventCard from '../../components/EventCard/EventCard';
+import Slider from '../../components/Slider/Slider'
+import  './Style.css'	
+
 
 class Dashboard extends Component {
 	state = { events: [] };
@@ -26,6 +31,12 @@ class Dashboard extends Component {
 						<h1>Dashboard</h1>
 					</Col>
 				</Row>
+<<<<<<< HEAD
+=======
+
+				 {/* <EventCard></EventCard> */}
+				<Slider></Slider>
+>>>>>>> 953e580904ba683f7362636638937606762cd5ca
 				<Form></Form>
 			</Container>
 		);
