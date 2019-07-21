@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const participantSchema = new Schema({
 	email: { type: String, required: true },
-	userId: { type: String, required: false },
+	userId: { type: String, required: false, default: null },
 	eventId: { type: Schema.Types.ObjectId, required: true },
 	attending: { type: Boolean, default: false },
 	tasks: [

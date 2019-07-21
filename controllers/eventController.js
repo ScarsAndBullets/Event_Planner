@@ -70,5 +70,16 @@ module.exports = {
 			.catch(err => {
 				res.json(err);
 			});
+	},
+	getEvent: function(req, res) {
+		db.Event.findById({ _id: req.params.id })
+			.populate("participants")
+			.populate("tasks")
+			.then(event => {
+				res.json(event);
+			})
+			.catch(err => {
+				res.json(err);
+			});
 	}
 };
