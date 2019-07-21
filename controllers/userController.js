@@ -42,7 +42,10 @@ module.exports = {
 					if (participant.userId === null) {
 						db.Participant.updateOne(
 							{ _id: participant._id },
-							{ userId: req.user._id },
+							{
+								userId: req.user._id,
+								name: `${req.user.firstName} ${req.user.lastName}`
+							},
 							{ new: true }
 						).then(idUpdated => {
 							console.log(idUpdated);
@@ -69,10 +72,7 @@ module.exports = {
 		if (!req.user) {
 			res.send(null);
 		} else {
-			res.json({
-				id: req.user.id,
-				email: req.user.email
-			});
+			res.json(req.user);
 		}
 	},
 	//Logout user

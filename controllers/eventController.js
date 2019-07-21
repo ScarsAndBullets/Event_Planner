@@ -14,6 +14,7 @@ module.exports = {
 			.then(event => {
 				db.Participant.create({
 					email: req.user.email,
+					name: `${req.user.firstName} ${req.user.lastName}`,
 					userId: req.user.id,
 					eventId: event._id
 				}).then(participant => {
