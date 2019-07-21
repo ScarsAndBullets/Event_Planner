@@ -11,7 +11,7 @@ import {
 	DialogContentText,
 	DialogTitle
 } from "@material-ui/core";
-import "date-fns";
+import { format } from "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
 import {
 	MuiPickersUtilsProvider,
@@ -71,11 +71,14 @@ function Form() {
 		setValues({ ...values, [name]: event.target.value });
 	};
 	const handleSubmit = () => {
+		let time = format(selectedTime, "hh:mm aa");
+		let date = format(selectedDate, "MMMM dd, yyyy");
+
 		API.submitEvent({
 			title: values.title,
 			details: values.details,
-			date: selectedDate,
-			time: selectedTime,
+			date: date,
+			time: time,
 			location: values.location,
 			requirements: values.requirements
 		})

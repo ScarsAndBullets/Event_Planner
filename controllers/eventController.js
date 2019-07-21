@@ -14,6 +14,7 @@ module.exports = {
 			.then(event => {
 				db.Participant.create({
 					email: req.user.email,
+					name: `${req.user.firstName} ${req.user.lastName}`,
 					userId: req.user.id,
 					eventId: event._id
 				}).then(participant => {
@@ -67,6 +68,17 @@ module.exports = {
 
 						res.json(results);
 					});
+			})
+			.catch(err => {
+				res.json(err);
+			});
+	},
+	getEvent: function(req, res) {
+		db.Event.findById({ _id: req.params.id })
+			.populate("participants")
+			.populate("tasks")
+			.then(event => {
+				res.json(event);
 			})
 			.catch(err => {
 				res.json(err);
