@@ -1,7 +1,7 @@
-import React, { Component, useState } from 'react';
-import './App.css';
-import { Layout, Content } from 'react-mdl';
-import Nav from './components/Nav';
+import React, { Component, useState } from "react";
+import "./App.css";
+import { Layout, Content } from "react-mdl";
+import Nav from "./components/Nav";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./pages/Login";

@@ -9,36 +9,35 @@ import './Style.css'
 
 
 class Dashboard extends Component {
-	state = { events: [] };
+    state = { events: [] };
 
-	componentDidMount() {
-		API.getEvents()
-			.then(res => {
-				this.setState({
-					events: res.data
-				});
-				console.log(this.state.events);
-			})
-			.catch(err => {
-				if (err) throw err;
-			});
-	}
-	render() {
-		return (
-			<Container fluid>
-				<Row>
-					<Col size="md-12">
-						<h1>Dashboard</h1>
-					</Col>
-				</Row>
+    componentDidMount() {
+        API.getEvents()
+            .then(res => {
+                this.setState({
+                    events: res.data
+                });
+                console.log(this.state.events);
+            })
+            .catch(err => {
+                if (err) throw err;
+            });
+    }
+    render() {
+        return (
+            <Container fluid>
+                <Row>
+                    <Col size="md-12">
+                        <h1>Dashboard</h1>
+                    </Col>
+                </Row>
 
-				<EventCard events={this.state.events}/>
-				 {/* <EventCard></EventCard> */}
-				<Slider></Slider>
-				<Form></Form>
-			</Container>
-		);
-	}
+                {/* <EventCard></EventCard> */}
+                <Slider></Slider>
+                <Form></Form>
+            </Container>
+        );
+    }
 }
 
 export default withAuth(Dashboard);

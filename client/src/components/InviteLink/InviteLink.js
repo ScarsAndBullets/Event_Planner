@@ -76,5 +76,4 @@ function InviteLink(props) {
         </div>
     );
 }
-
 export default InviteLink;
