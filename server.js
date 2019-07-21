@@ -7,6 +7,8 @@ const passport = require("passport");
 const mongoose = require("mongoose");
 let task = require("./controllers/taskController");
 
+require('dotenv').config()
+
 const PORT = process.env.PORT || 3001;
 const app = express();
 

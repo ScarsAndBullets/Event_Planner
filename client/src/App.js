@@ -13,21 +13,22 @@ import Home from "./pages/Home";
 class App extends Component {
 	render() {
 		return (
-			<React.Fragment>
-				<Layout>
-					<Nav />
-					<Router>
+			<Layout>
+				<Nav />
+				<Router>
+					<div>
 						<Switch>
 							<Route path="/" exact component={Login} />
 							<Route path="/login" component={Login} />
 							<Route path="/signup" component={SignUp} />
-							<Route path="/dashboard" component={Dashboard} />
+							<Route path="/dashboard" exact component={Dashboard} />
 							<Route path="/create-event" component={CreateEvent} />
 							<Route path="/about" component={About} />
+							<Route path="/event/:id" component={Event} />
 						</Switch>
-					</Router>
-				</Layout>
-			</React.Fragment>
+					</div>
+				</Router>
+			</Layout>
 		);
 	}
 }
