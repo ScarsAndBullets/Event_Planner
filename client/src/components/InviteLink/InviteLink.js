@@ -59,13 +59,13 @@ function InviteLink(props) {
                 aria-describedby="alert-dialog-slide-description"
             >
                 {/* CENTER TITLE */}
-                <DialogTitle id="alert-dialog-slide-title">{"Here's the invite link for: example@domain.com"}</DialogTitle>
+                <DialogTitle id="alert-dialog-slide-title">{"An invitation has been sent!"}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
-                        Copy/Paste this link and send it to the recipient you just entered. Make sure they sign up with the same email you entered or the invitation won't work.
+                        It's crucial they open this email and click the provided link, or else they won't be able to see the event details. If they don't see the email, make sure they check their junk or spam folders. 
           </DialogContentText>
                     {/* CENTER and BOLD LINK */}
-                    <DialogContentText id="alert-dialog-slide-description">examplelink.com/a;skdfjw123          </DialogContentText>
+                   
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
