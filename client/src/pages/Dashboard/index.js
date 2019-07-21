@@ -2,14 +2,17 @@ import React, { Component } from "react";
 import withAuth from "../../components/withAuth";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
-import Form from '../../components/Form/Form';
-import EventCard from '../../components/EventCard/EventCard';
-import Slider from '../../components/Slider/Slider'
-import  './Style.css'	
-
+import Form from "../../components/Form/Form";
+import EventCard from "../../components/EventCard/EventCard";
+import Slider from "../../components/Slider/Slider";
+import "./Style.css";
 
 class Dashboard extends Component {
-	state = { events: [] };
+	constructor(props) {
+		super(props);
+		this.state = { events: [] };
+		this.handleNewEvent = this.handleNewEvent.bind(this);
+	}
 
 	componentDidMount() {
 		API.getEvents()
@@ -23,6 +26,10 @@ class Dashboard extends Component {
 				if (err) throw err;
 			});
 	}
+	handleNewEvent(event) {
+		this.state.events.push(event);
+		console.log(this.state.events);
+	}
 	render() {
 		return (
 			<Container fluid>
@@ -32,9 +39,9 @@ class Dashboard extends Component {
 					</Col>
 				</Row>
 
-				 {/* <EventCard></EventCard> */}
-				<Slider></Slider>
-				<Form></Form>
+				{/* <EventCard></EventCard> */}
+				<Slider />
+				<Form handleNewEvent={this.handleNewEvent} />
 			</Container>
 		);
 	}

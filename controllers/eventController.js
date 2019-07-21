@@ -18,15 +18,19 @@ module.exports = {
 					userId: req.user.id,
 					eventId: event._id
 				}).then(participant => {
-					db.Event.updateOne(
+					db.Event.findOneAndUpdate(
 						{
 							_id: event._id
 						},
 						{ $push: { participants: participant._id } },
-						{ new: true }
-					).then(eventCreated => {
-						res.json(eventCreated);
-					});
+						{ new: true, useFindAndModify: false }
+					)
+						.then(response => {
+							res.json(response);
+						})
+						.catch(err => {
+							res.json(err);
+						});
 				});
 			})
 			.catch(err => {
