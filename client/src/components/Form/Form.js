@@ -72,7 +72,7 @@ function Form() {
 	};
 	const handleSubmit = () => {
 		let time = format(selectedTime, "hh:mm aa");
-		let date = format(date, "MMMM dd, yyyy");
+		let date = format(selectedDate, "MMMM dd, yyyy");
 
 		API.submitEvent({
 			title: values.title,
