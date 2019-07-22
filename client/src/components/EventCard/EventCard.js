@@ -23,6 +23,8 @@ import StarBorderRounded from "@material-ui/icons/StarBorderRounded";
 
 import "./EventCard.css";
 
+import TaskForm from "../TaskForm/TaskForm";
+
 // -----------------------------------------------------------------------------
 function EventCard(props) {
   const useStyles = makeStyles(theme => ({
@@ -103,6 +105,7 @@ function EventCard(props) {
         {/* BELOW: AddParticipants */}
         <AddParticipant />
         {/* END: AddParticipants */}
+        <TaskForm />
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded

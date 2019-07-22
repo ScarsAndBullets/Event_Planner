@@ -10,7 +10,8 @@ class TaskForm extends Component {
     this.state = {
       taskName: "",
       taskAssigned: "",
-      Task: []
+      Task: [],
+      completed: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -85,13 +86,13 @@ class TaskForm extends Component {
           return (
             <ul>
               <li className='Task' onClick={this.assignTask}>
+                <button onClick={this.deleteTask}>
+                  <i class='fas fa-trash' />
+                </button>
                 {task.taskName}
                 <div className='Task-buttons'>
-                  <button onClick={this.deleteTask}>
-                    <i class='fas fa-trash' />
-                  </button>
                   <h6>Assigned To:</h6>
-                  <span clssName='userId'>userId</span>
+                  <span clssName='userId'>ParticipanId</span>
                 </div>
               </li>
             </ul>
