@@ -1,9 +1,20 @@
 // import React, { useState } from 'react';
-import React from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
-import { Icon, Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, Avatar, IconButton, Typography } from '@material-ui/core';
-import { red, purple, blue } from '@material-ui/core/colors';
+import React from "react";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
+import {
+    Icon,
+    Card,
+    CardHeader,
+    CardMedia,
+    CardContent,
+    CardActions,
+    Collapse,
+    Avatar,
+    IconButton,
+    Typography
+} from "@material-ui/core";
+import { red, purple, blue } from "@material-ui/core/colors";
 // import FavoriteIcon from '@material-ui/icons/Favorite';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -18,31 +29,29 @@ function EventCard(props) {
     const useStyles = makeStyles(theme => ({
         card: {
             maxWidth: 345,
-            backgroundColor: blue[100],
+            backgroundColor: blue[100]
         },
         media: {
             height: 0,
-            paddingTop: '56.25%', // 16:9
+            paddingTop: "56.25%" // 16:9
         },
         expand: {
-            transform: 'rotate(0deg)',
-            marginLeft: 'auto',
-            transition: theme.transitions.create('transform', {
-                duration: theme.transitions.duration.shortest,
-            }),
+            transform: "rotate(0deg)",
+            marginLeft: "auto",
+            transition: theme.transitions.create("transform", {
+                duration: theme.transitions.duration.shortest
+            })
         },
         expandOpen: {
-            transform: 'rotate(180deg)',
+            transform: "rotate(180deg)"
         },
         avatar: {
-            backgroundColor: purple[500],
+            backgroundColor: purple[500]
             // backgroundColor: red[500],
-
-        },
+        }
         // title: {
         //     fontSize: 100,
         // },
-
     }));
 
     const classes = useStyles();
@@ -56,8 +65,8 @@ function EventCard(props) {
     const FixedIcon = withStyles({
         root: {
             width: 0,
-            height: 0,
-        },
+            height: 0
+        }
     })(Icon);
 
     return (
@@ -65,38 +74,39 @@ function EventCard(props) {
             <CardHeader
                 // IF OWNER: DOT W/ STAR, IF NOT: NO DOT OR STAR
                 avatar={
-                    props.owner ? (
+                    props.events.owner ? (
                         <Avatar aria-label="Owned" className={classes.avatar}>
-                        <FixedIcon className={clsx('fas fa-crown')} fontSize="small" />
+                            <FixedIcon className={clsx("fas fa-crown")} fontSize="small" />
                         </Avatar>
-                    ) : (<Avatar aria-label="Owned" className={classes.avatar}>
-                    </Avatar>)
-                    
+                    ) : (
+                            <Avatar aria-label="Owned" className={classes.avatar} />
+                        )
                 }
-                // EXPAND icon for FULL PAGE
+                // THREE DOT "SETTINGS" BUTTTON
                 action={
-                    <FullEventPage></FullEventPage>
+                    <IconButton aria-label="Settings">
+                        <MoreVertIcon />
+                    </IconButton>
                 }
                 // EVENT NAME
-                title={props.title}
+                title={props.events.title}
                 // DATE TIME
-                subheader={props.date}
-                subheader={props.time}
+                subheader={`${props.events.date} ${props.events.time}`}
             />
 
             <CardContent>
                 {/* SUMMARY */}
                 <Typography variant="body2" color="textSecondary" component="p">
-                {props.details}
+                    {props.events.details}
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
                 {/* BELOW: AddParticipants */}
-                <AddParticipant></AddParticipant>
+                <AddParticipant />
                 {/* END: AddParticipants */}
                 <IconButton
                     className={clsx(classes.expand, {
-                        [classes.expandOpen]: expanded,
+                        [classes.expandOpen]: expanded
                     })}
                     onClick={handleExpandClick}
                     aria-expanded={expanded}
@@ -110,15 +120,11 @@ function EventCard(props) {
                 <CardContent>
                     <Typography paragraph>Guest Instructions:</Typography>
                     {/* GUEST INSTRUCTIONS */}
-                    <Typography paragraph>
-                    {props.requirements}
-                    </Typography>
+                    <Typography paragraph>{props.events.requirements}</Typography>
                 </CardContent>
             </Collapse>
         </Card>
     );
 }
 
-
-// -----------------------------------------------------------------------------
 export default EventCard;

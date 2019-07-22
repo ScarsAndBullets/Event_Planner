@@ -29,9 +29,9 @@ import API from "../../utils/API";
 import "./Form.css";
 
 // ---------------------------------------------------------------------
-function Form() {
-    // MODAL variables and funcs BELOW
-    const [open, setOpen] = React.useState(false);
+function Form(props) {
+	// MODAL variables and funcs BELOW
+	const [open, setOpen] = React.useState(false);
 
     function handleClickOpen() {
         setOpen(true);
@@ -82,8 +82,8 @@ function Form() {
 			location: values.location,
 			requirements: values.requirements
 		})
-			.then(res => {
-				console.log(res.data);
+			.then(newEvent => {
+				props.handleNewEvent(newEvent.data);
 			})
 			.catch(err => {
 				console.log(err);
