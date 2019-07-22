@@ -8,11 +8,12 @@ import { red, purple, blue } from '@material-ui/core/colors';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import AddParticipant from '../../components/AddParticipant/AddParticipant';
+import StarBorderRounded from '@material-ui/icons/StarBorderRounded';
 
 import "./EventCard.css";
 
 // -----------------------------------------------------------------------------
-function EventCard() {
+function EventCard(props) {
     const useStyles = makeStyles(theme => ({
         card: {
             maxWidth: 345,
@@ -63,11 +64,13 @@ function EventCard() {
             <CardHeader
                 // IF OWNER: DOT W/ STAR, IF NOT: NO DOT OR STAR
                 avatar={
-                    <Avatar aria-label="Owned" className={classes.avatar}>
-                        {/* <Icon className={clsx('fas fa-crown')} fontSize="small" /> */}
+                    props.owner ? (
+                        <Avatar aria-label="Owned" className={classes.avatar}>
                         <FixedIcon className={clsx('fas fa-crown')} fontSize="small" />
-
-                    </Avatar>
+                        </Avatar>
+                    ) : (<Avatar aria-label="Owned" className={classes.avatar}>
+                    </Avatar>)
+                    
                 }
                 // THREE DOT "SETTINGS" BUTTTON
                 action={
@@ -76,16 +79,17 @@ function EventCard() {
                     </IconButton>
                 }
                 // EVENT NAME
-                title="Shrimp Cookoff"
+                title={props.title}
                 // DATE TIME
-                subheader="September 14, 2020 at 1:30pm"
+                subheader={props.date}
+                subheader={props.time}
             />
 
             <CardContent>
                 {/* SUMMARY */}
                 <Typography variant="body2" color="textSecondary" component="p">
-                    We're going to fry up all the shrimp in the County with our award-winning Shrimp Fry-Chefs! Bring your friends, family and an empty stomach!
-        </Typography>
+                {props.details}
+                </Typography>
             </CardContent>
             <CardActions disableSpacing>
                 {/* BELOW: AddParticipants */}
@@ -108,8 +112,8 @@ function EventCard() {
                     <Typography paragraph>Guest Instructions:</Typography>
                     {/* GUEST INSTRUCTIONS */}
                     <Typography paragraph>
-                        You will need to bring your own blankets, plates, utensils, cups, and napkins. Also, don't forget to fill out the online waiver.
-          </Typography>
+                    {props.requirements}
+                    </Typography>
                 </CardContent>
             </Collapse>
         </Card>

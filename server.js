@@ -14,27 +14,27 @@ const app = express();
 
 // Define middleware here
 app.use(
-  express.urlencoded({
-    extended: true
-  })
+    express.urlencoded({
+        extended: true
+    })
 );
 app.use(express.json());
 
 app.use(cookieParser());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("./client/public"));
+    app.use(express.static("./client/public"));
 }
 
 //Default Engine
 
 // Express Session
 app.use(
-  session({
-    secret: "keyboard cat",
-    saveUninitialized: true,
-    resave: true
-  })
+    session({
+        secret: "keyboard cat",
+        saveUninitialized: true,
+        resave: true
+    })
 );
 
 // Passport init
@@ -46,15 +46,16 @@ require("./routes/apiRoutes")(app);
 
 // Send every other request to the React app
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/public/index.html"));
+    res.sendFile(path.join(__dirname, "./client/public/index.html"));
 });
 
 mongoose.set("useCreateIndex", true);
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/eventPlannerDb",
-  { useNewUrlParser: true }
+    process.env.MONGODB_URI || "mongodb://localhost/eventPlannerDb", {
+        useNewUrlParser: true
+    }
 );
 
 app.listen(PORT, () => {
-  console.log(`🌎 ==> API server now on port ${PORT}!`);
+    console.log(`🌎 ==> API server now on port ${PORT}!`);
 });
