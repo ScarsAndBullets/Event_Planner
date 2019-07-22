@@ -9,6 +9,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import AddParticipant from '../../components/AddParticipant/AddParticipant';
 import StarBorderRounded from '@material-ui/icons/StarBorderRounded';
+import FullEventPage from '../../components/FullEventPage/FullEventPage';
 
 import "./EventCard.css";
 
@@ -74,9 +75,7 @@ function EventCard(props) {
                 }
                 // THREE DOT "SETTINGS" BUTTTON
                 action={
-                    <IconButton aria-label="Settings">
-                        <MoreVertIcon />
-                    </IconButton>
+                    <FullEventPage></FullEventPage>
                 }
                 // EVENT NAME
                 title={props.title}
