@@ -26,10 +26,14 @@ class Dashboard extends Component {
 				if (err) throw err;
 			});
 	}
+
 	handleNewEvent(event) {
 		this.state.events.push(event);
-		console.log(this.state.events);
+		this.setState({
+			events: this.state.events
+		});
 	}
+
 	render() {
 		return (
 			<Container fluid>
@@ -40,7 +44,7 @@ class Dashboard extends Component {
 				</Row>
 
 				{/* <EventCard></EventCard> */}
-				<Slider />
+				<Slider events={this.state.events} />
 				<Form handleNewEvent={this.handleNewEvent} />
 			</Container>
 		);
