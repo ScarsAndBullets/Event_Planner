@@ -36,17 +36,23 @@ module.exports = {
 	},
 	//Login user and send back user data
 	login: function(req, res) {
-		db.Participant.find({ email: req.user.email })
+		db.Participant.find({
+			email: req.user.email
+		})
 			.then(results => {
 				results.map(participant => {
 					if (participant.userId === null) {
 						db.Participant.updateOne(
-							{ _id: participant._id },
+							{
+								_id: participant._id
+							},
 							{
 								userId: req.user._id,
 								name: `${req.user.firstName} ${req.user.lastName}`
 							},
-							{ new: true }
+							{
+								new: true
+							}
 						).then(idUpdated => {
 							console.log(idUpdated);
 						});
@@ -58,7 +64,9 @@ module.exports = {
 					expiresIn: "1h"
 				});
 				res
-					.cookie("token", token, { httpOnly: true })
+					.cookie("token", token, {
+						httpOnly: true
+					})
 					.status(200)
 					.json(payload);
 			})

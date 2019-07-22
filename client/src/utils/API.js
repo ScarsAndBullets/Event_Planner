@@ -29,7 +29,9 @@ export default {
 	},
 
 	sendEmail: function (email, eventId) {
-		return axios.post(`api/events/${eventId}/send-mail`, { email });
+		return axios.post(`api/events/${eventId}/send-mail`, {
+			email
+		});
 	}
 
 };
@@ -38,7 +40,10 @@ export class AuthService {
 	login = login => {
 		// Get a token
 		return axios
-			.post("/api/user/login", { email: login.email, password: login.password })
+			.post("/api/user/login", {
+				email: login.email,
+				password: login.password
+			})
 			.then(res => {
 				console.log(res);
 				return res;

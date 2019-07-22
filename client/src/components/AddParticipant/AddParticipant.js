@@ -71,9 +71,7 @@ export default function AddParticipant() {
                         type="email"
                         value={email}
                         onChange={(event) => {
-
                             setEmail(event.target.value)
-
                         }}
                         fullWidth
                     />

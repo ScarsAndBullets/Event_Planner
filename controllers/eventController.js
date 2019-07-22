@@ -40,7 +40,12 @@ module.exports = {
 
 	updateEvent: function(req, res) {
 		let eventId = req.params.eventId;
-		db.Event.updateOne({ _id: eventId }, req.body)
+		db.Event.updateOne(
+			{
+				_id: eventId
+			},
+			req.body
+		)
 			.then(eventUpdated => {
 				res.json(eventUpdated);
 			})
@@ -50,13 +55,19 @@ module.exports = {
 	},
 	//Get all users events
 	eventDashboard: function(req, res) {
-		db.Participant.find({ userId: req.user.id })
+		db.Participant.find({
+			userId: req.user.id
+		})
 			.then(participantEvents => {
 				let eventsIds = [];
 				participantEvents.map(participant => {
 					eventsIds.push(participant.eventId);
 				});
-				db.Event.find({ _id: { $in: eventsIds } })
+				db.Event.find({
+					_id: {
+						$in: eventsIds
+					}
+				})
 					.populate("participants")
 					.populate("tasks")
 					.then(eventData => {
@@ -69,7 +80,6 @@ module.exports = {
 								results.push(event);
 							}
 						});
-
 						res.json(results);
 					});
 			})
@@ -77,8 +87,11 @@ module.exports = {
 				res.json(err);
 			});
 	},
+
 	getEvent: function(req, res) {
-		db.Event.findById({ _id: req.params.id })
+		db.Event.findById({
+			_id: req.params.id
+		})
 			.populate("participants")
 			.populate("tasks")
 			.then(event => {

@@ -1,8 +1,9 @@
-.container{
+.container {
     background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
     min-height: 100vh;
     padding: 25px;
 }
+
 .container h2 {
     margin-top: 0;
 }
