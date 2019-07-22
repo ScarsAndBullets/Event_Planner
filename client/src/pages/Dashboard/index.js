@@ -33,7 +33,7 @@ class Dashboard extends Component {
                 </Row>
 
                 {/* <EventCard></EventCard> */}
-                <Slider></Slider>
+                <Slider events={this.props.events}></Slider>
                 <Form></Form>
             </Container>
         );

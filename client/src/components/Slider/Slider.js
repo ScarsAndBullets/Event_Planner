@@ -9,35 +9,7 @@ class Slider extends Component {
         super(props);
         this.state = {
             activeTab: 0,
-            cardData: [
-                {
-                    imgUrl: "https://i.kinja-img.com/gawker-media/image/upload/s--8myN5kD9--/c_scale,f_auto,fl_progressive,q_80,w_800/exhl9hxjevx2uadvte3u.jpg"
-                },
-                {
-                    imgUrl: "https://i.kinja-img.com/gawker-media/image/upload/s--8myN5kD9--/c_scale,f_auto,fl_progressive,q_80,w_800/exhl9hxjevx2uadvte3u.jpg"
-                },
-                {
-                    imgUrl: "https://i.kinja-img.com/gawker-media/image/upload/s--8myN5kD9--/c_scale,f_auto,fl_progressive,q_80,w_800/exhl9hxjevx2uadvte3u.jpg"
-                },
-                {
-                    imgUrl: "https://www.magalufevents.com/images/mcppaintparty.jpg"
-                },
-                {
-                    imgUrl: "https://www.magalufevents.com/images/mcppaintparty.jpg"
-                },
-                {
-                    imgUrl: "https://static.meraevents.com/microsites/newyear/img/nye-banner-1.jpg"
-                },
-                {
-                    imgUrl: "https://static.meraevents.com/microsites/newyear/img/nye-banner-1.jpg"
-                },
-                {
-                    imgUrl: "https://static.meraevents.com/microsites/newyear/img/nye-banner-1.jpg",
-                    text: "",
-                    url: ""
-                },
 
-            ]
         };
     }
 
@@ -49,7 +21,7 @@ class Slider extends Component {
                     <Grid>
                         {this.state.cardData.map((card) =>
                             <Cell col={3} tablet={6} phone={12}>
-                                <EventCard />
+                                <EventCard event={card} />
                             </Cell>
                         )}
                     </Grid>
