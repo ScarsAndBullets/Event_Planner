@@ -1,7 +1,6 @@
 const db = require("../models");
 
 module.exports = {
-<<<<<<< HEAD
     createEvent: function (req, res) {
         db.Event.create({
             title: req.body.title,
@@ -28,8 +27,8 @@ module.exports = {
                     ).then(eventCreated => {
                         res.json(eventCreated);
                     }).catch(err => {
-			res.json(err);
-			});
+                        res.json(err);
+                    });
                 });
             })
             .catch(err => {
