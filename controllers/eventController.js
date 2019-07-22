@@ -81,6 +81,9 @@ module.exports = {
 							}
 						});
 						res.json(results);
+					})
+					.catch(err => {
+						res.json(err);
 					});
 			})
 			.catch(err => {
