@@ -8,7 +8,8 @@ import Dashboard from "./pages/Dashboard";
 import CreateEvent from "./pages/CreateEvent";
 import About from "./pages/About";
 import SignUp from "./pages/SignUp";
-import Home from "./pages/Home";
+import EventView from "./pages/EventView";
+import NoMatch from "./pages/NoMatch";
 
 class App extends Component {
 	render() {
