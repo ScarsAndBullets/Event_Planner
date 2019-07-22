@@ -14,18 +14,23 @@ module.exports = {
 			.then(event => {
 				db.Participant.create({
 					email: req.user.email,
+					name: `${req.user.firstName} ${req.user.lastName}`,
 					userId: req.user.id,
 					eventId: event._id
 				}).then(participant => {
-					db.Event.updateOne(
+					db.Event.findOneAndUpdate(
 						{
 							_id: event._id
 						},
 						{ $push: { participants: participant._id } },
-						{ new: true }
-					).then(eventCreated => {
-						res.json(eventCreated);
-					});
+						{ new: true, useFindAndModify: false }
+					)
+						.then(response => {
+							res.json(response);
+						})
+						.catch(err => {
+							res.json(err);
+						});
 				});
 			})
 			.catch(err => {
@@ -35,7 +40,12 @@ module.exports = {
 
 	updateEvent: function(req, res) {
 		let eventId = req.params.eventId;
-		db.Event.updateOne({ _id: eventId }, req.body)
+		db.Event.updateOne(
+			{
+				_id: eventId
+			},
+			req.body
+		)
 			.then(eventUpdated => {
 				res.json(eventUpdated);
 			})
@@ -45,13 +55,19 @@ module.exports = {
 	},
 	//Get all users events
 	eventDashboard: function(req, res) {
-		db.Participant.find({ userId: req.user.id })
+		db.Participant.find({
+			userId: req.user.id
+		})
 			.then(participantEvents => {
 				let eventsIds = [];
 				participantEvents.map(participant => {
 					eventsIds.push(participant.eventId);
 				});
-				db.Event.find({ _id: { $in: eventsIds } })
+				db.Event.find({
+					_id: {
+						$in: eventsIds
+					}
+				})
 					.populate("participants")
 					.populate("tasks")
 					.then(eventData => {
@@ -64,9 +80,25 @@ module.exports = {
 								results.push(event);
 							}
 						});
-
 						res.json(results);
+					})
+					.catch(err => {
+						res.json(err);
 					});
+			})
+			.catch(err => {
+				res.json(err);
+			});
+	},
+
+	getEvent: function(req, res) {
+		db.Event.findById({
+			_id: req.params.id
+		})
+			.populate("participants")
+			.populate("tasks")
+			.then(event => {
+				res.json(event);
 			})
 			.catch(err => {
 				res.json(err);

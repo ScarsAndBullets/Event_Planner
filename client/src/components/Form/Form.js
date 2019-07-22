@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 // Material UI
 import {
-	Grid,
-	makeStyles,
-	Button,
-	TextField,
-	Dialog,
-	DialogActions,
-	DialogContent,
-	DialogContentText,
-	DialogTitle
+    Grid,
+    makeStyles,
+    Button,
+    TextField,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle
 } from "@material-ui/core";
-import "date-fns";
+import { format } from "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
 import {
-	MuiPickersUtilsProvider,
-	KeyboardTimePicker,
-	KeyboardDatePicker
+    MuiPickersUtilsProvider,
+    KeyboardTimePicker,
+    KeyboardDatePicker
 } from "@material-ui/pickers";
 import IconButton from "@material-ui/core/IconButton";
 import clsx from "clsx";
@@ -29,58 +29,61 @@ import API from "../../utils/API";
 import "./Form.css";
 
 // ---------------------------------------------------------------------
-function Form() {
+function Form(props) {
 	// MODAL variables and funcs BELOW
 	const [open, setOpen] = React.useState(false);
 
-	function handleClickOpen() {
-		setOpen(true);
-	}
+    function handleClickOpen() {
+        setOpen(true);
+    }
 
-	function handleClose() {
-		setOpen(false);
-	}
-	// END MODAL vars and funcs
-	// FORM vars/funcs
-	const useFormStyles = makeStyles(theme => ({
-		container: {
-			display: "flex",
-			flexWrap: "wrap"
-		},
-		textField: {
-			marginLeft: theme.spacing(1),
-			marginRight: theme.spacing(1)
-		},
-		dense: {
-			marginTop: theme.spacing(2)
-		},
-		menu: {
-			width: 200
-		}
-	}));
+    function handleClose() {
+        setOpen(false);
+    }
+    // END MODAL vars and funcs
+    // FORM vars/funcs
+    const useFormStyles = makeStyles(theme => ({
+        container: {
+            display: "flex",
+            flexWrap: "wrap"
+        },
+        textField: {
+            marginLeft: theme.spacing(1),
+            marginRight: theme.spacing(1)
+        },
+        dense: {
+            marginTop: theme.spacing(2)
+        },
+        menu: {
+            width: 200
+        }
+    }));
 
-	const classes = useFormStyles();
-	const [values, setValues] = React.useState({
-		title: "",
-		location: "",
-		details: "",
-		requirements: ""
-	});
+    const classes = useFormStyles();
+    const [values, setValues] = React.useState({
+        title: "",
+        location: "",
+        details: "",
+        requirements: ""
+    });
 
 	const handleChange = name => event => {
 		setValues({ ...values, [name]: event.target.value });
 	};
 	const handleSubmit = () => {
+		let time = format(selectedTime, "hh:mm aa");
+		let date = format(selectedDate, "MMMM dd, yyyy");
+
 		API.submitEvent({
 			title: values.title,
 			details: values.details,
-			date: selectedDate,
-			time: selectedTime,
+			date: date,
+			time: time,
 			location: values.location,
 			requirements: values.requirements
 		})
-			.then(res => {
-				console.log(res.data);
+			.then(newEvent => {
+				props.handleNewEvent(newEvent.data);
 			})
 			.catch(err => {
 				console.log(err);
@@ -107,167 +110,167 @@ function Form() {
 		}
 	}));
 
-	const iconBttnClass = iconButton();
+    const iconBttnClass = iconButton();
 
-	// END ICON BTTN
-	// FLOATING ACTION BTTN (FAB)
-	const txtIconComboStyle = makeStyles(theme => ({
-		fab: {
-			margin: 0,
-			top: "auto",
-			right: 20,
-			bottom: 20,
-			left: "auto",
-			position: "fixed"
-		},
-		extendedIcon: {
-			marginRight: theme.spacing(1)
-		}
-	}));
+    // END ICON BTTN
+    // FLOATING ACTION BTTN (FAB)
+    const txtIconComboStyle = makeStyles(theme => ({
+        fab: {
+            margin: 0,
+            top: "auto",
+            right: 20,
+            bottom: 20,
+            left: "auto",
+            position: "fixed"
+        },
+        extendedIcon: {
+            marginRight: theme.spacing(1)
+        }
+    }));
 
-	const textIconCombo = txtIconComboStyle();
+    const textIconCombo = txtIconComboStyle();
 
-	// END FLOATING ACTION BTTN (FAB)
+    // END FLOATING ACTION BTTN (FAB)
 
-	return (
-		<div className="Form-modal-button">
-			{/* BELOW: MODAL */}
+    return (
+        <div className="Form-modal-button">
+            {/* BELOW: MODAL */}
 
-			<Fab
-				variant="extended"
-				aria-label="Create Form Button"
-				className={textIconCombo.fab}
-				onClick={handleClickOpen}
-			>
-				<AddIcon className={textIconCombo.extendedIcon} />
-				New Event!
+            <Fab
+                variant="extended"
+                aria-label="Create Form Button"
+                className={textIconCombo.fab}
+                onClick={handleClickOpen}
+            >
+                <AddIcon className={textIconCombo.extendedIcon} />
+                New Event!
 			</Fab>
-			<Dialog
-				open={open}
-				onClose={handleClose}
-				aria-labelledby="form-dialog-title"
-			>
-				<form
-					action="/"
-					method="POST"
-					onSubmit={e => {
-						e.preventDefault();
-						handleSubmit();
-						handleClose();
-					}}
-				>
-					<DialogTitle id="form-dialog-title">Create A New Event</DialogTitle>
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="form-dialog-title"
+            >
+                <form
+                    action="/"
+                    method="POST"
+                    onSubmit={e => {
+                        e.preventDefault();
+                        handleSubmit();
+                        handleClose();
+                    }}
+                >
+                    <DialogTitle id="form-dialog-title">Create A New Event</DialogTitle>
 
-					<DialogContent>
-						{/* <DialogContentText>
+                    <DialogContent>
+                        {/* <DialogContentText>
                         If admitting you have a problem is the first step to recovery, filling out this form is the first step to having your event pland!!
           </DialogContentText> */}
 
-						<Grid container spacing={2} className={classes.grid}>
-							<Grid item xs={6}>
-								<TextField
-									autoFocus
-									id="outlined-name"
-									label="Event Name"
-									className={classes.textField}
-									value={values.name}
-									fullWidth
-									onChange={handleChange("title")}
-									margin="normal"
-									variant="outlined"
-								/>
-							</Grid>
-							<Grid item xs={6}>
-								<TextField
-									autoFocus
-									id="outlined-location"
-									label="Location"
-									className={classes.textField}
-									value={values.name}
-									fullWidth
-									onChange={handleChange("location")}
-									margin="normal"
-									variant="outlined"
-								/>
-							</Grid>
-						</Grid>
+                        <Grid container spacing={2} className={classes.grid}>
+                            <Grid item xs={6}>
+                                <TextField
+                                    autoFocus
+                                    id="outlined-name"
+                                    label="Event Name"
+                                    className={classes.textField}
+                                    value={values.name}
+                                    fullWidth
+                                    onChange={handleChange("title")}
+                                    margin="normal"
+                                    variant="outlined"
+                                />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField
+                                    autoFocus
+                                    id="outlined-location"
+                                    label="Location"
+                                    className={classes.textField}
+                                    value={values.name}
+                                    fullWidth
+                                    onChange={handleChange("location")}
+                                    margin="normal"
+                                    variant="outlined"
+                                />
+                            </Grid>
+                        </Grid>
 
-						<TextField
-							autoFocus
-							id="outlined-description"
-							label="Event Description"
-							className={classes.textField}
-							value={values.name}
-							helperText="Might we suggest a BRIEF summary--no one has time for a novel."
-							fullWidth
-							onChange={handleChange("details")}
-							margin="normal"
-							variant="outlined"
-						/>
-						{/* BELOW: date/time */}
-						<MuiPickersUtilsProvider utils={DateFnsUtils}>
-							<Grid container className={classes.grid} justify="space-around">
-								<KeyboardDatePicker
-									margin="normal"
-									id="mui-pickers-date"
-									label="What day is it going down?"
-									value={selectedDate}
-									onChange={handleDateChange}
-									KeyboardButtonProps={{
-										"aria-label": "change date"
-									}}
-								/>
-								<KeyboardTimePicker
-									margin="normal"
-									id="mui-pickers-time"
-									label="What time does it start?"
-									value={selectedTime}
-									onChange={handleTimeChange}
-									KeyboardButtonProps={{
-										"aria-label": "change time"
-									}}
-								/>
-							</Grid>
-						</MuiPickersUtilsProvider>
-						{/* END: date/time */}
+                        <TextField
+                            autoFocus
+                            id="outlined-description"
+                            label="Event Description"
+                            className={classes.textField}
+                            value={values.name}
+                            helperText="Might we suggest a BRIEF summary--no one has time for a novel."
+                            fullWidth
+                            onChange={handleChange("details")}
+                            margin="normal"
+                            variant="outlined"
+                        />
+                        {/* BELOW: date/time */}
+                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                            <Grid container className={classes.grid} justify="space-around">
+                                <KeyboardDatePicker
+                                    margin="normal"
+                                    id="mui-pickers-date"
+                                    label="What day is it going down?"
+                                    value={selectedDate}
+                                    onChange={handleDateChange}
+                                    KeyboardButtonProps={{
+                                        "aria-label": "change date"
+                                    }}
+                                />
+                                <KeyboardTimePicker
+                                    margin="normal"
+                                    id="mui-pickers-time"
+                                    label="What time does it start?"
+                                    value={selectedTime}
+                                    onChange={handleTimeChange}
+                                    KeyboardButtonProps={{
+                                        "aria-label": "change time"
+                                    }}
+                                />
+                            </Grid>
+                        </MuiPickersUtilsProvider>
+                        {/* END: date/time */}
 
-						<TextField
-							autoFocus
-							id="outlined-requirements"
-							label="Guest Requirements"
-							className={classes.textField}
-							value={values.name}
-							helperText="Are shoes and shirts a problem? Include anything guests need to know/bring/do/prepare/etc."
-							fullWidth
-							onChange={handleChange("requirements")}
-							margin="normal"
-							variant="outlined"
-						/>
-					</DialogContent>
-					<DialogActions>
-						<IconButton
-							className={iconBttnClass.button}
-							aria-label="Create"
-							onClick={handleClose}
-							color="secondary"
-						>
-							<NotInterestedRounded fontSize="large" />
-						</IconButton>
-						<IconButton
-							className={iconBttnClass.button}
-							aria-label="Create"
-							onClick={handleClose}
-							color="primary"
-							type="submit"
-							label="submit"
-						>
-							<CheckCircleRounded fontSize="large" />
-						</IconButton>
-					</DialogActions>
-				</form>
-			</Dialog>
-		</div>
-	);
+                        <TextField
+                            autoFocus
+                            id="outlined-requirements"
+                            label="Guest Requirements"
+                            className={classes.textField}
+                            value={values.name}
+                            helperText="Are shoes and shirts a problem? Include anything guests need to know/bring/do/prepare/etc."
+                            fullWidth
+                            onChange={handleChange("requirements")}
+                            margin="normal"
+                            variant="outlined"
+                        />
+                    </DialogContent>
+                    <DialogActions>
+                        <IconButton
+                            className={iconBttnClass.button}
+                            aria-label="Create"
+                            onClick={handleClose}
+                            color="secondary"
+                        >
+                            <NotInterestedRounded fontSize="large" />
+                        </IconButton>
+                        <IconButton
+                            className={iconBttnClass.button}
+                            aria-label="Create"
+                            onClick={handleClose}
+                            color="primary"
+                            type="submit"
+                            label="submit"
+                        >
+                            <CheckCircleRounded fontSize="large" />
+                        </IconButton>
+                    </DialogActions>
+                </form>
+            </Dialog>
+        </div>
+    );
 }
 
 // --------------------------------------------------------------------------

@@ -36,35 +36,43 @@ module.exports = {
 	},
 	//Login user and send back user data
 	login: function(req, res) {
-		// db.Participant.find({ email: req.user.email })
-		// 	.then(results => {
-		// 		results.map(participant => {
-		// 			if (participant.userId === null || participant.userId === "") {
-		// 				db.Participant.updateOne(
-		// 					{ _id: participant._id },
-		// 					{ userId: req.user.id },
-		// 					{ new: true }
-		// 				).then(idUpdated => {
-		// 					console.log(idUpdated);
-		// 				});
-		// 			}
-		// 		});
-		// 		// res.json(req.user);
-		// 		res.send(req.user);
-		// 	})
-		// 	.catch(err => {
-		// 		res.json(err);
-		// 	});
-		// Issue token
-		const payload = req.user;
-		console.log(req.user);
-		const token = jwt.sign(payload, secret, {
-			expiresIn: "1h"
-		});
-		res
-			.cookie("token", token, { httpOnly: true })
-			.status(200)
-			.json(payload);
+		db.Participant.find({
+			email: req.user.email
+		})
+			.then(results => {
+				results.map(participant => {
+					if (participant.userId === null) {
+						db.Participant.updateOne(
+							{
+								_id: participant._id
+							},
+							{
+								userId: req.user._id,
+								name: `${req.user.firstName} ${req.user.lastName}`
+							},
+							{
+								new: true
+							}
+						).then(idUpdated => {
+							console.log(idUpdated);
+						});
+					}
+				});
+				// Issue token/cookie
+				const payload = req.user;
+				const token = jwt.sign(payload, secret, {
+					expiresIn: "1h"
+				});
+				res
+					.cookie("token", token, {
+						httpOnly: true
+					})
+					.status(200)
+					.json(payload);
+			})
+			.catch(err => {
+				res.json(err);
+			});
 	},
 
 	//Get current user data
@@ -72,10 +80,7 @@ module.exports = {
 		if (!req.user) {
 			res.send(null);
 		} else {
-			res.json({
-				id: req.user.id,
-				email: req.user.email
-			});
+			res.json(req.user);
 		}
 	},
 	//Logout user

@@ -12,21 +12,25 @@ export default {
   submitEvent: function(event) {
     return axios.post("/api/events/create", event);
   },
+
   getTasks: function() {
     return axios.get("/tasks");
   },
-
   getTask: function(_id) {
     return axios.get("/api/tasks/" + _id);
   },
-
   deleteTask: function(_id) {
     return axios.delete("/api/tasks" + _id);
   },
-
   saveTask: function(taskData) {
     console.log(taskData);
     return axios.post("/tasks", taskData);
+  },
+
+  sendEmail: function(email, eventId) {
+    return axios.post(`api/events/${eventId}/send-mail`, {
+      email
+    });
   }
 };
 
@@ -34,7 +38,10 @@ export class AuthService {
   login = login => {
     // Get a token
     return axios
-      .post("/api/user/login", { email: login.email, password: login.password })
+      .post("/api/user/login", {
+        email: login.email,
+        password: login.password
+      })
       .then(res => {
         console.log(res);
         return res;

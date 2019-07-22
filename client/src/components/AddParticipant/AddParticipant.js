@@ -22,16 +22,19 @@ import ShareIcon from '@material-ui/icons/Share';
 import IconButton from '@material-ui/core/IconButton';
 import InviteLink from '../../components/InviteLink/InviteLink';
 
-
 // -----------------------------------------------------------------------------
 export default function AddParticipant() {
     const [open, setOpen] = React.useState(false);
-
+    const [email, setEmail] = React.useState("")
+    React.useEffect(() => {
+        console.log(email)
+    })
     function handleClickOpen() {
         setOpen(true);
     }
 
     function handleClose() {
+        console.log(`handle close button`)
         setOpen(false);
     }
     // BELOW: Icon buttons
@@ -66,6 +69,10 @@ export default function AddParticipant() {
                         id="name"
                         label="Email Address"
                         type="email"
+                        value={email}
+                        onChange={(event) => {
+                            setEmail(event.target.value)
+                        }}
                         fullWidth
                     />
                 </DialogContent>
@@ -83,7 +90,7 @@ export default function AddParticipant() {
                         onClick={handleClose} color="primary"
                     ><CheckCircleRounded fontSize="large" />
                     </IconButton> */}
-                    <InviteLink />
+                    <InviteLink emailValue={email} />
                     {/* END: InviteLink */}
                 </DialogActions>
             </Dialog>

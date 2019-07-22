@@ -3,53 +3,53 @@ import { HashRouter as Route, NavLink } from "react-router-dom";
 import SignInForm from "../../components/SignInForm";
 
 class Login extends Component {
-  render() {
-    return (
-      <div className='App'>
-        <div className='App__Aside' />
-        <div className='App__Form'>
-          <div className='PageSwitcher'>
-            <NavLink
-              to='/login'
-              activeClassName='PageSwitcher__Item--Active'
-              className='PageSwitcher__Item'
-            >
-              Log In
+    render() {
+        return (
+            <div className='App'>
+                <div className='App__Aside' />
+                <div className='App__Form'>
+                    <div className='PageSwitcher'>
+                        <NavLink
+                            to='/login'
+                            activeClassName='PageSwitcher__Item--Active'
+                            className='PageSwitcher__Item'
+                        >
+                            Log In
             </NavLink>
-            <NavLink
-              exact
-              to='/signup'
-              activeClassName='PageSwitcher__Item--Active'
-              className='PageSwitcher__Item'
-            >
-              Sign Up
+                        <NavLink
+                            exact
+                            to='/signup'
+                            activeClassName='PageSwitcher__Item--Active'
+                            className='PageSwitcher__Item'
+                        >
+                            Sign Up
             </NavLink>
-          </div>
+                    </div>
 
-          <div className='FormTitle'>
-            <NavLink
-              to='/login'
-              activeClassName='FormTitle__Link--Active'
-              className='FormTitle__Link'
-            >
-              Log In
+                    <div className='FormTitle'>
+                        <NavLink
+                            to='/login'
+                            activeClassName='FormTitle__Link--Active'
+                            className='FormTitle__Link'
+                        >
+                            Log In
             </NavLink>{" "}
-            or{" "}
-            <NavLink
-              exact
-              to='/signup'
-              activeClassName='FormTitle__Link--Active'
-              className='FormTitle__Link'
-            >
-              Sign Up
+                        or{" "}
+                        <NavLink
+                            exact
+                            to='/signup'
+                            activeClassName='FormTitle__Link--Active'
+                            className='FormTitle__Link'
+                        >
+                            Sign Up
             </NavLink>
-          </div>
+                    </div>
 
-          <SignInForm />
-        </div>
-      </div>
-    );
-  }
+                    <SignInForm />
+                </div>
+            </div>
+        );
+    }
 }
 
 export default Login;

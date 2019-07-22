@@ -7,11 +7,12 @@ import EventCard from "../../components/EventCard/EventCard";
 import Slider from "../../components/Slider/Slider";
 import "./Style.css";
 
-//import NewTask from "../../components/NewTasks/Tasks";
-import TaskForm from "../../components/TaskForm/TaskForm";
-import ToDo from "../../components/ToDos/ToDo";
 class Dashboard extends Component {
-  state = { events: [] };
+  constructor(props) {
+    super(props);
+    this.state = { events: [] };
+    this.handleNewEvent = this.handleNewEvent.bind(this);
+  }
 
   componentDidMount() {
     API.getEvents()
@@ -25,6 +26,14 @@ class Dashboard extends Component {
         if (err) throw err;
       });
   }
+
+  handleNewEvent(event) {
+    this.state.events.push(event);
+    this.setState({
+      events: this.state.events
+    });
+  }
+
   render() {
     return (
       <Container fluid>
@@ -34,13 +43,9 @@ class Dashboard extends Component {
           </Col>
         </Row>
 
-        <TaskForm />
-        {/* <NewTask /> */}
-        {/* <ToDo /> */}
-
-        <EventCard />
-        <Slider />
-        <Form />
+        {/* <EventCard></EventCard> */}
+        <Slider events={this.state.events} />
+        <Form handleNewEvent={this.handleNewEvent} />
       </Container>
     );
   }

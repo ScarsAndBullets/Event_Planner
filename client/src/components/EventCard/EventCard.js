@@ -19,10 +19,12 @@ import { red, purple, blue } from "@material-ui/core/colors";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import AddParticipant from "../../components/AddParticipant/AddParticipant";
+import StarBorderRounded from "@material-ui/icons/StarBorderRounded";
+
 import "./EventCard.css";
 
 // -----------------------------------------------------------------------------
-function EventCard() {
+function EventCard(props) {
   const useStyles = makeStyles(theme => ({
     card: {
       maxWidth: 345,
@@ -46,6 +48,9 @@ function EventCard() {
       backgroundColor: purple[500]
       // backgroundColor: red[500],
     }
+    // title: {
+    //     fontSize: 100,
+    // },
   }));
 
   const classes = useStyles();
@@ -54,14 +59,6 @@ function EventCard() {
   function handleExpandClick() {
     setExpanded(!expanded);
   }
-
-  // styled Icon
-  const fixedIcon = withStyles({
-    root: {
-      width: 0,
-      height: 0
-    }
-  })(Icon);
 
   // styled Icon
   const FixedIcon = withStyles({
@@ -76,10 +73,13 @@ function EventCard() {
       <CardHeader
         // IF OWNER: DOT W/ STAR, IF NOT: NO DOT OR STAR
         avatar={
-          <Avatar aria-label='Owned' className={classes.avatar}>
-            {/* <Icon className={clsx('fas fa-crown')} fontSize="small" /> */}
-            <FixedIcon className={clsx("fas fa-crown")} fontSize='small' />
-          </Avatar>
+          props.events.owner ? (
+            <Avatar aria-label='Owned' className={classes.avatar}>
+              <FixedIcon className={clsx("fas fa-crown")} fontSize='small' />
+            </Avatar>
+          ) : (
+            <Avatar aria-label='Owned' className={classes.avatar} />
+          )
         }
         // THREE DOT "SETTINGS" BUTTTON
         action={
@@ -88,24 +88,19 @@ function EventCard() {
           </IconButton>
         }
         // EVENT NAME
-        title='Shrimp Cookoff'
+        title={props.events.title}
         // DATE TIME
-        subheader='September 14, 2020 at 1:30pm'
+        subheader={`${props.events.date} ${props.events.time}`}
       />
 
       <CardContent>
         {/* SUMMARY */}
         <Typography variant='body2' color='textSecondary' component='p'>
-          We're going to fry up all the shrimp in the County with our
-          award-winning Shrimp Fry-Chefs! Bring your friends, family and an
-          empty stomach!
+          {props.events.details}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
         {/* BELOW: AddParticipants */}
-        {/* <InputForm /> */}
-        {/* <Task /> */}
-
         <AddParticipant />
         {/* END: AddParticipants */}
         <IconButton
@@ -123,16 +118,12 @@ function EventCard() {
       <Collapse in={expanded} timeout='auto' unmountOnExit>
         <CardContent>
           <Typography paragraph>Guest Instructions:</Typography>
-
-          <Typography paragraph>
-            You will need to bring your own blankets, plates, utensils, cups,
-            and napkins. Also, don't forget to fill out the online waiver.
-          </Typography>
+          {/* GUEST INSTRUCTIONS */}
+          <Typography paragraph>{props.events.requirements}</Typography>
         </CardContent>
       </Collapse>
     </Card>
   );
 }
 
-// -----------------------------------------------------------------------------
 export default EventCard;
