@@ -19,8 +19,7 @@ class Slider extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			activeTab: 0,
-			cardData: []
+			activeTab: 0
 		};
 	}
 
@@ -29,7 +28,7 @@ class Slider extends Component {
 			return (
 				<div className="slider card -grid">
 					<Grid>
-						{this.state.cardData.map(card => (
+						{this.props.events.map(card => (
 							<Cell col={3} tablet={6} phone={12}>
 								<EventCard events={card} />
 							</Cell>

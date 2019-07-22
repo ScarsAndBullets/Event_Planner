@@ -73,7 +73,7 @@ function EventCard(props) {
 			<CardHeader
 				// IF OWNER: DOT W/ STAR, IF NOT: NO DOT OR STAR
 				avatar={
-					props.owner ? (
+					props.events.owner ? (
 						<Avatar aria-label="Owned" className={classes.avatar}>
 							<FixedIcon className={clsx("fas fa-crown")} fontSize="small" />
 						</Avatar>
@@ -88,16 +88,15 @@ function EventCard(props) {
 					</IconButton>
 				}
 				// EVENT NAME
-				title={props.title}
+				title={props.events.title}
 				// DATE TIME
-				subheader={props.date}
-				subheader={props.time}
+				subheader={`${props.events.date} ${props.events.time}`}
 			/>
 
 			<CardContent>
 				{/* SUMMARY */}
 				<Typography variant="body2" color="textSecondary" component="p">
-					{props.details}
+					{props.events.details}
 				</Typography>
 			</CardContent>
 			<CardActions disableSpacing>
@@ -120,12 +119,11 @@ function EventCard(props) {
 				<CardContent>
 					<Typography paragraph>Guest Instructions:</Typography>
 					{/* GUEST INSTRUCTIONS */}
-					<Typography paragraph>{props.requirements}</Typography>
+					<Typography paragraph>{props.events.requirements}</Typography>
 				</CardContent>
 			</Collapse>
 		</Card>
 	);
 }
 
-// -----------------------------------------------------------------------------
 export default EventCard;
