@@ -20,10 +20,9 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import AddParticipant from "../../components/AddParticipant/AddParticipant";
 import StarBorderRounded from "@material-ui/icons/StarBorderRounded";
-
 import "./EventCard.css";
+import { Link, Redirect, withRouter } from "react-router-dom";
 
-// -----------------------------------------------------------------------------
 function EventCard(props) {
 	const useStyles = makeStyles(theme => ({
 		card: {
@@ -68,6 +67,11 @@ function EventCard(props) {
 		}
 	})(Icon);
 
+	function redirectToEventView(eventId) {
+		let url = `/event/${eventId}`;
+		props.history.push(url);
+	}
+
 	return (
 		<Card className={classes.card}>
 			<CardHeader
@@ -84,7 +88,11 @@ function EventCard(props) {
 				// THREE DOT "SETTINGS" BUTTTON
 				action={
 					<IconButton aria-label="Settings">
-						<MoreVertIcon />
+						<MoreVertIcon
+							onClick={() => {
+								redirectToEventView(props.events._id);
+							}}
+						/>
 					</IconButton>
 				}
 				// EVENT NAME
@@ -126,4 +134,4 @@ function EventCard(props) {
 	);
 }
 
-export default EventCard;
+export default withRouter(EventCard);

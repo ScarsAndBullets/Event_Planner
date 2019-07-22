@@ -8,7 +8,8 @@ import Dashboard from "./pages/Dashboard";
 import CreateEvent from "./pages/CreateEvent";
 import About from "./pages/About";
 import SignUp from "./pages/SignUp";
-import Home from "./pages/Home";
+import EventView from "./pages/EventView";
+import NoMatch from "./pages/NoMatch";
 
 class App extends Component {
 	render() {
@@ -24,7 +25,8 @@ class App extends Component {
 							<Route path="/dashboard" exact component={Dashboard} />
 							<Route path="/create-event" component={CreateEvent} />
 							<Route path="/about" component={About} />
-							<Route path="/event/:id" component={Event} />
+							<Route path="/event/:id" component={EventView} />
+							<Route component={NoMatch} />
 						</Switch>
 					</div>
 				</Router>

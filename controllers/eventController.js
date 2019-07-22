@@ -98,7 +98,35 @@ module.exports = {
 			.populate("participants")
 			.populate("tasks")
 			.then(event => {
-				res.json(event);
+				if (req.user) {
+					const results = {
+						title: event.title,
+						details: event.details,
+						date: event.date,
+						time: event.time,
+						location: event.location,
+						requirements: event.requirements,
+						participants: event.participants,
+						tasks: event.tasks,
+						eventOwnerId: event.eventOwnerId,
+						userId: req.user.id
+					};
+					res.json(results);
+				} else {
+					const results = {
+						title: event.title,
+						details: event.details,
+						date: event.date,
+						time: event.time,
+						location: event.location,
+						requirements: event.requirements,
+						participants: event.participants,
+						tasks: event.tasks,
+						eventOwnerId: event.eventOwnerId,
+						userId: null
+					};
+					res.json(results);
+				}
 			})
 			.catch(err => {
 				res.json(err);

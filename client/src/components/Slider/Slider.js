@@ -27,6 +27,7 @@ class Slider extends Component {
 		if (this.state.activeTab === 0) {
 			return (
 				<div className="slider card -grid">
+					<h5>Upcoming Events</h5>
 					<Grid>
 						{this.props.events.map(card => (
 							<Cell col={3} tablet={6} phone={12}>
@@ -39,13 +40,7 @@ class Slider extends Component {
 		} else if (this.state.activeTab === 1) {
 			return (
 				<div>
-					<h5>Current Event</h5>
-				</div>
-			);
-		} else if (this.state.activeTab === 2) {
-			return (
-				<div>
-					<h5>Past Event</h5>
+					<h5>Past Events</h5>
 				</div>
 			);
 		}
@@ -58,8 +53,8 @@ class Slider extends Component {
 					onChange={tabId => this.setState({ activeTab: tabId })}
 					ripple
 				>
-					<Tab>New Event</Tab>
-					<Tab>Past Event</Tab>
+					<Tab>Upcoming Events</Tab>
+					<Tab>Past Events</Tab>
 				</Tabs>
 				<Grid>
 					<Cell col={12}>
