@@ -9,7 +9,7 @@ class Slider extends Component {
         super(props);
         this.state = {
             activeTab: 0,
-
+            cardData: []
         };
     }
 
@@ -21,7 +21,7 @@ class Slider extends Component {
                     <Grid>
                         {this.state.cardData.map((card) =>
                             <Cell col={3} tablet={6} phone={12}>
-                                <EventCard event={card} />
+                                <EventCard events={card} />
                             </Cell>
                         )}
                     </Grid>
@@ -29,11 +29,11 @@ class Slider extends Component {
             )
         } else if (this.state.activeTab === 1) {
             return (
-                <div><h1>This is New Event </h1></div>
+                <div><h5>Current Event</h5></div>
             )
         } else if (this.state.activeTab === 2) {
             return (
-                <div><h1>This is pass Event</h1></div>
+                <div><h5>Past Event</h5></div>
             )
         }
     }
@@ -42,7 +42,7 @@ class Slider extends Component {
             <div>
                 <Tabs activeTab={this.state.activeTab} onChange={(tabId) => this.setState({ activeTab: tabId })} ripple>
                     <Tab>New Event</Tab>
-                    <Tab>pass Event</Tab>
+                    <Tab>Past Event</Tab>
                 </Tabs>
                 <Grid>
                     <Cell col={12}>
