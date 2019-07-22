@@ -16,19 +16,17 @@ export default {
 		return axios.get(`/api/events/${eventId}`);
 	},
 	getTasks: function() {
-		return axios.get("/api/tasks");
+		return axios.get("/tasks");
 	},
-
-	getTask: function(id) {
-		return axios.get("/apit/tasks/" + id);
+	getTask: function(_id) {
+		return axios.get("/api/tasks/" + _id);
 	},
-
-	deleteTask: function(id) {
-		return axios.delete("/api/tasks" + id);
+	deleteTask: function(_id) {
+		return axios.delete("/api/tasks" + _id);
 	},
-
 	saveTask: function(taskData) {
-		return axios.post("api/tasks", taskData);
+		console.log(taskData);
+		return axios.post("/tasks", taskData);
 	},
 
 	sendEmail: function(email, eventId) {
