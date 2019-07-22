@@ -6,52 +6,6 @@ const passport = require("../config/passport");
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 const mailerController = require("./../controllers/mailerController");
 
-<<<<<<< HEAD
-module.exports = function (app) {
-    ////// USER ROUTES //////
-
-    // Endpoint to login user
-    app.post(
-        "/api/user/login",
-        passport.authenticate("local"),
-        userController.login
-    );
-    // Endpoint to sign up user
-    app.post("/api/user/signup", userController.signup);
-    //Get current user
-    app.get("/api/user/current", userController.currentUser);
-    //Logout current user
-    app.get("/api/user/logout", userController.logout);
-
-    ////// EVENT ROUTES //////
-    app.post("/api/events/create", eventController.createEvent);
-    app.post("/api/events/:eventId/update", eventController.updateEvent);
-    app.get(
-        "/api/events/event-dashboard",
-        isAuthenticated,
-        eventController.eventDashboard
-    );
-
-    //////TASKS ROUTES //////////////
-    app.get("/tasks", taskController.getTasks);
-    app.post("/tasks", taskController.createTask);
-
-    app.get("/tasks/:id", taskController.findById);
-    app.post("/tasks/update", taskController.updateTask);
-    app.delete("/tasks/delete", taskController.deleteTask);
-
-    /////// PARTICPANT ROUTES //////
-    app.post(
-        "/api/events/:eventId/add-participant",
-        participantController.addParticipant
-    );
-
-    app.post(
-        "/api/events/:eventId/send-mail",
-        mailerController.sendMail
-    );
-};
-=======
 module.exports = function(app) {
 	////// USER ROUTES //////
 
@@ -94,4 +48,3 @@ module.exports = function(app) {
 
 	app.post("/api/events/:eventId/send-mail", mailerController.sendMail);
 };
->>>>>>> 69bdf7f5ab2c72c38baa05f5f836c0c9fca6da29
