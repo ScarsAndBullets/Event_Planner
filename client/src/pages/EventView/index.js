@@ -76,10 +76,10 @@ class EventView extends Component {
 				<AddParticipant />
 
 				{/* Example Task Component passing down data */}
-				{/* <Tasks tasks={this.state.tasks}> */}
+				{/* <Tasks tasks={this.state.tasks}/> */}
 
 				{/* Example Participant Component passing down data */}
-				{/* <Participants participants={this.state.participants}> */}
+				{/* <Participants participants={this.state.participants} updateGoing={this.updateParticipantGoing}/> */}
 			</div>
 		);
 	}

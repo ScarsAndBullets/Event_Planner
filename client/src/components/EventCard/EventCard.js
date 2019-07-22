@@ -87,12 +87,13 @@ function EventCard(props) {
 				}
 				// THREE DOT "SETTINGS" BUTTTON
 				action={
-					<IconButton aria-label="Settings">
-						<MoreVertIcon
-							onClick={() => {
-								redirectToEventView(props.events._id);
-							}}
-						/>
+					<IconButton
+						aria-label="Settings"
+						onClick={() => {
+							redirectToEventView(props.events._id);
+						}}
+					>
+						<MoreVertIcon />
 					</IconButton>
 				}
 				// EVENT NAME
