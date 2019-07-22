@@ -7,6 +7,9 @@ import EventCard from "../../components/EventCard/EventCard";
 import Slider from "../../components/Slider/Slider";
 import "./Style.css";
 
+//import NewTask from "../../components/NewTasks/Tasks";
+import TaskForm from "../../components/TaskForm/TaskForm";
+import ToDo from "../../components/ToDos/ToDo";
 class Dashboard extends Component {
   state = { events: [] };
 
@@ -31,7 +34,11 @@ class Dashboard extends Component {
           </Col>
         </Row>
 
-        {/* <EventCard></EventCard> */}
+        <TaskForm />
+        {/* <NewTask /> */}
+        {/* <ToDo /> */}
+
+        <EventCard />
         <Slider />
         <Form />
       </Container>

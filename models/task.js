@@ -3,8 +3,7 @@ const Schema = mongoose.Schema;
 
 const taskSchema = new Schema({
   taskName: { type: String, required: false },
-  description: { type: String },
-  taskAssignedTo: { type: Boolean },
+  taskAssigned: { type: Boolean },
   strikeThrough: { type: Boolean }
 });
 

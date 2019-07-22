@@ -19,8 +19,6 @@ import { red, purple, blue } from "@material-ui/core/colors";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import AddParticipant from "../../components/AddParticipant/AddParticipant";
-import Tasks from "../../components/Tasks/task";
-
 import "./EventCard.css";
 
 // -----------------------------------------------------------------------------
@@ -105,7 +103,9 @@ function EventCard() {
       </CardContent>
       <CardActions disableSpacing>
         {/* BELOW: AddParticipants */}
-        <Tasks />
+        {/* <InputForm /> */}
+        {/* <Task /> */}
+
         <AddParticipant />
         {/* END: AddParticipants */}
         <IconButton
