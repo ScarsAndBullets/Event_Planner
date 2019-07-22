@@ -29,6 +29,8 @@ class SignInForm extends Component {
         this.setState({
             [name]: value
         });
+
+        console.log(this.state.password)
     }
 
     handleSubmit(e) {
