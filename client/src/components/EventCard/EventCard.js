@@ -73,7 +73,7 @@ function EventCard(props) {
                     </Avatar>)
                     
                 }
-                // THREE DOT "SETTINGS" BUTTTON
+                // EXPAND icon for FULL PAGE
                 action={
                     <FullEventPage></FullEventPage>
                 }
