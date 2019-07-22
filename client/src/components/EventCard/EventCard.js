@@ -3,16 +3,16 @@ import React from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import {
-    Icon,
-    Card,
-    CardHeader,
-    CardMedia,
-    CardContent,
-    CardActions,
-    Collapse,
-    Avatar,
-    IconButton,
-    Typography
+  Icon,
+  Card,
+  CardHeader,
+  CardMedia,
+  CardContent,
+  CardActions,
+  Collapse,
+  Avatar,
+  IconButton,
+  Typography
 } from "@material-ui/core";
 import { red, purple, blue } from "@material-ui/core/colors";
 // import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -24,7 +24,8 @@ import FullEventPage from '../../components/FullEventPage/FullEventPage';
 
 import "./EventCard.css";
 
-// -----------------------------------------------------------------------------
+import TaskForm from "../TaskForm/TaskForm";
+
 function EventCard(props) {
     const useStyles = makeStyles(theme => ({
         card: {
