@@ -20,6 +20,8 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import AddParticipant from "../../components/AddParticipant/AddParticipant";
 import StarBorderRounded from "@material-ui/icons/StarBorderRounded";
+import FullEventPage from "../../components/FullEventPage/FullEventPage";
+
 import "./EventCard.css";
 import { Link, Redirect, withRouter } from "react-router-dom";
 

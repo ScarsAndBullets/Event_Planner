@@ -14,7 +14,6 @@ import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import OpenWithRounded from '@material-ui/icons/OpenWithRounded';
 import AddParticipant from '../../components/AddParticipant/AddParticipant';
-import EventCard from '../../components/EventCard/EventCard';
 
 const useStyles = makeStyles(theme => ({
     appBar: {
