@@ -14,6 +14,7 @@ module.exports = {
             .then(event => {
                 db.Participant.create({
                     email: req.user.email,
+                    name: `${req.user.firstName} ${req.user.lastName}`,
                     userId: req.user.id,
                     eventId: event._id
                 }).then(participant => {
@@ -75,6 +76,8 @@ module.exports = {
                             }
                         });
 
+                        <<
+                        << << < HEAD
                         res.json(results);
                     });
             })
@@ -82,4 +85,27 @@ module.exports = {
                 res.json(err);
             });
     }
-};
+}; ===
+=== =
+res.json(results);
+});
+})
+.catch(err => {
+    res.json(err);
+});
+},
+getEvent: function (req, res) {
+    db.Event.findById({
+            _id: req.params.id
+        })
+        .populate("participants")
+        .populate("tasks")
+        .then(event => {
+            res.json(event);
+        })
+        .catch(err => {
+            res.json(err);
+        });
+}
+}; >>>
+>>> > 69 bdf7f5ab2c72c38baa05f5f836c0c9fca6da29

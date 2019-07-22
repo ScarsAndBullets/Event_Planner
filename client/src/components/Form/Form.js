@@ -11,7 +11,7 @@ import {
     DialogContentText,
     DialogTitle
 } from "@material-ui/core";
-import "date-fns";
+import { format } from "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
 import {
     MuiPickersUtilsProvider,
@@ -67,45 +67,48 @@ function Form() {
         requirements: ""
     });
 
-    const handleChange = name => event => {
-        setValues({ ...values, [name]: event.target.value });
-    };
-    const handleSubmit = () => {
-        API.submitEvent({
-            title: values.title,
-            details: values.details,
-            date: selectedDate,
-            time: selectedTime,
-            location: values.location,
-            requirements: values.requirements
-        })
-            .then(res => {
-                console.log(res.data);
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    };
-    // END FORM vars/funcs
-    // DATE/TIME vars/funcs
-    const [selectedDate, setSelectedDate] = React.useState();
-    function handleDateChange(date) {
-        setSelectedDate(date);
-    }
-    const [selectedTime, setSelectedTime] = React.useState();
-    function handleTimeChange(time) {
-        setSelectedTime(time);
-    }
-    // END DATE/TIME vars/funcs
-    // ICON BTTN
-    const iconButton = makeStyles(theme => ({
-        button: {
-            margin: theme.spacing(1)
-        },
-        input: {
-            display: "none"
-        }
-    }));
+	const handleChange = name => event => {
+		setValues({ ...values, [name]: event.target.value });
+	};
+	const handleSubmit = () => {
+		let time = format(selectedTime, "hh:mm aa");
+		let date = format(selectedDate, "MMMM dd, yyyy");
+
+		API.submitEvent({
+			title: values.title,
+			details: values.details,
+			date: date,
+			time: time,
+			location: values.location,
+			requirements: values.requirements
+		})
+			.then(res => {
+				console.log(res.data);
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	};
+	// END FORM vars/funcs
+	// DATE/TIME vars/funcs
+	const [selectedDate, setSelectedDate] = React.useState();
+	function handleDateChange(date) {
+		setSelectedDate(date);
+	}
+	const [selectedTime, setSelectedTime] = React.useState();
+	function handleTimeChange(time) {
+		setSelectedTime(time);
+	}
+	// END DATE/TIME vars/funcs
+	// ICON BTTN
+	const iconButton = makeStyles(theme => ({
+		button: {
+			margin: theme.spacing(1)
+		},
+		input: {
+			display: "none"
+		}
+	}));
 
     const iconBttnClass = iconButton();
 

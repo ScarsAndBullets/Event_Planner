@@ -2,16 +2,31 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const participantSchema = new Schema({
-    email: { type: String, required: true },
-    userId: { type: String, required: false },
-    eventId: { type: Schema.Types.ObjectId, required: true },
-    attending: { type: Boolean, default: false },
-    tasks: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: "Task"
-        }
-    ]
+	email: {
+		type: String,
+		required: true
+	},
+	name: {
+		type: String,
+		required: false
+	},
+	attending: {
+		type: Boolean,
+		default: false
+	},
+	userId: {
+		type: String,
+		required: false,
+		default: null
+	},
+	eventId: {
+		type: Schema.Types.ObjectId,
+		required: true
+	},
+	tasks: [{
+		type: Schema.Types.ObjectId,
+		ref: "Task"
+	}]
 });
 
 const Participant = mongoose.model("Participant", participantSchema);
