@@ -17,7 +17,6 @@ import AddParticipant from "../../components/AddParticipant/AddParticipant";
 import EventCard from "../../components/EventCard/EventCard";
 import TaskForm from "../../components/TaskForm/TaskForm";
 import API from "../../utils/API";
-import TaskForm from "../../components/TaskForm/TaskForm";
 import EventInfo from "../../components/EventInfo";
 import { Col, Row, Container } from "../../components/Grid";
 
@@ -133,27 +132,23 @@ class EventView extends Component {
 		return (
 			<div>
 				<AddParticipant />
-				<Row>
-					<EventInfo
-						title={this.state.title}
-						details={this.state.details}
-						date={this.state.date}
-						time={this.state.time}
-						location={this.state.location}
-						requirements={this.state.requirements}
-					/>
-				</Row>
-				<Row>
-					<TaskForm
-						tasks={this.state.tasks}
-						participants={this.state.participants}
-						newTask={this.newTask}
-						assignTaskToState={this.assignTaskToState}
-						unassignTaskToState={this.unassignTaskToState}
-						eventId={this.state.eventId}
-						userId={this.state.userId}
-					/>
-				</Row>
+				<EventInfo
+					title={this.state.title}
+					details={this.state.details}
+					date={this.state.date}
+					time={this.state.time}
+					location={this.state.location}
+					requirements={this.state.requirements}
+				/>
+				<TaskForm
+					tasks={this.state.tasks}
+					participants={this.state.participants}
+					newTask={this.newTask}
+					assignTaskToState={this.assignTaskToState}
+					unassignTaskToState={this.unassignTaskToState}
+					eventId={this.state.eventId}
+					userId={this.state.userId}
+				/>
 			</div>
 		);
 	}
