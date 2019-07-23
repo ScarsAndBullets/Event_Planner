@@ -73,7 +73,7 @@ function Form(props) {
     setValues({ ...values, [name]: event.target.value });
   };
   const handleSubmit = () => {
-    let time = format(selectedTime, "hh:mm:ss");
+    let time = format(selectedTime, "hh:mm aa");
     let date = format(selectedDate, "MMMM dd, yyyy");
 
     API.submitEvent({

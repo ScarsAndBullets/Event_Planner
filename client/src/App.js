@@ -36,6 +36,7 @@ class App extends Component {
 			</Layout>
 		);
 	}
+
 }
 
 export default App;

@@ -4,7 +4,6 @@ import { Header, Navigation, Drawer } from "react-mdl";
 require("./style.css");
 
 function Nav() {
-
     return [
         <Header key="header" className="header-color" title={
             <Link style={{ textDecoration: 'none', color: 'white' }} to="/">
