@@ -6,133 +6,174 @@ import { Col, Row, Container } from "../TasksGrid/TasksGrid";
 import API from "../../utils/API";
 
 class TaskForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      taskName: "",
-      taskAssigned: "",
-      Task: [],
-      completed: "",
-      text: "",
-      _id: "",
-      tasks: []
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.markTaskAssigned = this.markTaskAssigned.bind(this);
-    //this.handleTextChange = this.handleTextChange.bind(this);
-    // this.handleDeleteItem = this.handleDeleteItem.bind(this);
-    // this.assignTask = this.assignTask.bind(this);
-  }
-  componentDidMount() {
-    this.loadTasks();
-  }
+	constructor(props) {
+		super(props);
+		this.state = {
+			taskName: "",
+			participantId: ""
+		};
+		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.getCurrentParticipantId = this.getCurrentParticipantId.bind(this);
+		this.getParticipantInfo = this.getParticipantInfo.bind(this);
+		this.assignTask = this.assignTask.bind(this);
+	}
+	componentDidMount() {
+		setInterval(() => {
+			if (this.state.participantId !== "") {
+				return clearInterval();
+			}
+			this.getCurrentParticipantId();
+		}, 500);
+	}
 
-  loadTasks() {
-    API.getTasks()
-      .then(res => {
-        this.setState({
-          Task: res.data
-        });
-        console.log("Tasks Loaded (this.state.Task)");
-        console.log(this.state.Task);
-      })
-      .catch(err => console.log(err));
-  }
+	getCurrentParticipantId() {
+		if (this.props.userId !== null) {
+			this.props.participants.map(participant => {
+				if (participant.userId === this.props.userId) {
+					return this.setState({ participantId: participant._id });
+				}
+			});
+		}
+	}
+	getParticipantInfo(id) {
+		let participantInfo;
+		this.props.participants.map(participant => {
+			let searchForTask = participant.tasks.map(task => {
+				if (task._id === id) return task;
+			});
+			if (searchForTask.length > 0) participantInfo = participant;
+		});
+		return participantInfo;
+	}
+	handleChange(event) {
+		let name = event.target.name;
+		let value = event.target.value;
+		this.setState({
+			[name]: value
+		});
+	}
 
-  handleChange(event) {
-    let name = event.target.name;
-    let value = event.target.value;
-    this.setState({
-      [name]: value
-    });
-  }
+	handleSubmit(event) {
+		event.preventDefault();
+		if (this.state.taskName === "" || !this.props.userId) return;
+		API.saveTask({
+			taskName: this.state.taskName,
+			eventId: this.props.eventId
+		})
+			.then(res => {
+				this.state.taskName = "";
+				this.props.newTask(res.data);
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	}
+	assignTask(taskId, pId) {
+		API.assignTask({
+			taskId: taskId,
+			participantId: pId
+		})
+			.then(res => {
+				this.props.assignTaskToState(res.data);
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	}
+	unassignTask(taskId, pId) {
+		API.unassignTask({
+			taskId: taskId,
+			participantId: pId
+		})
+			.then(res => {
+				this.props.unassignTaskToState(res.data);
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	}
+	deleteTask(_id) {
+		API.deleteTask(_id).then(res => {
+			console.log("Task Deleted");
+			console.log(_id);
 
-  handleSubmit(event) {
-    event.preventDefault();
-    API.saveTask({
-      taskName: this.state.task,
-      taskAssigned: false
-      //   strikeThrough: false
-    }).then(res => {
-      console.log("New Task Created " + this.state.task);
-      this.loadTasks();
-      console.log("res" + res);
-    });
-  }
+			this.loadTasks();
+		});
+	}
 
-  deleteTask(id) {
-    API.deleteTask(id).then(res => {
-      console.log("Task Deleted" + id);
-      this.loadTasks();
-    });
-  }
+	render() {
+		return (
+			<div>
+				<h2>Tasks</h2>
+				<form className="NewTaskForm" onSubmit={this.handleSubmit}>
+					<input
+						type="text"
+						placeholder="Add New Task"
+						id="taskName"
+						name="taskName"
+						value={this.state.taskName}
+						onChange={this.handleChange}
+					/>
 
-  assignTask(id) {
-    console.log("Task Assigned to User");
-    console.log(id);
-  }
+					<button type="submit">Add Task</button>
+				</form>
+				<ul>
+					{this.props.tasks.map(task => {
+						if (task.taskAssigned) {
+							let pInfo = this.getParticipantInfo(task._id);
 
-  markTaskAssigned(id) {
-    var updatedTasks = this.state.Task.map(task => {
-      if (id === task._id) task.done = !task.done;
+							let checkParticipant =
+								this.state.participantId === pInfo._id
+									? () => {
+											this.unassignTask(task._id, this.state.participantId);
+									  }
+									: () => {
+											console.log("not owner");
+									  };
+							return (
+								<li className="Task" onClick={checkParticipant} key={task._id}>
+									<button onClick={this.deleteTask}>
+										<i className="fas fa-trash" />
+									</button>
+									{task.taskName}
 
-      return task;
-    });
-  }
+									<div className="Task-buttons">
+										<span className="userId">
+											<h6>{"Assigned To: " + pInfo.name}</h6>
+										</span>
+									</div>
+								</li>
+							);
+						} else {
+							let userCheck = !this.props.userId
+								? () => {
+										console.log("not logged in");
+								  }
+								: () => {
+										this.assignTask(task._id, this.state.participantId);
+								  };
+							return (
+								<li className="Task" onClick={userCheck} key={task._id}>
+									<button onClick={this.deleteTask}>
+										<i className="fas fa-trash" />
+									</button>
+									{task.taskName}
 
-  // handleDeleteItem(itemId) {
-  //   var updatedItems = this.state.Task.filter(item => {
-  //     return task.id !== taskId;
-  //   });
-  // }
-
-  render() {
-    return (
-      <div>
-        <form className='NewTaskForm' onSubmit={this.handleSubmit}>
-          <input
-            type='text'
-            placeholder='Add New Task'
-            id='task'
-            name='task'
-            value={this.state.task}
-            onChange={this.handleChange}
-          />
-
-          <button>Add Task</button>
-        </form>
-
-        <ul>
-          {this.state.Task.map(task => {
-            return (
-              <li
-                className='Task'
-                key={task._id}
-                id={task._id}
-                text={task.text}
-                onClick={this.markTaskAssigned(task._id)}
-                completed={task.done}
-                onTaskAssigned={this.assignTask}
-              >
-                <li className='Delete' key={task._id}>
-                  <Link to={"/tasks/" + task._id} />
-                  <button onClick={() => this.deleteTask(task._id)}>
-                    <i class='fas fa-trash' />
-                  </button>
-                </li>
-                <div className='taskName'>{task.taskName}</div>
-                <div className='Task-buttons'>
-                  <h6>Assigned To:</h6>
-                  <span className='participantId'>Not Assigned</span>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    );
-  }
+									<div className="Task-buttons">
+										<h6>Assigned To:</h6>
+										<span className="userId">
+											<h6>Not Assigned</h6>
+										</span>
+									</div>
+								</li>
+							);
+						}
+					})}
+				</ul>
+			</div>
+		);
+	}
 }
 
 export default TaskForm;
