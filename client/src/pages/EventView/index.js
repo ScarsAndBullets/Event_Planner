@@ -16,6 +16,7 @@ import OpenWithRounded from "@material-ui/icons/OpenWithRounded";
 import AddParticipant from "../../components/AddParticipant/AddParticipant";
 import EventCard from "../../components/EventCard/EventCard";
 import API from "../../utils/API";
+import TaskForm from "../../components/TaskForm/TaskForm";
 
 class EventView extends Component {
 	constructor(props) {
@@ -27,12 +28,14 @@ class EventView extends Component {
 			time: "",
 			location: "",
 			requirements: "",
-			userId: "",
+			userId: "5d2a3da2a6c54e0374c286fb",
 			eventOwnerId: "",
 			tasks: [],
-			participants: []
+			participants: [],
+			eventId: ""
 		};
 		this.updateParticipantGoing = this.updateParticipantGoing.bind(this);
+		this.newTask = this.newTask.bind(this);
 	}
 	componentDidMount() {
 		const {
@@ -49,8 +52,9 @@ class EventView extends Component {
 				requirements: event.requirements,
 				tasks: event.tasks,
 				participants: event.participants,
-				userId: event.userId,
-				eventOwnerId: event.eventOwnerId
+				// userId: event.userId,
+				eventOwnerId: event.eventOwnerId,
+				eventId: event.eventId
 			});
 			console.log(this.state);
 		});
@@ -70,13 +74,29 @@ class EventView extends Component {
 		});
 	}
 
+	newTask(task) {
+		this.state.tasks.push(task);
+		this.setState({
+			tasks: this.state.tasks
+		});
+	}
+
+	deleteTask(taskId) {}
+
+	setTaskAsTaken() {}
 	render() {
 		return (
 			<div>
 				<AddParticipant />
 
 				{/* Example Task Component passing down data */}
-				{/* <Tasks tasks={this.state.tasks}/> */}
+				<TaskForm
+					tasks={this.state.tasks}
+					participants={this.state.participants}
+					newTask={this.newTask}
+					eventId={this.state.eventId}
+					userId={this.state.userId}
+				/>
 
 				{/* Example Participant Component passing down data */}
 				{/* <Participants participants={this.state.participants} updateGoing={this.updateParticipantGoing}/> */}

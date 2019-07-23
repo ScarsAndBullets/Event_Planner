@@ -34,7 +34,7 @@ module.exports = function(app) {
 
 	//////TASKS ROUTES //////////////
 	app.get("/tasks", taskController.getTasks);
-	app.post("/tasks", taskController.createTask);
+	app.post("/api/tasks/create", taskController.createTask);
 
 	app.get("/tasks/:id", taskController.findById);
 	app.post("/tasks/update", taskController.updateTask);

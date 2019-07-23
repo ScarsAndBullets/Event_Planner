@@ -109,7 +109,8 @@ module.exports = {
 						participants: event.participants,
 						tasks: event.tasks,
 						eventOwnerId: event.eventOwnerId,
-						userId: req.user.id
+						userId: req.user.id,
+						eventId: req.params.id
 					};
 					res.json(results);
 				} else {
@@ -123,7 +124,8 @@ module.exports = {
 						participants: event.participants,
 						tasks: event.tasks,
 						eventOwnerId: event.eventOwnerId,
-						userId: null
+						userId: null,
+						eventId: req.params.id
 					};
 					res.json(results);
 				}

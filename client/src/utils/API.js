@@ -15,18 +15,11 @@ export default {
 	getEventView: function(eventId) {
 		return axios.get(`/api/events/${eventId}`);
 	},
-	getTasks: function() {
-		return axios.get("/tasks");
-	},
-	getTask: function(_id) {
-		return axios.get("/api/tasks/" + _id);
-	},
 	deleteTask: function(_id) {
 		return axios.delete("/api/tasks" + _id);
 	},
 	saveTask: function(taskData) {
-		console.log(taskData);
-		return axios.post("/tasks", taskData);
+		return axios.post("/api/tasks/create", taskData);
 	},
 
 	sendEmail: function(email, eventId) {

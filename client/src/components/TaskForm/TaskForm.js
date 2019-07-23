@@ -5,102 +5,102 @@ import { Col, Row, Container } from "../TasksGrid/TasksGrid";
 import API from "../../utils/API";
 
 class TaskForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      taskName: "",
-      taskAssigned: "",
-      Task: [],
-      completed: ""
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  componentDidMount() {
-    this.loadTasks();
-  }
+	constructor(props) {
+		super(props);
+		this.state = {
+			taskName: "",
+			participantId: ""
+		};
+		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.getParticipantId = this.getParticipantId.bind(this);
+	}
+	componentDidMount() {
+		setInterval(() => {
+			if (this.state.participantId !== "") {
+				return clearInterval();
+			}
+			this.getParticipantId();
+		}, 500);
+	}
 
-  loadTasks() {
-    API.getTasks()
-      .then(res => {
-        this.setState({
-          Task: res.data
-        });
-        console.log("Tasks Loaded (this.state.Task)");
-        console.log(this.state.Task);
-      })
-      .catch(err => console.log(err));
-  }
+	getParticipantId() {
+		if (this.props.userId !== null) {
+			this.props.participants.map(participant => {
+				if (participant.userId === this.props.userId) {
+					return this.setState({ participantId: participant._id });
+				}
+			});
+		}
+	}
 
-  handleChange(event) {
-    let name = event.target.name;
-    let value = event.target.value;
-    this.setState({
-      [name]: value
-    });
-  }
+	handleChange(event) {
+		let name = event.target.name;
+		let value = event.target.value;
+		this.setState({
+			[name]: value
+		});
+	}
 
-  handleSubmit(event) {
-    event.preventDefault();
-    API.saveTask({
-      taskName: this.state.task,
-      taskAssigned: false
-      //   strikeThrough: false
-    }).then(res => {
-      console.log("New Task Created " + this.state.task);
-      this.loadTasks();
-    });
-  }
+	handleSubmit(event) {
+		event.preventDefault();
+		console.log(this.props);
 
-  deleteTask(_id) {
-    API.deleteTask(_id).then(res => {
-      console.log("Task Deleted");
-      console.log(_id);
+		API.saveTask({
+			taskName: this.state.taskName,
+			eventId: this.props.eventId
+		}).then(res => {
+			this.state.taskName = "";
+			this.props.newTask(res.data);
+		});
+	}
 
-      this.loadTasks();
-    });
-  }
+	deleteTask(_id) {
+		API.deleteTask(_id).then(res => {
+			console.log("Task Deleted");
+			console.log(_id);
 
-  assignTask(_id) {
-    console.log("Task Assigned to User");
-    console.log(_id);
-  }
+			this.loadTasks();
+		});
+	}
 
-  render() {
-    return (
-      <div>
-        <form className='NewTaskForm' onSubmit={this.handleSubmit}>
-          <input
-            type='text'
-            placeholder='Add New Task'
-            id='task'
-            name='task'
-            value={this.state.task}
-            onChange={this.handleChange}
-          />
+	// assignTask(id) {}
 
-          <button>Add Task</button>
-        </form>
+	render() {
+		return (
+			<div>
+				<form className="NewTaskForm" onSubmit={this.handleSubmit}>
+					<input
+						type="text"
+						placeholder="Add New Task"
+						id="taskName"
+						name="taskName"
+						value={this.state.taskName}
+						onChange={this.handleChange}
+					/>
 
-        {this.state.Task.map(task => {
-          return (
-            <ul>
-              <li className='Task' onClick={this.assignTask}>
-                <button onClick={this.deleteTask}>
-                  <i class='fas fa-trash' />
-                </button>
-                {task.taskName}
-                <div className='Task-buttons'>
-                  <h6>Assigned To:</h6>
-                  <span clssName='userId'>ParticipanId</span>
-                </div>
-              </li>
-            </ul>
-          );
-        })}
-      </div>
-    );
-  }
+					<button type="submit">Add Task</button>
+				</form>
+
+				{this.props.tasks.map(task => {
+					return (
+						<ul>
+							<li className="Task" onClick={this.assignTask}>
+								<button onClick={this.deleteTask}>
+									<i className="fas fa-trash" />
+								</button>
+								{task.taskName}
+								<div className="Task-buttons">
+									<h6>Assigned To:</h6>
+									<span className="userId">ParticipantId</span>
+								</div>
+							</li>
+						</ul>
+					);
+				})}
+			</div>
+		);
+	}
 }
 
 export default TaskForm;
