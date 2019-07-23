@@ -37,9 +37,9 @@ class Dashboard extends Component {
 		return (
 			<Container fluid>
 				<Row>
-					<Col size="md-12">
+					{/* <Col size="md-12">
 						<h1>Dashboard</h1>
-					</Col>
+					</Col> */}
 				</Row>
 
 				{/* <EventCard></EventCard> */}

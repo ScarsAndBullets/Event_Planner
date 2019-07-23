@@ -81,7 +81,8 @@ function EventCard(props) {
 				avatar={
 					props.events.owner ? (
 						<Avatar aria-label="Owned" className={classes.avatar}>
-							<FixedIcon className={clsx("fas fa-crown")} fontSize="small" />
+                            {/* <FixedIcon className={clsx("fas fa-crown")} fontSize="small" /> */}
+                            <StarBorderRounded />
 						</Avatar>
 					) : (
 						<Avatar aria-label="Owned" className={classes.avatar} />

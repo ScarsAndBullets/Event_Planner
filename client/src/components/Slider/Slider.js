@@ -27,7 +27,7 @@ class Slider extends Component {
 		if (this.state.activeTab === 0) {
 			return (
 				<div className="slider card -grid">
-					<h5>Upcoming Events</h5>
+					{/* <h5>Upcoming Events</h5> */}
 					<Grid>
 						{this.props.events.map(card => (
 							<Cell col={3} tablet={6} phone={12}>
