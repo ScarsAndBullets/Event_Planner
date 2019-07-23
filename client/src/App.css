@@ -134,22 +134,26 @@
 
 .App__Aside {
   width: 50%;
-  background: #0f0c29;
+  background: grey;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
+  background: -webkit-linear-gradient(to right, grey, grey, black);
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+  background: linear-gradient(to right, grey, grey, black);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  /* background-image: url("./images/pland_logo_white.svg"); */
 
 }
 
+
+
+
 .App__Form {
   width: 50%;
-  background: #FC5C7D;
+  background: lightgrey;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #6A82FB, #FC5C7D);
+  background: -webkit-linear-gradient(to right, lightgrey, lightgrey);
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #6A82FB, #FC5C7D);
+  background: linear-gradient(to right, lightgrey, lightgrey);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
   padding: 25px 40px;
