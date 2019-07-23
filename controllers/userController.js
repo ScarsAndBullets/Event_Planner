@@ -58,17 +58,17 @@ module.exports = {
 						});
 					}
 				});
-				// // Issue token/cookie
-				// const payload = req.user;
-				// const token = jwt.sign(payload, secret, {
-				// 	expiresIn: "1h"
-				// });
-				// res
-				// 	.cookie("token", token, {
-				// 		httpOnly: true
-				// 	})
-				// 	.status(200)
-				// 	.json(payload);
+				// Issue token/cookie
+				const payload = req.user;
+				const token = jwt.sign(payload, secret, {
+					expiresIn: "1h"
+				});
+				res
+					.cookie("token", token, {
+						httpOnly: true
+					})
+					.status(200)
+					.json(payload);
 			})
 			.catch(err => {
 				res.json(err);

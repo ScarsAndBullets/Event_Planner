@@ -1,48 +1,26 @@
 import React, { Component } from "react";
-import withAuth from "../../components/withAuth";
-import API from "../../utils/API";
-import { Col, Row, Container } from "../../components/Grid";
+import Grid from '@material-ui/core/Grid';
+import ParticipantChip from "./../ParticipantChip"
 
-constructor(props) {
-	super(props);
-	this.state = { events: [] };
-	this.handleNewEvent = this.handleNewEvent.bind(this);
-}
-
-componentDidMount() {
-	API.participants()
-		.then(res => {
-			this.setState({
-				events: res.data
-			});
-		})
-		.catch(err => {
-			if (err) throw err;
-		});
-}
-
-handleNewEvent(event) {
-	this.state.events.push(event);
-	this.setState({
-		events: this.state.events
-	});
-}
-
-render() {
+function Participants(props) {
 	return (
-		<Container fluid>
-			<Row>
-				<Col size="md-12">
-					<h1>Dashboard</h1>
-				</Col>
-			</Row>
-
-			{/* <EventCard></EventCard> */}
-			<Slider events={this.state.events} />
-			<Form handleNewEvent={this.handleNewEvent} />
-		</Container>
+		<>
+			<h3>Invited Participants</h3>
+			<Grid
+				container
+				direction="row"
+				justify="flex-start"
+				alignItems="baseline"
+				spacing={8}
+			>
+				{props.participants.map(chip => (
+					<Grid item xs={6} sm={3} key={chip._id}>
+						<ParticipantChip participant={chip} />
+					</Grid>
+				))}
+			</Grid>
+		</>
 	);
 }
-}
 
-export default withAuth(Dashboard);
+export default Participants;

@@ -16,6 +16,7 @@ import OpenWithRounded from "@material-ui/icons/OpenWithRounded";
 import AddParticipant from "../../components/AddParticipant/AddParticipant";
 import EventCard from "../../components/EventCard/EventCard";
 import API from "../../utils/API";
+import Participants from "./../../components/Participants";
 
 class EventView extends Component {
 	constructor(props) {
@@ -73,7 +74,8 @@ class EventView extends Component {
 	render() {
 		return (
 			<div>
-				<AddParticipant />
+				<h1></h1>
+				<Participants participants={this.state.participants} />
 
 				{/* Example Task Component passing down data */}
 				{/* <Tasks tasks={this.state.tasks}/> */}

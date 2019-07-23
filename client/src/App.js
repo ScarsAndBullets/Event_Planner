@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import "./App.css";
 import Nav from "./components/Nav";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -9,26 +9,29 @@ import About from "./pages/About";
 import SignUp from "./pages/SignUp";
 import EventView from "./pages/EventView";
 import NoMatch from "./pages/NoMatch";
+import Container from '@material-ui/core/Container';
 
 class App extends Component {
 	render() {
 		return (
 			<>
 				<Nav />
-				<Router>
-					<div>
-						<Switch>
-							<Route path="/" exact component={Login} />
-							<Route path="/login" component={Login} />
-							<Route path="/signup" component={SignUp} />
-							<Route path="/dashboard" exact component={Dashboard} />
-							<Route path="/create-event" component={CreateEvent} />
-							<Route path="/about" component={About} />
-							<Route path="/event/:id" component={EventView} />
-							<Route component={NoMatch} />
-						</Switch>
-					</div>
-				</Router>
+				<Container>
+					<Router>
+						<div>
+							<Switch>
+								<Route path="/" exact component={Login} />
+								<Route path="/login" component={Login} />
+								<Route path="/signup" component={SignUp} />
+								<Route path="/dashboard" exact component={Dashboard} />
+								<Route path="/create-event" component={CreateEvent} />
+								<Route path="/about" component={About} />
+								<Route path="/event/:id" component={EventView} />
+								<Route component={NoMatch} />
+							</Switch>
+						</div>
+					</Router>
+				</Container>
 			</>
 		);
 	}
