@@ -1,0 +1,17 @@
+.logo-font {
+    font-family: 'Amita', cursive;
+}
+
+.MuiToolbar-root {
+    background: #9c27b0;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #1565C0, #9c27b0);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #1565C0, #9c27b0);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+/* .Logo {
+    width: 100px;
+    height: 100px;
+} */

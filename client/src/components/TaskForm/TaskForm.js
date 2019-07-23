@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import uuid from "uuid/v4";
 import "./TaskForm.css";
+import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../TasksGrid/TasksGrid";
 import API from "../../utils/API";
 
 class TaskForm extends Component {
+<<<<<<< HEAD
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -25,6 +27,29 @@ class TaskForm extends Component {
 			this.getCurrentParticipantId();
 		}, 500);
 	}
+=======
+  constructor(props) {
+    super(props);
+    this.state = {
+      taskName: "",
+      taskAssigned: "",
+      Task: [],
+      completed: "",
+      text: "",
+      _id: "",
+      tasks: []
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.markTaskAssigned = this.markTaskAssigned.bind(this);
+    //this.handleTextChange = this.handleTextChange.bind(this);
+    // this.handleDeleteItem = this.handleDeleteItem.bind(this);
+    // this.assignTask = this.assignTask.bind(this);
+  }
+  componentDidMount() {
+    this.loadTasks();
+  }
+>>>>>>> 3da8f6ed518c77b5f39c382bcc3c2390e5c29a16
 
 	getCurrentParticipantId() {
 		if (this.props.userId !== null) {

@@ -41,7 +41,7 @@ module.exports = function(app) {
 	app.post("/api/tasks/unassign", taskController.unassignTask);
 	app.delete("/tasks/delete", taskController.deleteTask);
 
-	/////// PARTICPANT ROUTES //////
+	/////// PARTICPANT ROUTES ///////
 	app.post(
 		"/api/events/:eventId/add-participant",
 		participantController.addParticipant

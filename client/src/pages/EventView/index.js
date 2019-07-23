@@ -15,6 +15,7 @@ import Slide from "@material-ui/core/Slide";
 import OpenWithRounded from "@material-ui/icons/OpenWithRounded";
 import AddParticipant from "../../components/AddParticipant/AddParticipant";
 import EventCard from "../../components/EventCard/EventCard";
+import TaskForm from "../../components/TaskForm/TaskForm";
 import API from "../../utils/API";
 import TaskForm from "../../components/TaskForm/TaskForm";
 import EventInfo from "../../components/EventInfo";
