@@ -18,15 +18,15 @@ module.exports = {
 					userId: req.user.id,
 					eventId: event._id
 				}).then(participant => {
-					db.Event.updateOne(
+					db.Event.findOneAndUpdate(
 						{
 							_id: event._id
 						},
 						{ $push: { participants: participant._id } },
-						{ new: true }
+						{ new: true, useFindAndModify: false }
 					)
-						.then(eventCreated => {
-							res.json(eventCreated);
+						.then(response => {
+							res.json(response);
 						})
 						.catch(err => {
 							res.json(err);
@@ -80,20 +80,53 @@ module.exports = {
 								results.push(event);
 							}
 						});
-
 						res.json(results);
+					})
+					.catch(err => {
+						res.json(err);
 					});
 			})
 			.catch(err => {
 				res.json(err);
 			});
 	},
+
 	getEvent: function(req, res) {
-		db.Event.findById({ _id: req.params.id })
+		db.Event.findById({
+			_id: req.params.id
+		})
 			.populate("participants")
 			.populate("tasks")
 			.then(event => {
-				res.json(event);
+				if (req.user) {
+					const results = {
+						title: event.title,
+						details: event.details,
+						date: event.date,
+						time: event.time,
+						location: event.location,
+						requirements: event.requirements,
+						participants: event.participants,
+						tasks: event.tasks,
+						eventOwnerId: event.eventOwnerId,
+						userId: req.user.id
+					};
+					res.json(results);
+				} else {
+					const results = {
+						title: event.title,
+						details: event.details,
+						date: event.date,
+						time: event.time,
+						location: event.location,
+						requirements: event.requirements,
+						participants: event.participants,
+						tasks: event.tasks,
+						eventOwnerId: event.eventOwnerId,
+						userId: null
+					};
+					res.json(results);
+				}
 			})
 			.catch(err => {
 				res.json(err);
