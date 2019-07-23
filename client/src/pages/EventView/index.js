@@ -17,6 +17,8 @@ import AddParticipant from "../../components/AddParticipant/AddParticipant";
 import EventCard from "../../components/EventCard/EventCard";
 import API from "../../utils/API";
 import TaskForm from "../../components/TaskForm/TaskForm";
+import EventInfo from "../../components/EventInfo";
+import { Col, Row, Container } from "../../components/Grid";
 
 class EventView extends Component {
 	constructor(props) {
@@ -130,50 +132,30 @@ class EventView extends Component {
 		return (
 			<div>
 				<AddParticipant />
-
-				<TaskForm
-					tasks={this.state.tasks}
-					participants={this.state.participants}
-					newTask={this.newTask}
-					assignTaskToState={this.assignTaskToState}
-					unassignTaskToState={this.unassignTaskToState}
-					eventId={this.state.eventId}
-					userId={this.state.userId}
-				/>
-
-				{/* Example Participant Component passing down data */}
-				{/* <Participants participants={this.state.participants} updateGoing={this.updateParticipantGoing}/> */}
+				<Row>
+					<EventInfo
+						title={this.state.title}
+						details={this.state.details}
+						date={this.state.date}
+						time={this.state.time}
+						location={this.state.location}
+						requirements={this.state.requirements}
+					/>
+				</Row>
+				<Row>
+					<TaskForm
+						tasks={this.state.tasks}
+						participants={this.state.participants}
+						newTask={this.newTask}
+						assignTaskToState={this.assignTaskToState}
+						unassignTaskToState={this.unassignTaskToState}
+						eventId={this.state.eventId}
+						userId={this.state.userId}
+					/>
+				</Row>
 			</div>
 		);
 	}
 }
-// BELOW: Not sure what this logic is for?
-// Exporting the Container, Row, and Col components from this file
 
-// This Container component allows us to use a bootstrap container without worrying about class names
-export function Container({ fluid, children }) {
-	return <div className={`container${fluid ? "-fluid" : ""}`}>{children}</div>;
-}
-
-// This Row component lets us use a bootstrap row without having to think about class names
-export function Row({ fluid, children }) {
-	return <div className={`row${fluid ? "-fluid" : ""}`}>{children}</div>;
-}
-
-// This Col component lets us size bootstrap columns with less syntax
-// e.g. <Col size="md-12"> instead of <div className="col-md-12">
-export function Col({ size, children }) {
-	return (
-		<div
-			className={size
-				.split(" ")
-				.map(size => "col-" + size)
-				.join(" ")}
-		>
-			{children}
-		</div>
-	);
-}
-// END: unsure about logice
-// BELOW: needed to export everything in this file
 export default EventView;

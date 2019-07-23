@@ -104,6 +104,7 @@ class TaskForm extends Component {
 	render() {
 		return (
 			<div>
+				<h2>Tasks</h2>
 				<form className="NewTaskForm" onSubmit={this.handleSubmit}>
 					<input
 						type="text"
