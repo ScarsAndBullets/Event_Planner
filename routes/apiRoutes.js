@@ -6,7 +6,7 @@ const passport = require("../config/passport");
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 const mailerController = require("./../controllers/mailerController");
 
-module.exports = function(app) {
+module.exports = function (app) {
 	////// USER ROUTES //////
 
 	// Endpoint to login user

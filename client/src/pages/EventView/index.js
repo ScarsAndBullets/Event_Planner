@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+// import { makeStyles } from "@material-ui/core/styles";
 // import Button from '@material-ui/core/Button';
 import Dialog from "@material-ui/core/Dialog";
 // import ListItemText from '@material-ui/core/ListItemText';
@@ -18,7 +18,7 @@ import EventCard from "../../components/EventCard/EventCard";
 import TaskForm from "../../components/TaskForm/TaskForm";
 import API from "../../utils/API";
 import EventInfo from "../../components/EventInfo";
-import { Col, Row, Container } from "../../components/Grid";
+import Participants from "./../../components/Participants";
 
 class EventView extends Component {
 	constructor(props) {
@@ -126,7 +126,7 @@ class EventView extends Component {
 		});
 	}
 
-	deleteTask(taskId) {}
+	deleteTask(taskId) { }
 
 	render() {
 		return (
@@ -140,6 +140,7 @@ class EventView extends Component {
 					location={this.state.location}
 					requirements={this.state.requirements}
 				/>
+				<Participants participants={this.state.participants} />
 				<TaskForm
 					tasks={this.state.tasks}
 					participants={this.state.participants}

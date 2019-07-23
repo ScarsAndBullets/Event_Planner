@@ -16,23 +16,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-// const iconButton = makeStyles(theme => ({
-// button: {
-//     margin: theme.spacing(1),
-// },
-// input: {
-//     display: 'none',
-// },
-// }));
-
-// const iconBttnClass = iconButton();
-
 function InviteLink(props) {
     const [open, setOpen] = React.useState(false);
 
     function handleClickOpen() {
-        console.log(`handle open click ${props.emailValue}`)
-        api.sendEmail(props.emailValue, `albjdk`);
+        api.sendEmail(props.emailValue, props.eventId);
+        api.addParticipant(props.emailValue, props.eventId);
         setOpen(true);
     }
 
@@ -62,10 +51,11 @@ function InviteLink(props) {
                 <DialogTitle id="alert-dialog-slide-title">{"An invitation has been sent!"}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
-                        It's crucial they open this email and click the provided link, or else they won't be able to see the event details. If they don't see the email, make sure they check their junk or spam folders. 
+                        It's crucial they open this email and click the provided link, or else they won't be able to see the event details. If they don't see the email, make sure they check their junk or spam folders.
+
           </DialogContentText>
                     {/* CENTER and BOLD LINK */}
-                   
+
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
