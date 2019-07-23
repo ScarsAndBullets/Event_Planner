@@ -81,7 +81,7 @@
 	text-decoration: line-through;
 }
 
-span {
+taskSpan {
 	color: white;
 }
 
@@ -132,6 +132,7 @@ body {
 .Task-buttons {
 	flex-shrink: 0;
 	padding-left: 0.7em;
+	width: 150px;
 	/* margin-left: auto; */
 }
 
@@ -143,4 +144,16 @@ body {
 	-webkit-appearance: none;
 	cursor: pointer;
 	color: #fff;
+
+}
+
+.Task-button span {
+	border: none;
+	font-size: 12px;
+	margin: 0.5px;
+	background: none;
+	-webkit-appearance: none;
+	cursor: pointer;
+	color: #fff;
+	width: 150px;
 }
