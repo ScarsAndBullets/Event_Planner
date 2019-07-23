@@ -12,3 +12,9 @@
 .fontColor {
     color: white;
 }
+
+.past-events {
+    font-size: 100px;
+    color: blue;
+    margin-top: 40px;
+}

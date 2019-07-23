@@ -3,11 +3,11 @@
 }
 
 .MuiToolbar-root {
-    background: #9c27b0;
+    background: blue;
     /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #1565C0, #9c27b0);
+    background: -webkit-linear-gradient(to right, rgb(28, 89, 187), rgb(33, 33, 233));
     /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #1565C0, #9c27b0);
+    background: linear-gradient(to right, rgb(28, 89, 187), rgb(33, 33, 233));
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
