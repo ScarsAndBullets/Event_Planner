@@ -18,6 +18,7 @@ class App extends Component {
 			<Layout>
 				{/* <Nav /> */}
 				<AppNavbar />
+
 				<Router>
 					<div>
 						<Switch>

@@ -13,6 +13,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
 import { ReactComponent as Logo } from '../../images/pland_logo_white-small.svg';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "./style.css";
 
 const useStyles = makeStyles(theme => ({
@@ -127,6 +128,7 @@ function AppNavbar() {
     );
 
     return (
+
         <div className={classes.grow}>
             <AppBar position="static">
                 <Toolbar>
@@ -141,12 +143,16 @@ function AppNavbar() {
 
                     <Typography className={classes.title} variant="h6" noWrap>
                         <Logo />
-                        <span className="logo-font" >pland</span>
+                        <span className="logo-font"> pland</span>
 
                     </Typography>
 
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
+                        <Button color="inherit">
+                            <Link to="/about">About</Link>
+                        </Button>
+
                         <IconButton
                             edge="end"
                             aria-label="Account of current user"
@@ -173,6 +179,17 @@ function AppNavbar() {
             </AppBar>
             {renderMobileMenu}
             {renderMenu}
+
+            <Switch>
+                <Route path="/" exact component={Login} />
+                <Route path="/login" component={Login} />
+                <Route path="/signup" component={SignUp} />
+                <Route path="/dashboard" exact component={Dashboard} />
+                <Route path="/create-event" component={CreateEvent} />
+                <Route path="/about" component={About} />
+                <Route path="/event/:id" component={EventView} />
+                <Route component={NoMatch} />
+            </Switch>
         </div>
     );
 }
