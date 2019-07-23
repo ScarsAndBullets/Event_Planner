@@ -40,7 +40,7 @@ class Slider extends Component {
 		} else if (this.state.activeTab === 1) {
 			return (
 				<div>
-					<p>This function is not currently supported</p>
+					<p>Coming Soon!</p>
 				</div>
 			);
 		}
