@@ -10,12 +10,14 @@ import About from "./pages/About";
 import SignUp from "./pages/SignUp";
 import EventView from "./pages/EventView";
 import NoMatch from "./pages/NoMatch";
+import AppNavbar from "./components/AppNavbar";
 
 class App extends Component {
 	render() {
 		return (
 			<Layout>
-				<Nav />
+				{/* <Nav /> */}
+				<AppNavbar />
 				<Router>
 					<div>
 						<Switch>

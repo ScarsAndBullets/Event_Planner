@@ -4,16 +4,16 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
-import Badge from '@material-ui/core/Badge';
+// import InputBase from '@material-ui/core/InputBase';
+
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import Button from '@material-ui/core/Button';
+import { ReactComponent as Logo } from '../../images/pland_logo_white-small.svg';
+import "./style.css";
 
 const useStyles = makeStyles(theme => ({
     grow: {
@@ -28,30 +28,8 @@ const useStyles = makeStyles(theme => ({
             display: 'block',
         },
     },
-    search: {
-        position: 'relative',
-        borderRadius: theme.shape.borderRadius,
-        backgroundColor: fade(theme.palette.common.white, 0.15),
-        '&:hover': {
-            backgroundColor: fade(theme.palette.common.white, 0.25),
-        },
-        marginRight: theme.spacing(2),
-        marginLeft: 0,
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing(3),
-            width: 'auto',
-        },
-    },
-    searchIcon: {
-        width: theme.spacing(7),
-        height: '100%',
-        position: 'absolute',
-        pointerEvents: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
+
+
     inputRoot: {
         color: 'inherit',
     },
@@ -77,7 +55,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function PrimarySearchAppBar() {
+function AppNavbar() {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -131,23 +109,11 @@ export default function PrimarySearchAppBar() {
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
-            <MenuItem>
-                <IconButton aria-label="Show 4 new mails" color="inherit">
-                    <Badge badgeContent={4} color="secondary">
-                        <MailIcon />
-                    </Badge>
-                </IconButton>
-                <p>Messages</p>
-            </MenuItem>
-            <MenuItem>
-                <IconButton aria-label="Show 11 new notifications" color="inherit">
-                    <Badge badgeContent={11} color="secondary">
-                        <NotificationsIcon />
-                    </Badge>
-                </IconButton>
-                <p>Notifications</p>
-            </MenuItem>
+
+
             <MenuItem onClick={handleProfileMenuOpen}>
+
+
                 <IconButton
                     aria-label="Account of current user"
                     aria-controls="primary-search-account-menu"
@@ -156,7 +122,6 @@ export default function PrimarySearchAppBar() {
                 >
                     <AccountCircle />
                 </IconButton>
-                <p>Profile</p>
             </MenuItem>
         </Menu>
     );
@@ -173,10 +138,13 @@ export default function PrimarySearchAppBar() {
                     >
                         <MenuIcon />
                     </IconButton>
+
                     <Typography className={classes.title} variant="h6" noWrap>
-                        Material-UI
-          </Typography>
-                    
+                        <Logo />
+                        <span className="logo-font" >pland</span>
+
+                    </Typography>
+
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
                         <IconButton
@@ -208,3 +176,5 @@ export default function PrimarySearchAppBar() {
         </div>
     );
 }
+
+export default AppNavbar;

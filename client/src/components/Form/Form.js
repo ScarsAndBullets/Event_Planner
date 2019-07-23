@@ -24,6 +24,8 @@ import Icon from "@material-ui/core/Icon";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import { CheckCircleRounded, NotInterestedRounded } from "@material-ui/icons";
+import blue from '@material-ui/core/colors/blue';
+import grey from '@material-ui/core/colors/grey';
 
 import API from "../../utils/API";
 import "./Form.css";
@@ -121,7 +123,9 @@ function Form(props) {
       right: 20,
       bottom: 20,
       left: "auto",
-      position: "fixed"
+      position: "fixed",
+      backgroundColor: blue[800],
+      color: grey[50]
     },
     extendedIcon: {
       marginRight: theme.spacing(1)
@@ -213,7 +217,7 @@ function Form(props) {
                 <KeyboardDatePicker
                   margin='normal'
                   id='mui-pickers-date'
-                  label='What day is it going down?'
+                  // label='What day is it going down?'
                   value={selectedDate}
                   onChange={handleDateChange}
                   KeyboardButtonProps={{
@@ -223,7 +227,7 @@ function Form(props) {
                 <KeyboardTimePicker
                   margin='normal'
                   id='mui-pickers-time'
-                  label='What time does it start?'
+                  // label='What time does it start?'
                   value={selectedTime}
                   onChange={handleTimeChange}
                   KeyboardButtonProps={{

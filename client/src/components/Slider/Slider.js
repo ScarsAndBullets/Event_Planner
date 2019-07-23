@@ -53,8 +53,8 @@ class Slider extends Component {
 					onChange={tabId => this.setState({ activeTab: tabId })}
 					ripple
 				>
-					<Tab>Upcoming Events</Tab>
-					<Tab>Past Events</Tab>
+					<Tab><span className="fontColor">Upcoming Events</span> </Tab>
+					<Tab><span className="fontColor">Past Events</span></Tab>
 				</Tabs>
 				<Grid>
 					<Cell col={12}>

@@ -36,13 +36,6 @@ class Dashboard extends Component {
 	render() {
 		return (
 			<Container fluid>
-				<Row>
-					{/* <Col size="md-12">
-						<h1>Dashboard</h1>
-					</Col> */}
-				</Row>
-
-				{/* <EventCard></EventCard> */}
 				<Slider events={this.state.events} />
 				<Form handleNewEvent={this.handleNewEvent} />
 			</Container>
