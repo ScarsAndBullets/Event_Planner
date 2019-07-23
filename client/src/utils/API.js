@@ -21,7 +21,9 @@ export default {
 	saveTask: function(taskData) {
 		return axios.post("/api/tasks/create", taskData);
 	},
-
+	assignTask: function(task) {
+		return axios.post("/api/tasks/update", task);
+	},
 	sendEmail: function(email, eventId) {
 		return axios.post(`api/events/${eventId}/send-mail`, {
 			email

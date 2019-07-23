@@ -13,18 +13,20 @@ class TaskForm extends Component {
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
-		this.getParticipantId = this.getParticipantId.bind(this);
+		this.getCurrentParticipantId = this.getCurrentParticipantId.bind(this);
+		this.getParticipantInfo = this.getParticipantInfo.bind(this);
+		this.assignTask = this.assignTask.bind(this);
 	}
 	componentDidMount() {
 		setInterval(() => {
 			if (this.state.participantId !== "") {
 				return clearInterval();
 			}
-			this.getParticipantId();
+			this.getCurrentParticipantId();
 		}, 500);
 	}
 
-	getParticipantId() {
+	getCurrentParticipantId() {
 		if (this.props.userId !== null) {
 			this.props.participants.map(participant => {
 				if (participant.userId === this.props.userId) {
@@ -33,7 +35,16 @@ class TaskForm extends Component {
 			});
 		}
 	}
-
+	getParticipantInfo(id) {
+		let participantInfo;
+		this.props.participants.map(participant => {
+			let searchForTask = participant.tasks.map(task => {
+				if (task._id === id) return task;
+			});
+			if (searchForTask.length > 0) participantInfo = participant;
+		});
+		return participantInfo;
+	}
 	handleChange(event) {
 		let name = event.target.name;
 		let value = event.target.value;
@@ -44,17 +55,31 @@ class TaskForm extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
-		console.log(this.props);
 
 		API.saveTask({
 			taskName: this.state.taskName,
 			eventId: this.props.eventId
-		}).then(res => {
-			this.state.taskName = "";
-			this.props.newTask(res.data);
-		});
+		})
+			.then(res => {
+				this.state.taskName = "";
+				this.props.newTask(res.data);
+			})
+			.catch(err => {
+				console.log(err);
+			});
 	}
-
+	assignTask(taskId, pId) {
+		API.assignTask({
+			taskId: taskId,
+			participantId: pId
+		})
+			.then(res => {
+				console.log(res.data);
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	}
 	deleteTask(_id) {
 		API.deleteTask(_id).then(res => {
 			console.log("Task Deleted");
@@ -63,8 +88,6 @@ class TaskForm extends Component {
 			this.loadTasks();
 		});
 	}
-
-	// assignTask(id) {}
 
 	render() {
 		return (
@@ -81,23 +104,50 @@ class TaskForm extends Component {
 
 					<button type="submit">Add Task</button>
 				</form>
+				<ul>
+					{this.props.tasks.map(task => {
+						if (task.taskAssigned) {
+							let pInfo = this.getParticipantInfo(task._id);
+							console.log(pInfo);
+							return (
+								<li className="Task">
+									<button onClick={this.deleteTask}>
+										<i className="fas fa-trash" />
+									</button>
+									{task.taskName}
 
-				{this.props.tasks.map(task => {
-					return (
-						<ul>
-							<li className="Task" onClick={this.assignTask}>
-								<button onClick={this.deleteTask}>
-									<i className="fas fa-trash" />
-								</button>
-								{task.taskName}
-								<div className="Task-buttons">
-									<h6>Assigned To:</h6>
-									<span className="userId">ParticipantId</span>
-								</div>
-							</li>
-						</ul>
-					);
-				})}
+									<div className="Task-buttons">
+										<span className="userId">
+											<h6>{"Assigned To: " + pInfo.name}</h6>
+										</span>
+									</div>
+								</li>
+							);
+						} else {
+							let pInfo = "Not Assigned";
+							console.log(pInfo);
+							return (
+								<li
+									className="Task"
+									onClick={() => {
+										this.assignTask(task._id, this.state.participantId);
+									}}
+								>
+									<button onClick={this.deleteTask}>
+										<i className="fas fa-trash" />
+									</button>
+									{task.taskName}
+
+									<div className="Task-buttons">
+										<span className="userId">
+											<h6>{pInfo}</h6>
+										</span>
+									</div>
+								</li>
+							);
+						}
+					})}
+				</ul>
 			</div>
 		);
 	}

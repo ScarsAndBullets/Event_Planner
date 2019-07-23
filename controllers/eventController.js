@@ -95,7 +95,13 @@ module.exports = {
 		db.Event.findById({
 			_id: req.params.id
 		})
-			.populate("participants")
+			.populate({
+				path: "participants",
+				populate: {
+					path: "tasks",
+					model: "Task"
+				}
+			})
 			.populate("tasks")
 			.then(event => {
 				if (req.user) {

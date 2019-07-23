@@ -28,7 +28,7 @@ class EventView extends Component {
 			time: "",
 			location: "",
 			requirements: "",
-			userId: "5d2a3da2a6c54e0374c286fb",
+			userId: "5d17905ce36422100cdc016f",
 			eventOwnerId: "",
 			tasks: [],
 			participants: [],

@@ -46,15 +46,38 @@ module.exports = {
 	},
 
 	updateTask: function(req, res) {
-		console.log("Task Updated:");
-		db.Task.findOneAndUpdate(
+		taskId = req.body.taskId;
+		participantId = req.body.participantId;
+		db.Task.updateOne(
 			{
-				_id: req.params.id
+				_id: taskId
 			},
-			req.body
-		)
-			.then(dbModel => res.json(dbModel))
-			.catch(err => res.status(422).json(err));
+			{
+				taskAssigned: true,
+				strikeThrough: true
+			},
+			{
+				new: true
+			}
+		).then(() => {
+			db.Participant.updateOne(
+				{
+					_id: participantId
+				},
+				{
+					$push: {
+						tasks: taskId
+					}
+				},
+				{
+					new: true
+				}
+			)
+				.then(pUpdated => {
+					res.json(pUpdated);
+				})
+				.catch(err => res.json(err));
+		});
 	},
 
 	deleteTask: function(req, res) {
