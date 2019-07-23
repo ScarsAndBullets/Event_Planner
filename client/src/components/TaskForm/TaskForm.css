@@ -1,152 +1,146 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	margin: 0;
+	/* padding: 0; */
+	box-sizing: border-box;
 }
 
 .NewTaskForm {
-  margin-top: 3rem;
-  display: flex;
-  flex-wrap: wrap;
-  width: 600px;
+	margin-top: 3rem;
+	display: flex;
+	flex-wrap: wrap;
+	width: 600px;
 }
 
 /* ///// Input box ///// */
 .NewTaskForm input {
-  flex-grow: 1;
-  border: none;
-  background: #f7f1f1;
-  padding: 0 1.5em;
-  font-size: initial;
-  outline: none;
-
+	flex-grow: 1;
+	border: none;
+	background: #f7f1f1;
+	padding: 0 1.5em;
+	font-size: initial;
+	outline: none;
 }
 
 /* ///// Add Task Button ///// */
 .NewTaskForm button {
-  padding: 0 1.3rem;
-  border: none;
-  background: teal;
-  color: white;
-  text-transform: uppercase;
-  font-weight: bold;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  margin-left: 5px;
-  cursor: pointer;
-  transition: background 0.4s ease-out;
-  outline: none;
+	padding: 0 1.3rem;
+	border: none;
+	background: teal;
+	color: white;
+	text-transform: uppercase;
+	font-weight: bold;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	margin-left: 5px;
+	cursor: pointer;
+	transition: background 0.4s ease-out;
+	outline: none;
 }
 
 .Task:hover {
-  background: teal;
+	background: teal;
 }
 
 .NewTaskForm label {
-  min-width: 100%;
-  margin-bottom: 0.5rem;
-  font-size: 1.3rem;
-
+	min-width: 100%;
+	margin-bottom: 0.5rem;
+	font-size: 1.3rem;
 }
 
 .NewTaskForm input,
 .NewTaskForm button {
-  font-family: "Quicksand", sans-serif;
-  height: 3rem;
-  margin-bottom: 20px;
+	font-family: "Quicksand", sans-serif;
+	height: 3rem;
+	margin-bottom: 20px;
 }
 
 .Task {
-  display: flex;
-  margin: 0 -3rem 5px;
-  padding: 1.1rem 3rem;
-  height: 40px;
-  width: 643px;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.2);
-  overflow: hidden;
-  position: relative;
-  transition: opacity 500ms ease-in-out;
+	display: flex;
+	margin: 0 -3rem 5px;
+	padding: 1.1rem 3rem;
+	height: 40px;
+	width: 643px;
+	justify-content: space-between;
+	align-items: center;
+	background: rgba(255, 255, 255, 0.2);
+	overflow: hidden;
+	position: relative;
+	transition: opacity 500ms ease-in-out;
 }
 
 .Delete {
-  margin: 10px;
+	margin: 10px;
 }
 
 .taskName {
-  font-size: 18px;
-  text-align: left;
+	font-size: 18px;
+	text-align: left;
 }
 
 .completed {
-  color: lightgrey;
-  text-decoration: line-through;
+	color: lightgrey;
+	text-decoration: line-through;
 }
 
 span {
-  color: white;
+	color: white;
 }
-
-
 
 html,
 body {
-  background: linear-gradient(90deg, lightgrey, rgba(93, 91, 91, 0.404));
-  font-size: 1.1rem;
-  font-family: "Quicksand", sans-serif;
-  height: 100%;
-
+	background: linear-gradient(90deg, lightgrey, rgba(93, 91, 91, 0.404));
+	font-size: 1.1rem;
+	font-family: "Quicksand", sans-serif;
+	height: 100%;
 }
-
 
 /* Prevents Strike line from going all the way accross */
 .Task-task {
-  position: relative;
-  transition: opacity 0.4s linear;
+	position: relative;
+	transition: opacity 0.4s linear;
 }
 
 /* 800ms to grey out when completed */
 /* opacity = How dark completed task gets */
 .Task.done {
-  transition: opacity 800ms ease-in-out;
-  transition-delay: 800ms;
-  opacity: 0.6;
-  text-decoration: line-through;
+	transition: opacity 800ms ease-in-out;
+	transition-delay: 800ms;
+	opacity: 0.6;
+	text-decoration: line-through;
 }
 
 /* Animates strike line */
 .Task-task.completed:before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: -0.5rem;
-  display: block;
-  width: 0%;
-  height: 1px;
-  background: #fff;
-  animation: strikeitem 0.5s ease-out 0s forwards;
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: -0.5rem;
+	display: block;
+	width: 0%;
+	height: 1px;
+	background: #fff;
+	animation: strikeitem 0.5s ease-out 0s forwards;
 }
 
 /* Line Animation - Width of the Strike Line */
 @keyframes strikeitem {
-  to {
-    width: calc(100% + 1rem);
-  }
+	to {
+		width: calc(100% + 1rem);
+	}
 }
 
 /* Edit and Trash Buttons on All Tasks */
 .Task-buttons {
-  flex-shrink: 0;
-  padding-left: 0.7em;
-  /* margin-left: auto; */
+	flex-shrink: 0;
+	padding-left: 0.7em;
+	/* margin-left: auto; */
 }
 
 .Task-buttons h6 {
-  border: none;
-  font-size: 12px;
-  margin: .5px;
-  background: none;
-  -webkit-appearance: none;
-  cursor: pointer;
-  color: #fff;
+	border: none;
+	font-size: 12px;
+	margin: 0.5px;
+	background: none;
+	-webkit-appearance: none;
+	cursor: pointer;
+	color: #fff;
 }
