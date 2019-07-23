@@ -62,27 +62,25 @@ class TaskForm extends Component {
   }
 
   deleteTask(id) {
-    console.log(id);
     API.deleteTask(id).then(res => {
       console.log("Task Deleted" + id);
-
       this.loadTasks();
     });
   }
 
-  assignTask(_id) {
+  assignTask(id) {
     console.log("Task Assigned to User");
-    console.log(_id);
+    console.log(id);
   }
 
-  markTaskAssigned(_id) {
-    // console.log(_id);
-    // var updatedTasks = this.state.Task.map(task => {
-    //   if (_id === this.task._id) task.done = !task.done;
-    //   return task;
-    // });
-    console.log("StrikeThrough!!!");
+  markTaskAssigned(id) {
+    var updatedTasks = this.state.Task.map(task => {
+      if (id === task._id) task.done = !task.done;
+
+      return task;
+    });
   }
+
   // handleDeleteItem(itemId) {
   //   var updatedItems = this.state.Task.filter(item => {
   //     return task.id !== taskId;
@@ -105,36 +103,33 @@ class TaskForm extends Component {
           <button>Add Task</button>
         </form>
 
-        {this.state.Task.map(task => {
-          return (
-            <ul>
+        <ul>
+          {this.state.Task.map(task => {
+            return (
               <li
                 className='Task'
-                onClick={this.markTaskAssigned(this.state._id)}
+                key={task._id}
+                id={task._id}
+                text={task.text}
+                onClick={this.markTaskAssigned(task._id)}
                 completed={task.done}
-                onTaskAssigned={this.state.markTaskAssigned}
+                onTaskAssigned={this.assignTask}
               >
-                {/* <button onClick={this.deleteTask}>
-                  <i class='fas fa-trash' />
-                </button> */}
-
                 <li className='Delete' key={task._id}>
                   <Link to={"/tasks/" + task._id} />
                   <button onClick={() => this.deleteTask(task._id)}>
                     <i class='fas fa-trash' />
                   </button>
                 </li>
-
-                {task.taskName}
-
+                <div className='taskName'>{task.taskName}</div>
                 <div className='Task-buttons'>
                   <h6>Assigned To:</h6>
-                  <span clssName='userId'>ParticipantId</span>
+                  <span className='participantId'>Not Assigned</span>
                 </div>
               </li>
-            </ul>
-          );
-        })}
+            );
+          })}
+        </ul>
       </div>
     );
   }
