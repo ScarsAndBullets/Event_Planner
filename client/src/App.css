@@ -133,12 +133,12 @@
 }
 
 .App__Aside {
-  width: 50%;
+  width: 23%;
   background: grey;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, grey, grey, black);
+  background: -webkit-linear-gradient(to right, grey, grey, grey);
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, grey, grey, black);
+  background: linear-gradient(to right, grey, grey, grey));
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   /* background-image: url("./images/pland_logo_white.svg"); */
 
@@ -236,7 +236,7 @@
   width: 85%;
   background-color: transparent;
   border: none;
-  color: white;
+  color: black;
   outline: none;
   border-bottom: 1px solid #445366;
   font-size: 1em;
