@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import Grid from '@material-ui/core/Grid';
 import ParticipantChip from "./../ParticipantChip"
+import Paper from '@material-ui/core/Paper';
+
 
 function Participants(props) {
 	return (
-		<>
+		<Paper>
 			<h3>Invited Participants</h3>
 			<Grid
 				container
@@ -19,7 +21,7 @@ function Participants(props) {
 					</Grid>
 				))}
 			</Grid>
-		</>
+		</Paper>
 	);
 }
 
