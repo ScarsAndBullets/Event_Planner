@@ -45,10 +45,10 @@ module.exports = {
 		console.log(req.body);
 	},
 
-	updateTask: function(req, res) {
+	assignTask: function(req, res) {
 		taskId = req.body.taskId;
 		participantId = req.body.participantId;
-		db.Task.updateOne(
+		db.Task.findOneAndUpdate(
 			{
 				_id: taskId
 			},
@@ -57,10 +57,11 @@ module.exports = {
 				strikeThrough: true
 			},
 			{
-				new: true
+				new: true,
+				useFindAndModify: false
 			}
-		).then(() => {
-			db.Participant.updateOne(
+		).then(task => {
+			db.Participant.findOneAndUpdate(
 				{
 					_id: participantId
 				},
@@ -70,11 +71,56 @@ module.exports = {
 					}
 				},
 				{
-					new: true
+					new: true,
+					useFindAndModify: false
 				}
 			)
-				.then(pUpdated => {
-					res.json(pUpdated);
+				.then(participant => {
+					results = {
+						participant: participant,
+						task: task
+					};
+					res.json(results);
+				})
+				.catch(err => res.json(err));
+		});
+	},
+	unassignTask: function(req, res) {
+		taskId = req.body.taskId;
+		participantId = req.body.participantId;
+		db.Task.findOneAndUpdate(
+			{
+				_id: taskId
+			},
+			{
+				taskAssigned: false,
+				strikeThrough: false
+			},
+			{
+				new: true,
+				useFindAndModify: false
+			}
+		).then(task => {
+			db.Participant.findOneAndUpdate(
+				{
+					_id: participantId
+				},
+				{
+					$push: {
+						tasks: taskId
+					}
+				},
+				{
+					new: true,
+					useFindAndModify: false
+				}
+			)
+				.then(participant => {
+					results = {
+						participant: participant,
+						task: task
+					};
+					res.json(results);
 				})
 				.catch(err => res.json(err));
 		});

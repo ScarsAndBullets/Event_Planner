@@ -28,7 +28,7 @@ class EventView extends Component {
 			time: "",
 			location: "",
 			requirements: "",
-			userId: "5d17905ce36422100cdc016f",
+			userId: "",
 			eventOwnerId: "",
 			tasks: [],
 			participants: [],
@@ -36,6 +36,8 @@ class EventView extends Component {
 		};
 		this.updateParticipantGoing = this.updateParticipantGoing.bind(this);
 		this.newTask = this.newTask.bind(this);
+		this.assignTaskToState = this.assignTaskToState.bind(this);
+		this.unassignTaskToState = this.unassignTaskToState.bind(this);
 	}
 	componentDidMount() {
 		const {
@@ -52,7 +54,7 @@ class EventView extends Component {
 				requirements: event.requirements,
 				tasks: event.tasks,
 				participants: event.participants,
-				// userId: event.userId,
+				userId: event.userId,
 				eventOwnerId: event.eventOwnerId,
 				eventId: event.eventId
 			});
@@ -81,19 +83,60 @@ class EventView extends Component {
 		});
 	}
 
+	assignTaskToState(taskAndParticipant) {
+		let participant = taskAndParticipant.participant;
+		let task = taskAndParticipant.task;
+		this.state.tasks.map(stateTask => {
+			if (task._id === stateTask._id) {
+				stateTask.taskAssigned = true;
+				stateTask.strikeThrough = true;
+			}
+		});
+		this.state.participants.map(stateParticipant => {
+			if (participant._id === stateParticipant._id) {
+				stateParticipant.tasks.push(task);
+			}
+		});
+		this.setState({
+			tasks: this.state.tasks,
+			participants: this.state.participants
+		});
+	}
+
+	unassignTaskToState(taskAndParticipant) {
+		console.log(this.state);
+		let participant = taskAndParticipant.participant;
+		let task = taskAndParticipant.task;
+		this.state.tasks.map(stateTask => {
+			if (task._id === stateTask._id) {
+				stateTask.taskAssigned = false;
+				stateTask.strikeThrough = false;
+			}
+		});
+		this.state.participants.filter(stateParticipant => {
+			if (participant._id !== stateParticipant._id) {
+				return stateParticipant;
+			}
+		});
+		this.setState({
+			tasks: this.state.tasks,
+			participants: this.state.participants
+		});
+	}
+
 	deleteTask(taskId) {}
 
-	setTaskAsTaken() {}
 	render() {
 		return (
 			<div>
 				<AddParticipant />
 
-				{/* Example Task Component passing down data */}
 				<TaskForm
 					tasks={this.state.tasks}
 					participants={this.state.participants}
 					newTask={this.newTask}
+					assignTaskToState={this.assignTaskToState}
+					unassignTaskToState={this.unassignTaskToState}
 					eventId={this.state.eventId}
 					userId={this.state.userId}
 				/>

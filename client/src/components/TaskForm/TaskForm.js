@@ -55,7 +55,7 @@ class TaskForm extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
-
+		if (this.state.taskName === "" || !this.props.userId) return;
 		API.saveTask({
 			taskName: this.state.taskName,
 			eventId: this.props.eventId
@@ -74,7 +74,19 @@ class TaskForm extends Component {
 			participantId: pId
 		})
 			.then(res => {
-				console.log(res.data);
+				this.props.assignTaskToState(res.data);
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	}
+	unassignTask(taskId, pId) {
+		API.unassignTask({
+			taskId: taskId,
+			participantId: pId
+		})
+			.then(res => {
+				this.props.unassignTaskToState(res.data);
 			})
 			.catch(err => {
 				console.log(err);
@@ -108,9 +120,17 @@ class TaskForm extends Component {
 					{this.props.tasks.map(task => {
 						if (task.taskAssigned) {
 							let pInfo = this.getParticipantInfo(task._id);
-							console.log(pInfo);
+
+							let checkParticipant =
+								this.state.participantId === pInfo._id
+									? () => {
+											this.unassignTask(task._id, this.state.participantId);
+									  }
+									: () => {
+											console.log("not owner");
+									  };
 							return (
-								<li className="Task">
+								<li className="Task" onClick={checkParticipant} key={task._id}>
 									<button onClick={this.deleteTask}>
 										<i className="fas fa-trash" />
 									</button>
@@ -124,15 +144,15 @@ class TaskForm extends Component {
 								</li>
 							);
 						} else {
-							let pInfo = "Not Assigned";
-							console.log(pInfo);
-							return (
-								<li
-									className="Task"
-									onClick={() => {
+							let userCheck = !this.props.userId
+								? () => {
+										console.log("not logged in");
+								  }
+								: () => {
 										this.assignTask(task._id, this.state.participantId);
-									}}
-								>
+								  };
+							return (
+								<li className="Task" onClick={userCheck} key={task._id}>
 									<button onClick={this.deleteTask}>
 										<i className="fas fa-trash" />
 									</button>
@@ -140,7 +160,7 @@ class TaskForm extends Component {
 
 									<div className="Task-buttons">
 										<span className="userId">
-											<h6>{pInfo}</h6>
+											<h6>Not Assigned</h6>
 										</span>
 									</div>
 								</li>

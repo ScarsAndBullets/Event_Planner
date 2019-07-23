@@ -22,7 +22,10 @@ export default {
 		return axios.post("/api/tasks/create", taskData);
 	},
 	assignTask: function(task) {
-		return axios.post("/api/tasks/update", task);
+		return axios.post("/api/tasks/assign", task);
+	},
+	unassignTask: function(task) {
+		return axios.post("/api/tasks/unassign", task);
 	},
 	sendEmail: function(email, eventId) {
 		return axios.post(`api/events/${eventId}/send-mail`, {
