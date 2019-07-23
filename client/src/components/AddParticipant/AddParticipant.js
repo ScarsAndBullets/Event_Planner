@@ -23,9 +23,10 @@ import IconButton from '@material-ui/core/IconButton';
 import InviteLink from '../../components/InviteLink/InviteLink';
 
 // -----------------------------------------------------------------------------
-export default function AddParticipant() {
+export default function AddParticipant(props) {
     const [open, setOpen] = React.useState(false);
     const [email, setEmail] = React.useState("")
+
     React.useEffect(() => {
         console.log(email)
     })
@@ -70,7 +71,7 @@ export default function AddParticipant() {
                         label="Email Address"
                         type="email"
                         value={email}
-                        onChange={(event) => {
+                        onChange={event => {
                             setEmail(event.target.value)
                         }}
                         fullWidth
@@ -90,7 +91,7 @@ export default function AddParticipant() {
                         onClick={handleClose} color="primary"
                     ><CheckCircleRounded fontSize="large" />
                     </IconButton> */}
-                    <InviteLink emailValue={email} />
+                    <InviteLink emailValue={email} eventId={props.eventId} />
                     {/* END: InviteLink */}
                 </DialogActions>
             </Dialog>

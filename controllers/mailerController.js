@@ -19,7 +19,7 @@ module.exports = {
             from: process.env.NMUSER,
             to: req.body.email,
             subject: "You've been invited to an event in pland",
-            text: `Follow this link to view the event: localhost:3000/api/`
+            text: `Copy and paste this link into your browser to view the event: ${process.env.URL}/event/${req.body.eventId}`
         };
 
         transporter.sendMail(mailOptions, function (error, info) {

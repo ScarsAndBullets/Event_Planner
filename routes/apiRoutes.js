@@ -6,7 +6,7 @@ const passport = require("../config/passport");
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 const mailerController = require("./../controllers/mailerController");
 
-module.exports = function(app) {
+module.exports = function (app) {
 	////// USER ROUTES //////
 
 	// Endpoint to login user
@@ -45,6 +45,10 @@ module.exports = function(app) {
 		"/api/events/:eventId/add-participant",
 		participantController.addParticipant
 	);
+	// app.get(
+	// 	"/api/events/:eventId/get-participants",
+	// 	participantController.getParticipants
+	// );
 
 	app.post("/api/events/:eventId/send-mail", mailerController.sendMail);
 };

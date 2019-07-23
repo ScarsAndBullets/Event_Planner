@@ -1,6 +1,5 @@
 import React, { Component, useState } from "react";
 import "./App.css";
-import { Layout, Content } from "react-mdl";
 import Nav from "./components/Nav";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./pages/Login";
@@ -14,7 +13,7 @@ import NoMatch from "./pages/NoMatch";
 class App extends Component {
 	render() {
 		return (
-			<Layout>
+			<>
 				<Nav />
 				<Router>
 					<div>
@@ -30,7 +29,7 @@ class App extends Component {
 						</Switch>
 					</div>
 				</Router>
-			</Layout>
+			</>
 		);
 	}
 }

@@ -26,11 +26,11 @@ class SignInForm extends Component {
         let value = target.type === "checkbox" ? target.checked : target.value;
         let name = target.name;
 
+        console.log(this.state.password)
+
         this.setState({
             [name]: value
         });
-
-        console.log(this.state.password)
     }
 
     handleSubmit(e) {
