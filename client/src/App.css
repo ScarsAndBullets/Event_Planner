@@ -229,7 +229,7 @@
   display: block;
   text-transform: uppercase;
   font-size: .9em;
-  color: white;
+  color:#008080;
 }
 
 .FormField__Input {
