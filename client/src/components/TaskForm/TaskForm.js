@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import uuid from "uuid/v4";
 import "./TaskForm.css";
+import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../TasksGrid/TasksGrid";
 import API from "../../utils/API";
 
@@ -11,10 +12,17 @@ class TaskForm extends Component {
       taskName: "",
       taskAssigned: "",
       Task: [],
-      completed: ""
+      completed: "",
+      text: "",
+      _id: "",
+      tasks: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.markTaskAssigned = this.markTaskAssigned.bind(this);
+    //this.handleTextChange = this.handleTextChange.bind(this);
+    // this.handleDeleteItem = this.handleDeleteItem.bind(this);
+    // this.assignTask = this.assignTask.bind(this);
   }
   componentDidMount() {
     this.loadTasks();
@@ -49,13 +57,14 @@ class TaskForm extends Component {
     }).then(res => {
       console.log("New Task Created " + this.state.task);
       this.loadTasks();
+      console.log("res" + res);
     });
   }
 
-  deleteTask(_id) {
-    API.deleteTask(_id).then(res => {
-      console.log("Task Deleted");
-      console.log(_id);
+  deleteTask(id) {
+    console.log(id);
+    API.deleteTask(id).then(res => {
+      console.log("Task Deleted" + id);
 
       this.loadTasks();
     });
@@ -65,6 +74,20 @@ class TaskForm extends Component {
     console.log("Task Assigned to User");
     console.log(_id);
   }
+
+  markTaskAssigned(_id) {
+    // console.log(_id);
+    // var updatedTasks = this.state.Task.map(task => {
+    //   if (_id === this.task._id) task.done = !task.done;
+    //   return task;
+    // });
+    console.log("StrikeThrough!!!");
+  }
+  // handleDeleteItem(itemId) {
+  //   var updatedItems = this.state.Task.filter(item => {
+  //     return task.id !== taskId;
+  //   });
+  // }
 
   render() {
     return (
@@ -85,14 +108,28 @@ class TaskForm extends Component {
         {this.state.Task.map(task => {
           return (
             <ul>
-              <li className='Task' onClick={this.assignTask}>
-                <button onClick={this.deleteTask}>
+              <li
+                className='Task'
+                onClick={this.markTaskAssigned(this.state._id)}
+                completed={task.done}
+                onTaskAssigned={this.state.markTaskAssigned}
+              >
+                {/* <button onClick={this.deleteTask}>
                   <i class='fas fa-trash' />
-                </button>
+                </button> */}
+
+                <li className='Delete' key={task._id}>
+                  <Link to={"/tasks/" + task._id} />
+                  <button onClick={() => this.deleteTask(task._id)}>
+                    <i class='fas fa-trash' />
+                  </button>
+                </li>
+
                 {task.taskName}
+
                 <div className='Task-buttons'>
                   <h6>Assigned To:</h6>
-                  <span clssName='userId'>ParticipanId</span>
+                  <span clssName='userId'>ParticipantId</span>
                 </div>
               </li>
             </ul>
