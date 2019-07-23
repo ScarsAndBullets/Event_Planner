@@ -8,3 +8,7 @@
     transform: scale(1.08);
     transition: transform 0.2s;
 }
+
+.fontColor {
+    color: white;
+}
