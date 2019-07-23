@@ -6,3 +6,7 @@
     background: linear-gradient(to right, #1565C0, #b92b27);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
+
+.logo-font {
+    font-family: 'Amita', cursive;
+}

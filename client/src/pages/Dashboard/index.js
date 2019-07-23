@@ -33,18 +33,15 @@ class Dashboard extends Component {
     });
   }
 
-  render() {
-    return (
-      <Container fluid>
-        <Row>
-          <Col size='md-12' />
-        </Row>
-        {/* <EventCard></EventCard> */}
-        <Slider events={this.state.events} />
-        <Form handleNewEvent={this.handleNewEvent} />
-      </Container>
-    );
-  }
+	render() {
+		return (
+			<Container fluid>
+				<Slider events={this.state.events} />
+				<Form handleNewEvent={this.handleNewEvent} />
+			</Container>
+		);
+	}
+
 }
 
 export default withAuth(Dashboard);
