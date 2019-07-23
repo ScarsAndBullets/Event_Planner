@@ -85,8 +85,8 @@ function EventCard(props) {
                             <StarBorderRounded />
 						</Avatar>
 					) : (
-						<Avatar aria-label="Owned" className={classes.avatar} />
-					)
+							<Avatar aria-label="Owned" className={classes.avatar} />
+						)
 				}
 				// THREE DOT "SETTINGS" BUTTTON
 				action={
@@ -113,7 +113,7 @@ function EventCard(props) {
 			</CardContent>
 			<CardActions disableSpacing>
 				{/* BELOW: AddParticipants */}
-				<AddParticipant />
+				<AddParticipant eventId={props.events._id} />
 				{/* END: AddParticipants */}
 				<IconButton
 					className={clsx(classes.expand, {

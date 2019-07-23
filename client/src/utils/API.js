@@ -2,35 +2,41 @@ import decode from "jwt-decode";
 import axios from "axios";
 
 export default {
-	submitSignup: function(signup) {
+	submitSignup: function (signup) {
 		return axios.post("/api/user/signup", signup);
 	},
 	//Get users events to populate event dashboard
-	getEvents: function() {
+	getEvents: function () {
 		return axios.get("/api/events/event-dashboard");
 	},
-	submitEvent: function(event) {
+	submitEvent: function (event) {
 		return axios.post("/api/events/create", event);
 	},
-	getEventView: function(eventId) {
+	getEventView: function (eventId) {
 		return axios.get(`/api/events/${eventId}`);
 	},
-	deleteTask: function(_id) {
+	deleteTask: function (_id) {
 		return axios.delete("/api/tasks" + _id);
 	},
-	saveTask: function(taskData) {
+	saveTask: function (taskData) {
 		return axios.post("/api/tasks/create", taskData);
 	},
-	assignTask: function(task) {
+	assignTask: function (task) {
 		return axios.post("/api/tasks/assign", task);
 	},
-	unassignTask: function(task) {
+	unassignTask: function (task) {
 		return axios.post("/api/tasks/unassign", task);
 	},
-	sendEmail: function(email, eventId) {
+	sendEmail: function (email, eventId) {
 		return axios.post(`api/events/${eventId}/send-mail`, {
 			email
 		});
+	},
+	addParticipant: function (email, eventId) {
+		return axios.post(`api/events/${eventId}/add-particpant`, {
+			email: email,
+			eventId: eventId
+		})
 	}
 };
 

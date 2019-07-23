@@ -5,14 +5,14 @@ const secret = "mysecretsshhh";
 // Defining methods for the userController
 module.exports = {
 	//Sign up user
-	signup: function(req, res) {
+	signup: function (req, res) {
 		let password = req.body.password;
 		let password2 = req.body.password2;
 
 		if (password === password2) {
 			const newUser = new User(req.body);
 
-			db.User.createUser(newUser, function(err, user) {
+			db.User.createUser(newUser, function (err, user) {
 				if (err) {
 					if (err.code === 11000)
 						return res
@@ -35,7 +35,7 @@ module.exports = {
 		}
 	},
 	//Login user and send back user data
-	login: function(req, res) {
+	login: function (req, res) {
 		db.Participant.find({
 			email: req.user.email
 		})
@@ -76,7 +76,7 @@ module.exports = {
 	},
 
 	//Get current user data
-	currentUser: function(req, res) {
+	currentUser: function (req, res) {
 		if (!req.user) {
 			res.send(null);
 		} else {
@@ -84,7 +84,7 @@ module.exports = {
 		}
 	},
 	//Logout user
-	logout: function(req, res) {
+	logout: function (req, res) {
 		req.logout();
 		res.redirect("/");
 	}

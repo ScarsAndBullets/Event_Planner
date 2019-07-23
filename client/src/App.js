@@ -1,7 +1,5 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import "./App.css";
-import { Layout, Content } from "react-mdl";
-import Nav from "./components/Nav";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
@@ -10,17 +8,16 @@ import About from "./pages/About";
 import SignUp from "./pages/SignUp";
 import EventView from "./pages/EventView";
 import NoMatch from "./pages/NoMatch";
+import Container from '@material-ui/core/Container';
 import AppNavbar from "./components/AppNavbar";
 
 class App extends Component {
 	render() {
 		return (
-			<Layout>
-				{/* <Nav /> */}
+			<>
 				<AppNavbar />
-
-				<Router>
-					<div>
+				<Container>
+					<Router>
 						<Switch>
 							<Route path="/" exact component={Login} />
 							<Route path="/login" component={Login} />
@@ -31,9 +28,9 @@ class App extends Component {
 							<Route path="/event/:id" component={EventView} />
 							<Route component={NoMatch} />
 						</Switch>
-					</div>
-				</Router>
-			</Layout>
+					</Router>
+				</Container>
+			</>
 		);
 	}
 }
