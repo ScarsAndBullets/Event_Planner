@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import Grid from '@material-ui/core/Grid';
 import ParticipantChip from "./../ParticipantChip"
 import Paper from '@material-ui/core/Paper';
+import AddParticipant from "./../AddParticipant/AddParticipant";
 
 
 function Participants(props) {
 	return (
-		<Paper>
+		<>
 			<h3>Invited Participants</h3>
+			<AddParticipant eventId={props.eventId} />
 			<Grid
 				container
 				direction="row"
@@ -21,7 +23,7 @@ function Participants(props) {
 					</Grid>
 				))}
 			</Grid>
-		</Paper>
+		</>
 	);
 }
 

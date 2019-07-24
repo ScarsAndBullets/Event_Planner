@@ -138,7 +138,7 @@
   /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, grey, grey, grey);
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, grey, grey, grey));
+  /* background: linear-gradient(to right, grey, grey, grey)); */
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   /* background-image: url("./images/pland_logo_white.svg"); */
 

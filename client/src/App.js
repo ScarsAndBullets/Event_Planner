@@ -16,8 +16,8 @@ class App extends Component {
 		return (
 			<>
 				<AppNavbar />
-				<Container>
-					<Router>
+				<>
+					<Container>
 						<Switch>
 							<Route path="/" exact component={Login} />
 							<Route path="/login" component={Login} />
@@ -28,8 +28,8 @@ class App extends Component {
 							<Route path="/event/:id" component={EventView} />
 							<Route component={NoMatch} />
 						</Switch>
-					</Router>
-				</Container>
+					</Container>
+				</>
 			</>
 		);
 	}

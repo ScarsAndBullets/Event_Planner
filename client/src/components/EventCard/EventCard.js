@@ -18,9 +18,8 @@ import { red, purple, blue } from "@material-ui/core/colors";
 // import FavoriteIcon from '@material-ui/icons/Favorite';
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import AddParticipant from "../../components/AddParticipant/AddParticipant";
+import AddParticipant from "./../AddParticipant/AddParticipant.js"
 import StarBorderRounded from "@material-ui/icons/StarBorderRounded";
-import FullEventPage from "../../components/FullEventPage/FullEventPage";
 
 import "./EventCard.css";
 import { Link, Redirect, withRouter } from "react-router-dom";
@@ -85,8 +84,8 @@ function EventCard(props) {
               <StarBorderRounded />
             </Avatar>
           ) : (
-            <Avatar aria-label='Owned' className={classes.avatar} />
-          )
+              <Avatar aria-label='Owned' className={classes.avatar} />
+            )
         }
         // THREE DOT "SETTINGS" BUTTTON
         action={

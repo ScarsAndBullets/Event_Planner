@@ -3,15 +3,7 @@ import {
   Tabs,
   Tab,
   Grid,
-  Cell,
-  Card,
-  CardTitle,
-  CardText,
-  CardActions,
-  Button,
-  CardMenu,
-  IconButton,
-  Layout
+  Cell
 } from "react-mdl";
 import EventCard from "../../components/EventCard/EventCard";
 import "./Slider.css";
@@ -27,18 +19,16 @@ class Slider extends Component {
   toggleCategories() {
     if (this.state.activeTab === 0) {
       return (
-        <Layout>
-          <div className='slider card -grid'>
-            {/* <h5>Upcoming Events</h5> */}
-            <Grid>
-              {this.props.events.map(card => (
-                <Cell key={card._id} col={3} tablet={6} phone={12}>
-                  <EventCard events={card} />
-                </Cell>
-              ))}
-            </Grid>
-          </div>
-        </Layout>
+        <div className='slider card -grid'>
+          {/* <h5>Upcoming Events</h5> */}
+          <Grid>
+            {this.props.events.map(card => (
+              <Cell key={card._id} col={3} tablet={6} phone={12}>
+                <EventCard events={card} />
+              </Cell>
+            ))}
+          </Grid>
+        </div>
       );
     } else if (this.state.activeTab === 1) {
       return (
@@ -50,7 +40,7 @@ class Slider extends Component {
   }
   render() {
     return (
-      <Layout>
+      <>
         <Tabs
           activeTab={this.state.activeTab}
           onChange={tabId => this.setState({ activeTab: tabId })}
@@ -68,7 +58,7 @@ class Slider extends Component {
             <div className='content'>{this.toggleCategories()}</div>
           </Cell>
         </Grid>
-      </Layout>
+      </>
     );
   }
 }
