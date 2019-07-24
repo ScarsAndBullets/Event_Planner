@@ -13,7 +13,6 @@ import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
 import Slide from "@material-ui/core/Slide";
 import OpenWithRounded from "@material-ui/icons/OpenWithRounded";
-import AddParticipant from "../../components/AddParticipant/AddParticipant";
 import EventCard from "../../components/EventCard/EventCard";
 import TaskForm from "../../components/TaskForm/TaskForm";
 import API from "../../utils/API";
@@ -126,7 +125,7 @@ class EventView extends Component {
     });
   }
 
-  deleteTask(taskId) {}
+  deleteTask(taskId) { }
 
   render() {
     return (
@@ -147,7 +146,7 @@ class EventView extends Component {
           location={this.state.location}
           requirements={this.state.requirements}
         />
-        <Participants participants={this.state.participants} />
+        <Participants participants={this.state.participants} eventId={this.state.eventId} />
         <TaskForm
           tasks={this.state.tasks}
           participants={this.state.participants}

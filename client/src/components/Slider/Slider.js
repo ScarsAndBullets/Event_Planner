@@ -3,15 +3,7 @@ import {
   Tabs,
   Tab,
   Grid,
-  Cell,
-  Card,
-  CardTitle,
-  CardText,
-  CardActions,
-  Button,
-  CardMenu,
-  IconButton,
-  Layout
+  Cell
 } from "react-mdl";
 import EventCard from "../../components/EventCard/EventCard";
 import "./Slider.css";
@@ -48,7 +40,7 @@ class Slider extends Component {
   }
   render() {
     return (
-      <div>
+      <>
         <Tabs
           activeTab={this.state.activeTab}
           onChange={tabId => this.setState({ activeTab: tabId })}
@@ -66,7 +58,7 @@ class Slider extends Component {
             <div className='content'>{this.toggleCategories()}</div>
           </Cell>
         </Grid>
-      </div>
+      </>
     );
   }
 }
