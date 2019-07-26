@@ -55,6 +55,7 @@
   "homepage": "https://github.com/npm/cli#readme",
   "keywords": [],
   "engines": {
-    "node": ">=12.6.0"
+    "node": ">=12.6.0",
+    "npm": "==6.9.0"
   }
 }
