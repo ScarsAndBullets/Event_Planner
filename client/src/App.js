@@ -10,6 +10,7 @@ import EventView from "./pages/EventView";
 import NoMatch from "./pages/NoMatch";
 import Container from '@material-ui/core/Container';
 import AppNavbar from "./components/AppNavbar";
+import Terms from "./pages/Terms"
 
 class App extends Component {
 	render() {
@@ -26,6 +27,7 @@ class App extends Component {
 							<Route path="/create-event" component={CreateEvent} />
 							<Route path="/about" component={About} />
 							<Route path="/event/:id" component={EventView} />
+							<Route path="/terms" component={Terms} />
 							<Route component={NoMatch} />
 						</Switch>
 					</Router>

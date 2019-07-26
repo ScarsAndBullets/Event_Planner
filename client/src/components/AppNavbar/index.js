@@ -1,5 +1,5 @@
 import React from "react";
-import { fade, makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -13,17 +13,8 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import Button from "@material-ui/core/Button";
 import { ReactComponent as Logo } from "../../images/pland_logo_white-small.svg";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./style.css";
-
-// import Login from "./../../pages/Login";
-// import SignUp from "./../../pages/SignUp";
-// import Dashboard from "./../../pages/Dashboard";
-// import CreateEvent from "./../../pages/CreateEvent";
-// import About from "./../../pages/About";
-// import EventView from "./../../pages/EventView";
-// import NoMatch from "./../../pages/NoMatch";
-
 
 const useStyles = makeStyles(theme => ({
     grow: {
@@ -181,16 +172,6 @@ function AppNavbar() {
             {renderMobileMenu}
             {renderMenu}
 
-            {/* <Switch>
-                <Route path="/" exact component={Login} />
-                <Route path="/login" component={Login} />
-                <Route path="/signup" component={SignUp} />
-                <Route path="/dashboard" exact component={Dashboard} />
-                <Route path="/create-event" component={CreateEvent} />
-                <Route path="/about" component={About} />
-                <Route path="/event/:id" component={EventView} />
-                <Route component={NoMatch} />
-            </Switch> */}
         </div>
     );
 }

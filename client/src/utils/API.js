@@ -28,12 +28,14 @@ export default {
 		return axios.post("/api/tasks/unassign", task);
 	},
 	sendEmail: function (email, eventId) {
-		return axios.post(`api/events/${eventId}/send-mail`, {
+		console.log(`firing sendEmail`)
+		return axios.post(`/api/events/${eventId}/send-mail`, {
 			email
 		});
 	},
 	addParticipant: function (email, eventId) {
-		return axios.post(`api/events/${eventId}/add-particpant`, {
+		console.log(`firing addParticipant`)
+		return axios.post(`/api/events/${eventId}/add-particpant`, {
 			email: email,
 			eventId: eventId
 		})

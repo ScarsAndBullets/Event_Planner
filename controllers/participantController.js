@@ -2,8 +2,10 @@ const db = require("../models/");
 
 module.exports = {
 	//Add participant with their email
-	addParticipant: function(req, res) {
+	addParticipant: function (req, res) {
 		let eventId = req.params.eventId;
+
+		console.log(eventId = "adding participant")
 
 		db.Participant.create({
 			email: req.body.email,

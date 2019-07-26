@@ -20,7 +20,8 @@ function InviteLink(props) {
   const [open, setOpen] = React.useState(false);
 
   function handleClickOpen() {
-    //api.sendEmail(props.emailValue, props.eventId);
+    console.log(`Email: ${props.emailValue}, EventID: ${props.eventId}`)
+    api.sendEmail(props.emailValue, props.eventId);
     api.addParticipant(props.emailValue, props.eventId);
     setOpen(true);
   }
