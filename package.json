@@ -53,9 +53,5 @@
     "url": "https://github.com/npm/cli/issues"
   },
   "homepage": "https://github.com/npm/cli#readme",
-  "keywords": [],
-  "engines": {
-    "node": ">=12.6.0",
-    "npm": "==6.9.0"
-  }
+  "keywords": []
 }
