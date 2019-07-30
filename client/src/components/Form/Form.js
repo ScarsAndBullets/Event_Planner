@@ -1,14 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 // Material UI
 import {
   Grid,
   makeStyles,
-  Button,
   TextField,
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle
 } from "@material-ui/core";
 import { format } from "date-fns";
@@ -19,8 +17,6 @@ import {
   KeyboardDatePicker
 } from "@material-ui/pickers";
 import IconButton from "@material-ui/core/IconButton";
-import clsx from "clsx";
-import Icon from "@material-ui/core/Icon";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import { CheckCircleRounded, NotInterestedRounded } from "@material-ui/icons";

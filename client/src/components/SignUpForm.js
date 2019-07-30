@@ -148,9 +148,9 @@ class SignUpForm extends Component {
                                 onChange={this.handleChange}
                             />{" "}
                             I agree all statements in{" "}
-                            <a href="" className="FormField__TermsLink">
+                            <Link to="/terms" className="FormField__TermsLink">
                                 Terms of Service
-							</a>
+							</Link>
                         </label>
                     </div>
 

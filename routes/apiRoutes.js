@@ -42,10 +42,7 @@ module.exports = function (app) {
 	app.delete("/tasks/delete", taskController.deleteTask);
 
 	/////// PARTICPANT ROUTES ///////
-	app.post(
-		"/api/events/:eventId/add-participant",
-		participantController.addParticipant
-	);
+	app.post("/api/events/:eventId/add-participant", participantController.addParticipant);
 
 	app.post("/api/events/:eventId/send-mail", mailerController.sendMail);
 };
